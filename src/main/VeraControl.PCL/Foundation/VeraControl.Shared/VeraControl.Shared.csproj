@@ -35,9 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
+    <Compile Include="Model\IdentityPackage.cs" />
     <Compile Include="Model\VeraController.cs" />
     <Compile Include="Model\VeraControllerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\HttpConnectionService.cs" />
     <Compile Include="Service\VeraControlService.cs" />
   </ItemGroup>
   <ItemGroup>

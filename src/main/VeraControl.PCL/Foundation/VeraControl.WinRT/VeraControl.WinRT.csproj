@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Extensions\SecurityExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\HttpConnectionService.cs" />
     <EmbeddedResource Include="Properties\VeraControl.WinRT.rd.xml" />
   </ItemGroup>
   <ItemGroup>
