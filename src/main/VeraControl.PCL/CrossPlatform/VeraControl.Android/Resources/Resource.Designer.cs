@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("VeraControl.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("VeraControl.Resource", IsApplication=false)]
 
-namespace VeraControl.Android
+namespace VeraControl
 {
 	
 	

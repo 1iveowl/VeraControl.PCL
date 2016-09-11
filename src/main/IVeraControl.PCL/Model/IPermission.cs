@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VeraControl.WinRT
+namespace IVeraControl.Model
 {
-    public class Class1
+    public interface IPermission
     {
+        int PkPermission { get; }
+        int Mode { get; }
     }
 }

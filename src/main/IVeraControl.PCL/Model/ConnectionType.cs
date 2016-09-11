@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VeraControl.NET
+namespace IVeraControl.Model
 {
-    public class Class1
+    public enum ConnectionType
     {
+        Local,
+        Remote
     }
 }
