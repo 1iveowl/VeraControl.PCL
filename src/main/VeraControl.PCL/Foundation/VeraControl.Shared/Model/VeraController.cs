@@ -42,6 +42,8 @@ namespace VeraControl.Model
         [JsonProperty(PropertyName = "LastAliveReported")]
         public string LastAliveReported { get; set; }
 
+        public bool ConnectionEstablished { get; private set; }
+
         public IVeraControllerDetail ControllerDetail { get; private set; } = null;
         public ConnectionType CurrentConnectionType { get; private set; } = ConnectionType.Local;
 
@@ -54,19 +56,38 @@ namespace VeraControl.Model
                               $"/{DeviceSerialId}";
 
             ControllerDetail = await GetAndDeserialize<VeraControllerDetail>(
-                httpRequest, 
+                httpRequest,
                 httpConnectionService,
                 identityPackage.IdentityBase64,
                 identityPackage.IdentitySignature);
 
         }
 
-        public Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
+        public async Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
         {
             CurrentConnectionType = connectionType;
 
-            throw new NotImplementedException();
+            switch (connectionType)
+            {
+                case ConnectionType.Local:
+                    await EstablishLocalConnection();
+                    break;
+                case ConnectionType.Remote:
+                    await EstablishRemoteConnection();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, null);
+            }
         }
 
+        private async Task EstablishLocalConnection()
+        {
+
+        }
+
+        private async Task EstablishRemoteConnection()
+        {
+            
+        }
     }
 }

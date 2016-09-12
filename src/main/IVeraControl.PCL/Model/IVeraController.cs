@@ -29,6 +29,8 @@ namespace IVeraControl.Model
 
         string LastAliveReported { get; }
 
+        bool ConnectionEstablished { get; }
+
         IVeraControllerDetail ControllerDetail { get; }
         ConnectionType CurrentConnectionType { get; }
 
