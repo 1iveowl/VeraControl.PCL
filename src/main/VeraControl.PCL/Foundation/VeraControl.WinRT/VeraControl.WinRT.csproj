@@ -107,6 +107,18 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VeraControl.Shared\Extensions\HelperExtensions.cs">
+      <Link>Extensions\HelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\IdentityPackage.cs">
+      <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\VeraController.cs">
+      <Link>Model\VeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\VeraControllerList.cs">
+      <Link>Model\VeraControllerList.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Service\VeraControlService.cs">
       <Link>Service\VeraControlService.cs</Link>
     </Compile>
@@ -121,9 +133,7 @@
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

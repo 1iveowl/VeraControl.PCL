@@ -41,6 +41,7 @@
     <Compile Include="Model\IVeraController.cs" />
     <Compile Include="Model\IVeraControllerList.cs" />
     <Compile Include="Model\IVeraControllerDetail.cs" />
+    <Compile Include="Service\IHttpConnectionService.cs" />
     <Compile Include="Service\IVeraControllerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

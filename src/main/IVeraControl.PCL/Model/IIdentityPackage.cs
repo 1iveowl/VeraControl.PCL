@@ -30,6 +30,6 @@ namespace IVeraControl.Model
 
         bool IsStale { get; }
 
-        Task GetIdentityPackage(string username, string password);
+        //Task GetIdentityPackage(string username, string password);
     }
 }

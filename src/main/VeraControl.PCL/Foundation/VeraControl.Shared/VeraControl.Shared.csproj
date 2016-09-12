@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions\HelperExtensions.cs" />
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
     <Compile Include="Model\IdentityPackage.cs" />
     <Compile Include="Model\VeraController.cs" />

@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Web.Http;
+using IVeraControl.Service;
 
 namespace VeraControl.Service
 {
-    internal class HttpConnectionService
+    internal class HttpConnectionService : IHttpConnectionService
     {
-        internal async Task<Stream> HttpGetAsync(string httpRequest, string mmsAuth = null, string mmsAuthSig = null)
+        public async Task<Stream> HttpGetAsync(string httpRequest, string mmsAuth = null, string mmsAuthSig = null)
         {
             if ((mmsAuth == null) && (mmsAuthSig != null))
                 throw new ArgumentNullException(nameof(mmsAuth));
