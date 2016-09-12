@@ -107,14 +107,29 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\VeraControl.Shared\Converter\ConcreteConverter.cs">
+      <Link>Converter\ConcreteConverter.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Extensions\HelperExtensions.cs">
       <Link>Extensions\HelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Base\DeserializeBase.cs">
+      <Link>Model\Base\DeserializeBase.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\IdentityDetail.cs">
+      <Link>Model\IdentityDetail.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\IdentityPackage.cs">
       <Link>Model\IdentityPackage.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Permission.cs">
+      <Link>Model\Permission.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\VeraController.cs">
       <Link>Model\VeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\VeraControllerDetail.cs">
+      <Link>Model\VeraControllerDetail.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\VeraControllerList.cs">
       <Link>Model\VeraControllerList.cs</Link>

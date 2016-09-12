@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IVeraControl.Service;
 
 namespace IVeraControl.Model
 {
@@ -31,7 +32,8 @@ namespace IVeraControl.Model
         IVeraControllerDetail ControllerDetail { get; }
         ConnectionType CurrentConnectionType { get; }
 
-        Task GetDetailsAsync();
+        Task GetDetailsAsync(IHttpConnectionService httpConnectionService, IIdentityPackage identityPackage);
+
         Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local);
     }
 }

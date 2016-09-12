@@ -66,6 +66,6 @@ namespace IVeraControl.Model
 
         string EngineStatus { get; }
 
-        string AccessPermissions { get; }
+        int AccessPermissions { get; }
     }
 }

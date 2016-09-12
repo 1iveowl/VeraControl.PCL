@@ -12,7 +12,7 @@ namespace IVeraControl.Model
 
         int Generated { get; }
 
-        IEnumerable<IPermission> Permissions { get; }
+        IPermission[] Permissions { get; }
 
         int PkAccount { get; }
 

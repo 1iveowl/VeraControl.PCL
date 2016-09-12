@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,13 @@ using IVeraControl.Model;
 using IVeraControl.Service;
 using Newtonsoft.Json;
 using VeraControl.Model;
+using VeraControl.Model.Base;
 using static VeraControl.Extensions.SecurityExtension;
 using static VeraControl.Extensions.HelperExtensions;
 
 namespace VeraControl.Service
 {
-    public class VeraControlService : IVeraControllerService
+    public class VeraControlService : DeserializeBase, IVeraControllerService
     {
         private const string PasswordSeed = "oZ7QE6LcLJp6fiWzdqZc";
         private const string PkOem = "1";
@@ -21,20 +23,17 @@ namespace VeraControl.Service
 
         private readonly IHttpConnectionService _httpConnectionService = new HttpConnectionService();
 
-        //private IdentityPackage _identityPackage;
-
-        private IVeraControllerList _veraControllerList = new VeraControllerList();
 
         public async Task<IVeraControllerList> GetControllers(string username, string password)
         {
             var identityPackage = await GetIdentityPackage(username, password);
 
             return await GetVeraControllers(
-                identityPackage.IdentityDetails.ServerAuth,
-                identityPackage.IdentityDetails.PkAccount);
+                AuthenticationServer,
+                identityPackage.IdentityDetails.PkAccount, identityPackage);
         }
 
-        private async Task<IVeraControllerList> GetVeraControllers(string serverAuth, int pkAccount)
+        private async Task<IVeraControllerList> GetVeraControllers(string serverAuth, int pkAccount, IIdentityPackage identityPackage)
         {
             var httpRequest = $"https://{serverAuth}" +
                               $"/locator" +
@@ -42,8 +41,14 @@ namespace VeraControl.Service
                               $"/locator" +
                               $"?PK_Account={pkAccount}";
 
-            return await GetAndDeserialize<IVeraControllerList>(httpRequest);
+            var controllerList = await GetAndDeserialize<VeraControllerList>(httpRequest, _httpConnectionService);
 
+            foreach (var controller in controllerList.VeraControllers)
+            {
+                await controller.GetDetailsAsync(_httpConnectionService, identityPackage);
+            }
+
+            return controllerList;
         }
 
         private async Task<IIdentityPackage> GetIdentityPackage(string username, string password)
@@ -58,35 +63,12 @@ namespace VeraControl.Service
                               $"?SHA1Password={passwordhash}" +
                               $"&PK_Oem={PkOem}";
 
-            var identityPackage = await GetAndDeserialize<IdentityPackage>(httpRequest);
+            var identityPackage = await GetAndDeserialize<IdentityPackage>(httpRequest, _httpConnectionService);
 
             identityPackage.Generated = identityPackage.IdentityDetails.Generated.UnixTimestampToUtcDateTime();
             identityPackage.Expires = identityPackage.IdentityDetails.Expires.UnixTimestampToUtcDateTime();
 
             return identityPackage;
-        }
-
-        private async Task<T> GetAndDeserialize<T>(string httpRequest)
-        {
-            try
-            {
-                var stream = await _httpConnectionService.HttpGetAsync(httpRequest);
-
-                using (var sr = new StreamReader(stream))
-                using (var reader = new JsonTextReader(sr))
-                {
-                    var serializer = new JsonSerializer();
-                    var obj = serializer.Deserialize<T>(reader);
-
-                    return obj;
-                }
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-            
         }
     }
 }

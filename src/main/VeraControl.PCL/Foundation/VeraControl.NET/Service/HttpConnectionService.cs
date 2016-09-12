@@ -19,9 +19,12 @@ namespace VeraControl.Service
             if ((mmsAuth != null) && (mmsAuthSig == null))
                 throw new ArgumentNullException(nameof(mmsAuthSig));
 
+            Stream stream;
+
             try
             {
                 using (var httpClient = new HttpClient())
+                using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(httpRequest)))
                 {
                     httpClient.Timeout = TimeSpan.FromSeconds(120);
 
@@ -31,7 +34,10 @@ namespace VeraControl.Service
                         httpClient.DefaultRequestHeaders.Add("MMSAuthSig", mmsAuthSig);
                     }
 
-                    return await httpClient.GetStreamAsync(httpRequest);
+                    var responseMessage = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+
+                    stream = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
                 }
             }
             catch (Exception ex)
@@ -39,6 +45,8 @@ namespace VeraControl.Service
                 
                 throw ex;
             }
+
+            return stream;
         }
     }
 }

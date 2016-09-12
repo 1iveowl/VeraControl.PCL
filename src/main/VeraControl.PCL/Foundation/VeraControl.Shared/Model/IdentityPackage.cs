@@ -41,7 +41,7 @@ namespace VeraControl.Model
             private set
             {
                 _identityText = value;
-                IdentityDetails = JsonConvert.DeserializeObject<IIdentityDetails>(_identityText);
+                IdentityDetails = JsonConvert.DeserializeObject<IdentityDetail>(_identityText);
             }
         }
 

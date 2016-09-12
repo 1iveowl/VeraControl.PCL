@@ -5,10 +5,12 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using IVeraControl.Service;
+using VeraControl.Model.Base;
 
 namespace VeraControl.Model
 {
-    internal class VeraController : IVeraController
+    internal class VeraController : DeserializeBase, IVeraController
     {
         [JsonProperty(PropertyName = "PK_Device")]
         public string DeviceSerialId { get; set; }
@@ -40,12 +42,23 @@ namespace VeraControl.Model
         [JsonProperty(PropertyName = "LastAliveReported")]
         public string LastAliveReported { get; set; }
 
-        public IVeraControllerDetail ControllerDetail { get; } = null;
+        public IVeraControllerDetail ControllerDetail { get; private set; } = null;
         public ConnectionType CurrentConnectionType { get; private set; } = ConnectionType.Local;
 
-        public Task GetDetailsAsync()
+        public async Task GetDetailsAsync(IHttpConnectionService httpConnectionService, IIdentityPackage identityPackage)
         {
-            throw new NotImplementedException();
+            var httpRequest = $"https://{ServerDevice}" +
+                              $"/device" +
+                              $"/device" +
+                              $"/device" +
+                              $"/{DeviceSerialId}";
+
+            ControllerDetail = await GetAndDeserialize<VeraControllerDetail>(
+                httpRequest, 
+                httpConnectionService,
+                identityPackage.IdentityBase64,
+                identityPackage.IdentitySignature);
+
         }
 
         public Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
@@ -54,5 +67,6 @@ namespace VeraControl.Model
 
             throw new NotImplementedException();
         }
+
     }
 }
