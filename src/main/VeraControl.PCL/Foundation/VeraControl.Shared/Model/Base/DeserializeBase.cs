@@ -35,7 +35,6 @@ namespace VeraControl.Model.Base
                     var serializer = new JsonSerializer();
                     var obj = serializer.Deserialize<T>(reader);
 
-
                     return obj;
                 }
             }

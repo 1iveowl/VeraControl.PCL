@@ -42,13 +42,36 @@ namespace VeraControl.Model
         [JsonProperty(PropertyName = "LastAliveReported")]
         public string LastAliveReported { get; set; }
 
-        public bool ConnectionEstablished { get; private set; }
+        //public bool ConnectionEstablished { get; private set; }
+
+        public IHttpConnectionService HttpConnectionService { get; set; }
 
         public IVeraControllerDetail ControllerDetail { get; private set; } = null;
+
         public ConnectionType CurrentConnectionType { get; private set; } = ConnectionType.Local;
 
-        public async Task GetDetailsAsync(IHttpConnectionService httpConnectionService, IIdentityPackage identityPackage)
+        private IIdentityPackage _identityPackage;
+
+        public async Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, ConnectionType connectionType)
         {
+            CheckConnectionServiceAndIdentityPackage();
+
+            var httpRequest = $"https://{GetHttpAddress(connectionType)}" +
+                              $"/data_request" +
+                              $"?id=action" +
+                              $"&output_format=json" +
+                              $"&DeviceNum={device.DeviceNumber}" +
+                              $"&serviceId={service.ServiceUrn}" +
+                              $"&action={service.}";
+        }
+
+        
+
+        public async Task GetDetailsAsync(IIdentityPackage identityPackage)
+        {
+            _identityPackage = identityPackage;
+            CheckConnectionServiceAndIdentityPackage();
+
             var httpRequest = $"https://{ServerDevice}" +
                               $"/device" +
                               $"/device" +
@@ -57,37 +80,58 @@ namespace VeraControl.Model
 
             ControllerDetail = await GetAndDeserialize<VeraControllerDetail>(
                 httpRequest,
-                httpConnectionService,
+                HttpConnectionService,
                 identityPackage.IdentityBase64,
                 identityPackage.IdentitySignature);
 
         }
 
-        public async Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
+        private void CheckConnectionServiceAndIdentityPackage()
         {
-            CurrentConnectionType = connectionType;
+            if ((HttpConnectionService == null) || (_identityPackage == null))
+                throw new ArgumentNullException($"{nameof(HttpConnectionService)} and/or {nameof(_identityPackage)} cannot be null");
+        }
 
+
+        private string GetHttpAddress(ConnectionType connectionType)
+        {
+            string httpAddr = null;
             switch (connectionType)
             {
                 case ConnectionType.Local:
-                    await EstablishLocalConnection();
+                    httpAddr = $"{LocalIpAddress}:3480";
                     break;
                 case ConnectionType.Remote:
-                    await EstablishRemoteConnection();
+                    httpAddr = $"{ServerDevice}:3480";
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, null);
             }
+            return httpAddr;
         }
+        //public async Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
+        //{
+        //    CurrentConnectionType = connectionType;
 
-        private async Task EstablishLocalConnection()
-        {
+        //    switch (connectionType)
+        //    {
+        //        case ConnectionType.Local:
+        //            await EstablishLocalConnection();
+        //            break;
+        //        case ConnectionType.Remote:
+        //            await EstablishRemoteConnection();
+        //            break;
+        //        default:
+        //            throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, null);
+        //    }
+        //}
 
-        }
+        //private async Task EstablishLocalConnection()
+        //{
 
-        private async Task EstablishRemoteConnection()
-        {
-            
-        }
+        //}
+
+        //private async Task EstablishRemoteConnection()
+        //{
+
+        //}
     }
 }

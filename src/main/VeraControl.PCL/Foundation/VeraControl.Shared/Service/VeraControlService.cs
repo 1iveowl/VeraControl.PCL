@@ -45,7 +45,8 @@ namespace VeraControl.Service
 
             foreach (var controller in controllerList.VeraControllers)
             {
-                await controller.GetDetailsAsync(_httpConnectionService, identityPackage);
+                controller.HttpConnectionService = _httpConnectionService;
+                await controller.GetDetailsAsync(identityPackage);
             }
 
             return controllerList;

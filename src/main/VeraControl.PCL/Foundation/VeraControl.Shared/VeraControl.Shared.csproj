@@ -37,10 +37,13 @@
     <Compile Include="Converter\ConcreteConverter.cs" />
     <Compile Include="Extensions\HelperExtensions.cs" />
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
+    <Compile Include="Model\Action.cs" />
     <Compile Include="Model\Base\DeserializeBase.cs" />
     <Compile Include="Model\IdentityDetail.cs" />
     <Compile Include="Model\IdentityPackage.cs" />
     <Compile Include="Model\Permission.cs" />
+    <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />
+    <Compile Include="Model\UpnpService\SwitchPower1.cs" />
     <Compile Include="Model\VeraController.cs" />
     <Compile Include="Model\VeraControllerDetail.cs" />
     <Compile Include="Model\VeraControllerList.cs" />
@@ -63,6 +66,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

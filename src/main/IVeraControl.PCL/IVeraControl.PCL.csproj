@@ -35,9 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\ConnectionType.cs" />
+    <Compile Include="Model\Direction.cs" />
+    <Compile Include="Model\IAction.cs" />
     <Compile Include="Model\IIdentityDetails.cs" />
     <Compile Include="Model\IIdentityPackage.cs" />
     <Compile Include="Model\IPermission.cs" />
+    <Compile Include="Model\IUpnpDevice.cs" />
+    <Compile Include="Model\IUpnpService.cs" />
     <Compile Include="Model\IVeraController.cs" />
     <Compile Include="Model\IVeraControllerList.cs" />
     <Compile Include="Model\IVeraControllerDetail.cs" />

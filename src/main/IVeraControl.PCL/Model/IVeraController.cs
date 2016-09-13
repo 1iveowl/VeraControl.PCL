@@ -29,13 +29,19 @@ namespace IVeraControl.Model
 
         string LastAliveReported { get; }
 
-        bool ConnectionEstablished { get; }
+        //bool ConnectionEstablished { get; }
+
+        IHttpConnectionService HttpConnectionService { get; set; }
 
         IVeraControllerDetail ControllerDetail { get; }
-        ConnectionType CurrentConnectionType { get; }
 
-        Task GetDetailsAsync(IHttpConnectionService httpConnectionService, IIdentityPackage identityPackage);
+        Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, ConnectionType connectionType);
 
-        Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local);
+        //ConnectionType CurrentConnectionType { get; }
+        
+
+        Task GetDetailsAsync(IIdentityPackage identityPackage);
+
+        //Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local);
     }
 }
