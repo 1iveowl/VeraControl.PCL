@@ -52,7 +52,12 @@ namespace VeraControl.Model
 
         private IIdentityPackage _identityPackage;
 
-        public async Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, string actionName, ConnectionType connectionType)
+        public async Task<string> SendAction(
+            IUpnpDevice device, 
+            IUpnpService service, 
+            string value, 
+            string actionName, 
+            ConnectionType connectionType)
         {
             CheckConnectionServiceAndIdentityPackage();
 
@@ -112,31 +117,5 @@ namespace VeraControl.Model
             }
             return httpAddr;
         }
-        //public async Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local)
-        //{
-        //    CurrentConnectionType = connectionType;
-
-        //    switch (connectionType)
-        //    {
-        //        case ConnectionType.Local:
-        //            await EstablishLocalConnection();
-        //            break;
-        //        case ConnectionType.Remote:
-        //            await EstablishRemoteConnection();
-        //            break;
-        //        default:
-        //            throw new ArgumentOutOfRangeException(nameof(connectionType), connectionType, null);
-        //    }
-        //}
-
-        //private async Task EstablishLocalConnection()
-        //{
-
-        //}
-
-        //private async Task EstablishRemoteConnection()
-        //{
-
-        //}
     }
 }
