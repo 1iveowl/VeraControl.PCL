@@ -14,6 +14,6 @@ namespace VeraControl.Model.UpnpDevices
         public string DeviceUrn => "urn:schemas-upnp-org:device:BinaryLight:1";
         public string DeviceNumber { get; set; }
 
-        public SwitchPower1 SwitchPower1 { get; } = new SwitchPower1();
+        public IEnumerable<IUpnpService> Services { get; set; } = new List<IUpnpService> {new SwitchPower1()};
     }
 }

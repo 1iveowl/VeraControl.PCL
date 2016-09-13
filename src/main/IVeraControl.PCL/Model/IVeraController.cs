@@ -35,7 +35,7 @@ namespace IVeraControl.Model
 
         IVeraControllerDetail ControllerDetail { get; }
 
-        Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, ConnectionType connectionType);
+        Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, string actionName, ConnectionType connectionType);
 
         //ConnectionType CurrentConnectionType { get; }
         

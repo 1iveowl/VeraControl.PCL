@@ -52,9 +52,13 @@ namespace VeraControl.Model
 
         private IIdentityPackage _identityPackage;
 
-        public async Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, ConnectionType connectionType)
+        public async Task<string> SendAction(IUpnpDevice device, IUpnpService service, string value, string actionName, ConnectionType connectionType)
         {
             CheckConnectionServiceAndIdentityPackage();
+
+            var action = service?.Actions?.FirstOrDefault(x => x.ActionName == actionName);
+
+            if (action == null) throw new ArgumentException($"No action matches action name: {actionName}");
 
             var httpRequest = $"https://{GetHttpAddress(connectionType)}" +
                               $"/data_request" +
@@ -62,7 +66,8 @@ namespace VeraControl.Model
                               $"&output_format=json" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&serviceId={service.ServiceUrn}" +
-                              $"&action={service.}";
+                              $"&action={action.ActionName}" +
+                              $"&{action.ArgumentName}={action.Value}";
         }
 
         
