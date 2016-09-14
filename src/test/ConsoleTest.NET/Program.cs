@@ -43,7 +43,7 @@ namespace ConsoleTest.NET
 
             if (action != null)
             {
-                action.Value = "0";
+                action.Value = "1";
             }
             else
             {
