@@ -121,7 +121,7 @@ namespace VeraControl.Model
                 case ConnectionType.Local:
                     httpAddr = $"{LocalIpAddress}:3480";
                     break;
-                case ConnectionType.Remote:
+                case ConnectionType.Remote: 
                     httpAddr = $"{ServerDevice}:3480";
                     break;
             }
