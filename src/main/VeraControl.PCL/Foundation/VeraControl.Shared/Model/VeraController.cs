@@ -71,14 +71,14 @@ namespace VeraControl.Model
 
             var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
-                              $"?id=action" +
+                              $"?id=lu_action" +
                               $"&output_format=json" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&serviceId={service.ServiceUrn}" +
                               $"&action={action.ActionName}" +
                               $"&{action.ArgumentName}={action.Value}";
 
-            return await GetAndDeserialize<string>(
+            return await GetString(
                 httpRequest,
                 HttpConnectionService,
                 _identityPackage.IdentityBase64,

@@ -18,7 +18,7 @@ namespace VeraControl.Model.UpnpService
                 new UpnpAction
                 {
                     ActionName = "SetTarget",
-                    ArgumentName = "newTargetName",
+                    ArgumentName = "newTargetValue",
                     Type = typeof(bool),
                     Value = null,
                     Direction = Direction.In

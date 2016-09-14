@@ -39,11 +39,11 @@ namespace ConsoleTest.NET
             var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
             var action = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
-            binaryLight.DeviceNumber = "49";
+            binaryLight.DeviceNumber = "56";
 
             if (action != null)
             {
-                action.Value = "1";
+                action.Value = "0";
             }
             else
             {
