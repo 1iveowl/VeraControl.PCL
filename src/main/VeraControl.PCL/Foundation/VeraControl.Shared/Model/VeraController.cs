@@ -56,8 +56,8 @@ namespace VeraControl.Model
         // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
         //          https://vera-us-o:3480/data_request?id=action&output_format=json&DeviceNum4&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetName=1 
         public async Task<string> SendAction(
-            IUpnpDevice device, 
-            IUpnpService service, 
+            IUpnpDevice device,
+            IUpnpService service,
             IUpnpAction action,
             ConnectionType connectionType)
         {
@@ -69,7 +69,7 @@ namespace VeraControl.Model
 
             if (action == null) throw new ArgumentException($"Action cannot be null");
 
-            var httpRequest = $"https://{GetHttpAddress(connectionType)}" +
+            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=action" +
                               $"&output_format=json" +
@@ -85,7 +85,7 @@ namespace VeraControl.Model
                 _identityPackage.IdentitySignature);
         }
 
-        
+
 
         public async Task GetDetailsAsync(IIdentityPackage identityPackage)
         {
@@ -113,19 +113,41 @@ namespace VeraControl.Model
         }
 
 
-        private string GetHttpAddress(ConnectionType connectionType)
+        private async Task<string> GetHttpAddress(ConnectionType connectionType)
         {
             string httpAddr = null;
             switch (connectionType)
             {
                 case ConnectionType.Local:
-                    httpAddr = $"{LocalIpAddress}:3480";
+                    httpAddr = $"{LocalIpAddress}/port_3480";
                     break;
-                case ConnectionType.Remote: 
-                    httpAddr = $"{ServerDevice}:3480";
-                    break;
+                case ConnectionType.Remote:
+                    {
+                        var token = await GetRemoteSessionToken();
+
+                        httpAddr = $"{ControllerDetail.RelayServer}" +
+                                    $"/relay/relay/relay/device" +
+                                    $"/{DeviceSerialId}" +
+                                    $"/session" +
+                                    $"/{token}" +
+                                    $"/port_3480";
+                        break;
+                    }
+
             }
             return httpAddr;
+        }
+
+        private async Task<string> GetRemoteSessionToken()
+        {
+            var httpSessionRequest = $"https://{ControllerDetail.RelayServer}" +
+                                     $"/info/session/token";
+
+            return await GetString(
+                httpSessionRequest,
+                HttpConnectionService,
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
         }
     }
 }

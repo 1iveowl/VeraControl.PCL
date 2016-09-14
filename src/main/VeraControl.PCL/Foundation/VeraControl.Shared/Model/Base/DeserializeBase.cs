@@ -13,9 +13,9 @@ namespace VeraControl.Model.Base
     public class DeserializeBase
     {
         protected async Task<T> GetAndDeserialize<T>(
-            string httpRequest, 
-            IHttpConnectionService httpConnectionService, 
-            string mmsAuth = null, 
+            string httpRequest,
+            IHttpConnectionService httpConnectionService,
+            string mmsAuth = null,
             string mmsAuthSig = null)
         {
             try
@@ -31,11 +31,10 @@ namespace VeraControl.Model.Base
                     Debug.WriteLine(debugStreamToText);
                     stream.Position = 0;
 #endif
-
                     var serializer = new JsonSerializer();
                     var obj = serializer.Deserialize<T>(reader);
-
                     return obj;
+
                 }
             }
             catch (Exception)
@@ -44,6 +43,20 @@ namespace VeraControl.Model.Base
                 throw;
             }
 
+        }
+
+        protected async Task<string> GetString(
+            string httpRequest,
+            IHttpConnectionService httpConnectionService,
+            string mmsAuth = null,
+            string mmsAuthSig = null)
+        {
+            var stream = await httpConnectionService.HttpGetAsync(httpRequest, mmsAuth, mmsAuthSig);
+
+            using (var sr = new StreamReader(stream))
+            {
+                return sr.ReadToEnd();
+            }
         }
     }
 }
