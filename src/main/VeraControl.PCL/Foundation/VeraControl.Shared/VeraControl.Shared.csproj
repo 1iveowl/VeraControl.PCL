@@ -37,7 +37,7 @@
     <Compile Include="Converter\ConcreteConverter.cs" />
     <Compile Include="Extensions\HelperExtensions.cs" />
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
-    <Compile Include="Model\Action.cs" />
+    <Compile Include="Model\UpnpAction.cs" />
     <Compile Include="Model\Base\DeserializeBase.cs" />
     <Compile Include="Model\IdentityDetail.cs" />
     <Compile Include="Model\IdentityPackage.cs" />

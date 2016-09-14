@@ -6,6 +6,7 @@ namespace IVeraControl.Model
     {
         string DeviceUrn { get; }
         string DeviceNumber { get; set; }
+        string DeviceName { get; }
         IEnumerable<IUpnpService> Services { get; set; }
     }
 }

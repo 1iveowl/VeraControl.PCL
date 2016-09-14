@@ -3,12 +3,12 @@ using VeraControl.Model;
 
 namespace IVeraControl.Model
 {
-    public interface IAction
+    public interface IUpnpAction
     {
         string ActionName { get; }
-        string ArgumentName { get; }
-        string Value { get; }
+        string ArgumentName { get; set; }
+        string Value { get; set; }
         Direction Direction { get; }
-        Type Type { get; }
+        Type Type { get;  }
     }
 }

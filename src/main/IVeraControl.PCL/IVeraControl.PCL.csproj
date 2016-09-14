@@ -36,7 +36,7 @@
   <ItemGroup>
     <Compile Include="Model\ConnectionType.cs" />
     <Compile Include="Model\Direction.cs" />
-    <Compile Include="Model\IAction.cs" />
+    <Compile Include="Model\IUpnpAction.cs" />
     <Compile Include="Model\IIdentityDetails.cs" />
     <Compile Include="Model\IIdentityPackage.cs" />
     <Compile Include="Model\IPermission.cs" />

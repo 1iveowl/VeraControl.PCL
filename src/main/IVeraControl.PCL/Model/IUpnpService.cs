@@ -6,6 +6,8 @@ namespace IVeraControl.Model
     {
         string ServiceUrn { get; }
 
-        IEnumerable<IAction> Actions { get; set; }
+        string ServiceName { get;}
+
+        IEnumerable<IUpnpAction> Actions { get; set; }
     }
 }

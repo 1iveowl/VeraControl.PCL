@@ -7,14 +7,15 @@ using IVeraControl.Model;
 
 namespace VeraControl.Model.UpnpService
 {
+    //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
     public class SwitchPower1 : IUpnpService
     {
-        public string ServiceUrn => "serviceId=urn:upnp-org:serviceId:SwitchPower1";
-
-        //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
-        public IEnumerable<IAction> Actions { get; set; } = new List<Action>
+        public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
+        public string ServiceName { get; } = nameof(SwitchPower1);
+        
+        public IEnumerable<IUpnpAction> Actions { get; set; } = new List<UpnpAction>
             {
-                new Action
+                new UpnpAction
                 {
                     ActionName = "SetTarget",
                     ArgumentName = "newTargetName",
@@ -22,7 +23,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.In
                 },
-                new Action
+                new UpnpAction
                 {
                     ActionName = "GetTarget",
                     ArgumentName = "RetTargetValue",
@@ -30,7 +31,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.Out
                 },
-                new Action
+                new UpnpAction
                 {
                     ActionName = "GetStatus",
                     ArgumentName = "ResultStatus",

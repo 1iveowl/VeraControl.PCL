@@ -52,18 +52,22 @@ namespace VeraControl.Model
 
         private IIdentityPackage _identityPackage;
 
+        // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
+        // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
+        //          https://vera-us-o:3480/data_request?id=action&output_format=json&DeviceNum4&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetName=1 
         public async Task<string> SendAction(
             IUpnpDevice device, 
             IUpnpService service, 
-            string value, 
-            string actionName, 
+            IUpnpAction action,
             ConnectionType connectionType)
         {
             CheckConnectionServiceAndIdentityPackage();
 
-            var action = service?.Actions?.FirstOrDefault(x => x.ActionName == actionName);
+            if (device == null) throw new ArgumentException($"Device cannot be null");
 
-            if (action == null) throw new ArgumentException($"No action matches action name: {actionName}");
+            if (service == null) throw new ArgumentException($"Service cannot be null");
+
+            if (action == null) throw new ArgumentException($"Action cannot be null");
 
             var httpRequest = $"https://{GetHttpAddress(connectionType)}" +
                               $"/data_request" +
@@ -73,6 +77,12 @@ namespace VeraControl.Model
                               $"&serviceId={service.ServiceUrn}" +
                               $"&action={action.ActionName}" +
                               $"&{action.ArgumentName}={action.Value}";
+
+            return await GetAndDeserialize<string>(
+                httpRequest,
+                HttpConnectionService,
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
         }
 
         
@@ -91,8 +101,8 @@ namespace VeraControl.Model
             ControllerDetail = await GetAndDeserialize<VeraControllerDetail>(
                 httpRequest,
                 HttpConnectionService,
-                identityPackage.IdentityBase64,
-                identityPackage.IdentitySignature);
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
 
         }
 
