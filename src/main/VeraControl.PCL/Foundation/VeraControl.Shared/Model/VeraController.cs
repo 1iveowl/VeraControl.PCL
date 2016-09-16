@@ -54,7 +54,6 @@ namespace VeraControl.Model
 
         // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
         // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
-        //          https://vera-us-o:3480/data_request?id=action&output_format=json&DeviceNum4&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetName=1 
         public async Task<string> SendAction(
             IUpnpDevice device,
             IUpnpService service,
