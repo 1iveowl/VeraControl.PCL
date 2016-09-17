@@ -37,12 +37,14 @@
     <Compile Include="Converter\ConcreteConverter.cs" />
     <Compile Include="Extensions\HelperExtensions.cs" />
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
+    <Compile Include="Model\Json\JsonIdentityPackage.cs" />
+    <Compile Include="Model\Json\JsonIdentityPackageDetail.cs" />
     <Compile Include="Model\Json\JsonVeraConrtollerDetail.cs" />
     <Compile Include="Model\Json\JsonVeraController.cs" />
     <Compile Include="Model\Json\JsonVeraControllerList.cs" />
     <Compile Include="Model\UpnpAction.cs" />
     <Compile Include="Helper\HttpGetDeserializer.cs" />
-    <Compile Include="Model\IdentityDetail.cs" />
+    <Compile Include="Model\IdentityPackageDetail.cs" />
     <Compile Include="Model\IdentityPackage.cs" />
     <Compile Include="Model\Permission.cs" />
     <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />

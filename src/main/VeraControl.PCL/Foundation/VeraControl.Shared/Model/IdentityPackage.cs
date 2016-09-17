@@ -3,84 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using IVeraControl.Model;
+using IVeraControl.Model.Data;
 using IVeraControl.Service;
 using Newtonsoft.Json;
+using VeraControl.Extensions;
+using VeraControl.Helper;
+using VeraControl.Model.Json;
 
 namespace VeraControl.Model
 {
-    internal class IdentityPackage : IIdentityPackage
+    internal class IdentityPackage : JsonIdentityPackage, IIdentityPackage
     {
-        //private IHttpConnectionService _httpConnectionService;
-        
-        private string _identityBase64;
+        private const string PasswordSeed = "oZ7QE6LcLJp6fiWzdqZc";
+        private const string PkOem = "1";
+        private readonly string _authenticationServer;
 
-        [JsonProperty(PropertyName = "Identity")]
-        
-        public string IdentityBase64 {
-            get
-            {
-                return _identityBase64;
-            }
-            internal set
-            {
-                _identityBase64 = value;
-                IdentityText = ConvertBase64StringToUtf8(_identityBase64);
-            }
-        }
+        private readonly IMapper _mapper;
 
-        private string _identityText;
+        private readonly HttpGetDeserializer _httpDeserializer = new HttpGetDeserializer();
 
-        public string IdentityText
+        private readonly IHttpConnectionService _httpConnectionService;
+
+        internal IdentityPackage(IHttpConnectionService httpConnectionService, string authenticationServer)
         {
-            get
+            _httpConnectionService = httpConnectionService;
+            _authenticationServer = authenticationServer;
+
+            // Initialize AutoMapper
+            var config = new MapperConfiguration(cfg =>
             {
-                return _identityText;
-            }
-            private set
-            {
-                _identityText = value;
-                IdentityDetails = JsonConvert.DeserializeObject<IdentityDetail>(_identityText);
-            }
+                cfg.CreateMap<JsonIdentityPackage, IdentityPackage>();
+            });
+
+            _mapper = config.CreateMapper();
         }
 
-        public IIdentityDetails IdentityDetails { get; private set; }
-
-        [JsonProperty(PropertyName = "IdentitySignature")]
-        public string IdentitySignature { get; internal set; }
-
-        [JsonProperty(PropertyName = "Server_Event")]
-        public string EventServer { get; internal set; }
-
-        [JsonProperty(PropertyName = "Server_Event_Alt")]
-        public string EventServerAlt { get; internal set; }
-
-        [JsonProperty(PropertyName = "Server_Account")]
-        public string AccountServer { get; internal set; }
-
-        [JsonProperty(PropertyName = "Server_Account_Alt")]
-        public string AccountServerAlt { get; internal set; }
-
-        public DateTime Generated { get; internal set; }
-        public DateTime Expires { get; internal set; }
-
-        public bool IsStale => Expires < DateTime.UtcNow;
-
-        private static string ConvertBase64StringToUtf8(string str)
+        public async Task GetIdentityPackage(string username, string password)
         {
-            var bArray = Convert.FromBase64String(str);
-            var len = bArray.Length;
-            return Encoding.UTF8.GetString(bArray, 0, len);
+            var passwordhash = $"{username}{password}{PasswordSeed}".Sha1Hash();
+
+            var httpRequest = $"https://{_authenticationServer}" +
+                              $"/autha" +
+                              $"/auth" +
+                              $"/username" +
+                              $"/{username}" +
+                              $"?SHA1Password={passwordhash}" +
+                              $"&PK_Oem={PkOem}";
+
+            var identityDataPackage =
+                await _httpDeserializer.GetAndDeserialize<JsonIdentityPackage>(httpRequest, _httpConnectionService);
+
+            //if (IsIdentityDataValid(identityDataPackage))
+            //{
+                _mapper.Map(identityDataPackage, this);
+            //}
         }
 
-        //internal IdentityPackage(IHttpConnectionService httpConnectionService)
+        //private bool IsIdentityDataValid(IDataIdentityPackage identityDataPackage)
         //{
-        //    _httpConnectionService = httpConnectionService;
-        //}
+        //    if (string.IsNullOrEmpty(identityDataPackage.IdentityBase64)) throw new ArgumentNullException();
+        //    if (string.IsNullOrEmpty(identityDataPackage.IdentitySignature)) throw new ArgumentNullException();
 
-        //public Task GetIdentityPackage(string username, string password)
-        //{
-        //    throw new NotImplementedException();
+        //    return true;
         //}
     }
 }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using IVeraControl.Model.Data;
 using Newtonsoft.Json;
 using VeraControl.Converter;
 
-namespace VeraControl.Model
+namespace VeraControl.Model.Json
 {
-    internal class IdentityDetail : IIdentityDetails
+    internal class JsonIdentityPackageDetail : IDataIdentityPackageDetail
     {
         [JsonProperty(PropertyName = "Expires")]
         public int Expires { get; set; }

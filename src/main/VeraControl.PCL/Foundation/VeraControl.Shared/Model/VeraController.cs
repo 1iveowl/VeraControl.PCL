@@ -14,10 +14,10 @@ namespace VeraControl.Model
     internal class VeraController : JsonVeraController, IVeraController
     {
         private readonly HttpGetDeserializer _deserializer = new HttpGetDeserializer();
-
         private readonly IHttpConnectionService _httpConnectionService;
-
         private readonly IIdentityPackage _identityPackage;
+        private readonly string _username;
+        private readonly string _password;
 
         internal VeraController()
         {
@@ -26,10 +26,14 @@ namespace VeraControl.Model
 
         internal VeraController(
             IHttpConnectionService httpConnectionService,
-            IIdentityPackage identityPackage)
+            IIdentityPackage identityPackage,
+            string username,
+            string password)
         {
             _httpConnectionService = httpConnectionService;
             _identityPackage = identityPackage;
+            _username = username;
+            _password = password;
         }
 
         // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
@@ -41,6 +45,7 @@ namespace VeraControl.Model
             ConnectionType connectionType)
         {
             CheckConnectionServiceAndIdentityPackage();
+            await CheckIdentifyPackageValidity();
 
             if (device == null) throw new ArgumentException($"Device cannot be null");
 
@@ -84,13 +89,6 @@ namespace VeraControl.Model
 
         }
 
-        private void CheckConnectionServiceAndIdentityPackage()
-        {
-            if ((_httpConnectionService == null) || (_identityPackage == null))
-                throw new ArgumentNullException($"{nameof(_httpConnectionService)} and/or {nameof(_identityPackage)} cannot be null");
-        }
-
-
         private async Task<string> GetHttpAddress(ConnectionType connectionType)
         {
             string httpAddr = null;
@@ -111,7 +109,6 @@ namespace VeraControl.Model
                                     $"/port_3480";
                         break;
                     }
-
             }
             return httpAddr;
         }
@@ -126,6 +123,20 @@ namespace VeraControl.Model
                 _httpConnectionService,
                 _identityPackage.IdentityBase64,
                 _identityPackage.IdentitySignature);
+        }
+
+        private void CheckConnectionServiceAndIdentityPackage()
+        {
+            if ((_httpConnectionService == null) || (_identityPackage == null))
+                throw new ArgumentNullException($"{nameof(_httpConnectionService)} and/or {nameof(_identityPackage)} cannot be null");
+        }
+
+        private async Task CheckIdentifyPackageValidity()
+        {
+            if (_identityPackage.IsStale)
+            {
+                await _identityPackage.GetIdentityPackage(_username, _password);
+            }
         }
     }
 }

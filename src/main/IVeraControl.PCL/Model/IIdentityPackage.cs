@@ -3,33 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IVeraControl.Model.Data;
 
 namespace IVeraControl.Model
 {
-    public interface IIdentityPackage
+    public interface IIdentityPackage : IDataIdentityPackage
     {
-        string IdentityBase64 { get; }
+        Task GetIdentityPackage(string username, string password);
 
-        string IdentityText { get; }
-
-        IIdentityDetails IdentityDetails { get; }
-
-        string IdentitySignature { get; }
-
-        string EventServer { get; }
-
-        string EventServerAlt { get; }
-
-        string AccountServer { get; }
-
-        string AccountServerAlt { get; }
-
-        DateTime Generated { get; }
-
-        DateTime Expires { get;}
-
-        bool IsStale { get; }
-
-        //Task GetIdentityPackage(string username, string password);
+        //Task GetIdentityPackageDetails();
     }
 }

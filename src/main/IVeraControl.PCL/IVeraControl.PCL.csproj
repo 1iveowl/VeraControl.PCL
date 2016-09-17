@@ -35,6 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\ConnectionType.cs" />
+    <Compile Include="Model\Data\IDataIdentityPackage.cs" />
+    <Compile Include="Model\Data\IDataIdentityPackageDetail.cs" />
     <Compile Include="Model\Data\IDataVeraController.cs" />
     <Compile Include="Model\Data\IDataVeraControllerDetail.cs" />
     <Compile Include="Model\Direction.cs" />
