@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -51,22 +52,18 @@ namespace VeraControl.Model
                               $"/{username}" +
                               $"?SHA1Password={passwordhash}" +
                               $"&PK_Oem={PkOem}";
-
-            var identityDataPackage =
+            try
+            {
+                var identityDataPackage =
                 await _httpDeserializer.GetAndDeserialize<JsonIdentityPackage>(httpRequest, _httpConnectionService);
-
-            //if (IsIdentityDataValid(identityDataPackage))
-            //{
                 _mapper.Map(identityDataPackage, this);
-            //}
+            }
+            catch (Exception ex)
+            {
+                
+                throw new AggregateException("Unable to obtain Identity Package. Was username/password correct?", ex);
+            }
         }
 
-        //private bool IsIdentityDataValid(IDataIdentityPackage identityDataPackage)
-        //{
-        //    if (string.IsNullOrEmpty(identityDataPackage.IdentityBase64)) throw new ArgumentNullException();
-        //    if (string.IsNullOrEmpty(identityDataPackage.IdentitySignature)) throw new ArgumentNullException();
-
-        //    return true;
-        //}
     }
 }

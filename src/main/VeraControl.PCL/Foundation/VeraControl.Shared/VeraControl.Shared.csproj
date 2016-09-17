@@ -49,6 +49,7 @@
     <Compile Include="Model\Permission.cs" />
     <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
+    <Compile Include="Model\UpnpStateVariable.cs" />
     <Compile Include="Model\VeraController.cs" />
     <Compile Include="Model\VeraControllerDetail.cs" />
     <Compile Include="Model\VeraControllerList.cs" />

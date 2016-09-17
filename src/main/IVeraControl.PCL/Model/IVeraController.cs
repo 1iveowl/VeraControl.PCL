@@ -10,18 +10,13 @@ namespace IVeraControl.Model
 {
     public interface IVeraController : IDataVeraController
     {
-
-        //IHttpConnectionService HttpConnectionService { get; set; }
-
         IVeraControllerDetail ControllerDetail { get; }
 
         Task<string> SendAction(IUpnpDevice device, IUpnpService service, IUpnpAction action, ConnectionType connectionType);
 
-        //ConnectionType CurrentConnectionType { get; }
-        
+        Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
 
         Task GetDetailsAsync();
 
-        //Task EstablishConnection(ConnectionType connectionType = ConnectionType.Local);
     }
 }

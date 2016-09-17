@@ -12,7 +12,22 @@ namespace VeraControl.Model.UpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
         public string ServiceName { get; } = nameof(SwitchPower1);
-        
+
+        public IEnumerable<IUpnpStateVariable> StateVariables { get; set; } = new List<UpnpStateVariable>
+        {
+            new UpnpStateVariable
+            {
+                VariableName = "Target",
+                Type = typeof(bool)
+            },
+            new UpnpStateVariable
+            {
+                VariableName = "Status",
+                Type = typeof(bool)
+            }
+        };
+
+
         public IEnumerable<IUpnpAction> Actions { get; set; } = new List<UpnpAction>
             {
                 new UpnpAction
@@ -41,5 +56,7 @@ namespace VeraControl.Model.UpnpService
                 }
 
             };
+
+        
     }
 }

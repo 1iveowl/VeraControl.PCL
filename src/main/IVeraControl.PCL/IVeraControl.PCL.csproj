@@ -46,6 +46,7 @@
     <Compile Include="Model\IPermission.cs" />
     <Compile Include="Model\IUpnpDevice.cs" />
     <Compile Include="Model\IUpnpService.cs" />
+    <Compile Include="Model\IUpnpStateVariable.cs" />
     <Compile Include="Model\IVeraController.cs" />
     <Compile Include="Model\IVeraControllerList.cs" />
     <Compile Include="Model\IVeraControllerDetail.cs" />

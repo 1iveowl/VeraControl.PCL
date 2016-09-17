@@ -90,6 +90,9 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpStateVariable.cs">
+      <Link>Model\UpnpStateVariable.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\VeraController.cs">
       <Link>Model\VeraController.cs</Link>
     </Compile>

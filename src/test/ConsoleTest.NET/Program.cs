@@ -35,25 +35,33 @@ namespace ConsoleTest.NET
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var binaryLight = new BinaryLight1();
+            var binaryLight = new BinaryLight1 {DeviceNumber = "56"};
+
             var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            var action = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
+            var switchPowerStateVariable = switchPower?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
 
-            binaryLight.DeviceNumber = "56";
 
-            if (action != null)
-            {
-                action.Value = "1";
-            }
-            else
-            {
-                return;
-            }
-            
+            var getAction = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "GetTarget");
+
 
             if (veraPlus != null)
             {
-                var result = await veraPlus.SendAction(binaryLight, switchPower, action, ConnectionType.Remote);
+                //var getResult = await veraPlus.SendAction(binaryLight, switchPower, getAction, ConnectionType.Remote);
+                var getResult = await veraPlus.VariableGet(binaryLight, switchPower, switchPowerStateVariable, ConnectionType.Remote);
+
+                var setAction = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
+
+                
+
+                if (setAction != null)
+                {
+                    setAction.Value = "1";
+                }
+                else
+                {
+                    return;
+                }
+
             }
             
         }

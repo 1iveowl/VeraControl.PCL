@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using AutoMapper;
 using IVeraControl.Model;
@@ -25,7 +27,9 @@ namespace VeraControl.Service
             // Initialize AutoMapper
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<JsonVeraController, VeraController>().ConstructUsing(x => new VeraController(_httpConnectionService, _identityPackage, _username, _password));
+                cfg.CreateMap<JsonVeraController, VeraController>()
+                    .ConstructUsing(
+                        x => new VeraController(_httpConnectionService, _identityPackage, _username, _password));
             });
 
             _mapper = config.CreateMapper();
@@ -38,7 +42,16 @@ namespace VeraControl.Service
             _username = username;
             _password = password;
 
-            await _identityPackage.GetIdentityPackage(_username, _password);
+            try
+            {
+                await _identityPackage.GetIdentityPackage(_username, _password);
+            }
+            catch (Exception ex)
+            {
+                
+                throw new AggregateException("Unable to get controllers", ex);
+            }
+            
 
             var httpRequest = $"https://{AuthenticationServer}" +
                               $"/locator" +
@@ -47,19 +60,27 @@ namespace VeraControl.Service
                               $"?PK_Account={_identityPackage.IdentityDetails.PkAccount}";
 
             // Get Controller Data
-            var controllerDataList = await _httpDeserializer.GetAndDeserialize<JsonVeraControllerList>(httpRequest, _httpConnectionService);
-
-            // Map data to model object and inject IdentityData and HttpConnectionService
             var veraControllerList = new List<VeraController>();
-            foreach (var controllerData in controllerDataList.VeraControllers)
+            try
             {
-                var veraController = _mapper.Map<JsonVeraController, VeraController>(controllerData);
-                await veraController.GetDetailsAsync();
+                var controllerDataList = await _httpDeserializer.GetAndDeserialize<JsonVeraControllerList>(httpRequest, _httpConnectionService);
 
-                veraControllerList.Add(veraController);
+                foreach (var controllerData in controllerDataList.VeraControllers)
+                {
+                    // Map data to model object and inject IdentityData and HttpConnectionService
+                    var veraController = _mapper.Map<JsonVeraController, VeraController>(controllerData);
+                    await veraController.GetDetailsAsync();
+
+                    veraControllerList.Add(veraController);
+                }
+
+                return veraControllerList;
             }
+            catch (Exception ex)
+            {
 
-            return veraControllerList;
+                throw new AggregateException("Unable to obtain Controller Data", ex);
+            }
         }
     }
 }

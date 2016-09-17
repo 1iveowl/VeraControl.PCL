@@ -48,14 +48,12 @@ namespace VeraControl.Model
             await CheckIdentifyPackageValidity();
 
             if (device == null) throw new ArgumentException($"Device cannot be null");
-
             if (service == null) throw new ArgumentException($"Service cannot be null");
-
             if (action == null) throw new ArgumentException($"Action cannot be null");
 
             var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
-                              $"?id=lu_action" +
+                              $"?id=action" +
                               $"&output_format=json" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&serviceId={service.ServiceUrn}" +
@@ -69,6 +67,26 @@ namespace VeraControl.Model
                 _identityPackage.IdentitySignature);
         }
 
+        public async Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
+        {
+            if (device == null) throw new ArgumentException($"Device cannot be null");
+            if (service == null) throw new ArgumentException($"Service cannot be null");
+            if (stateVariable == null) throw new ArgumentException($"Variable State cannot be null");
+
+            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
+                              $"/data_request" +
+                              $"?id=variableget" +
+                              //$"&output_format=json" +
+                              $"&serviceId={service.ServiceUrn}" +
+                              $"&DeviceNum={device.DeviceNumber}" +
+                              $"&Variable={stateVariable.VariableName}";
+
+            return await _deserializer.GetString(
+                httpRequest,
+                _httpConnectionService,
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
+        }
 
 
         public async Task GetDetailsAsync()

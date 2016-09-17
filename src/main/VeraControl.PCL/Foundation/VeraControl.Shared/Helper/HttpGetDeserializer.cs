@@ -24,7 +24,6 @@ namespace VeraControl.Helper
                 {
 
 #if DEBUG && !WINDOWS_UWP
-
                     var debugStreamToText = sr.ReadToEnd();
                     Debug.WriteLine(debugStreamToText);
                     stream.Position = 0;
@@ -35,10 +34,9 @@ namespace VeraControl.Helper
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new AggregateException("Unable to deserialize data.", ex);
             }
 
         }
