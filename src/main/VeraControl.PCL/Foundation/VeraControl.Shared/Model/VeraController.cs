@@ -76,7 +76,6 @@ namespace VeraControl.Model
             var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=variableget" +
-                              //$"&output_format=json" +
                               $"&serviceId={service.ServiceUrn}" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&Variable={stateVariable.VariableName}";
