@@ -11,9 +11,8 @@ namespace VeraControl.Model
 {
     internal class IdentityPackage : IIdentityPackage
     {
-        private IHttpConnectionService _httpConnectionService;
-
-
+        //private IHttpConnectionService _httpConnectionService;
+        
         private string _identityBase64;
 
         [JsonProperty(PropertyName = "Identity")]

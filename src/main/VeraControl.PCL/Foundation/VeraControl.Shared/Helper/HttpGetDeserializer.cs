@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Service;
 using Newtonsoft.Json;
 
-namespace VeraControl.Model.Base
+namespace VeraControl.Helper
 {
-    public class DeserializeBase
+    internal class HttpGetDeserializer
     {
-        protected async Task<T> GetAndDeserialize<T>(
+        internal async Task<T> GetAndDeserialize<T>(
             string httpRequest,
             IHttpConnectionService httpConnectionService,
             string mmsAuth = null,
@@ -45,7 +42,7 @@ namespace VeraControl.Model.Base
 
         }
 
-        protected async Task<string> GetString(
+        internal async Task<string> GetString(
             string httpRequest,
             IHttpConnectionService httpConnectionService,
             string mmsAuth = null,

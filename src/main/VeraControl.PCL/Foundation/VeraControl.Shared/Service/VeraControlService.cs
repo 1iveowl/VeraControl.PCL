@@ -5,35 +5,55 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using IVeraControl.Model;
 using IVeraControl.Service;
 using Newtonsoft.Json;
+using VeraControl.Helper;
 using VeraControl.Model;
-using VeraControl.Model.Base;
+using VeraControl.Model.Json;
 using static VeraControl.Extensions.SecurityExtension;
 using static VeraControl.Extensions.HelperExtensions;
 
 namespace VeraControl.Service
 {
-    public class VeraControlService : DeserializeBase, IVeraControllerService
+    public class VeraControlService : IVeraControllerService
     {
         private const string PasswordSeed = "oZ7QE6LcLJp6fiWzdqZc";
         private const string PkOem = "1";
         private const string AuthenticationServer = "vera-us-oem-autha.mios.com";
 
+        private readonly HttpGetDeserializer _httpDeserializer = new HttpGetDeserializer();
+
         private readonly IHttpConnectionService _httpConnectionService = new HttpConnectionService();
 
+        private readonly IMapper _mapper;
 
-        public async Task<IVeraControllerList> GetControllers(string username, string password)
+        private IIdentityPackage _identityPackage;
+
+        public VeraControlService()
         {
-            var identityPackage = await GetIdentityPackage(username, password);
+            // Initialize AutoMapper
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<JsonVeraController, VeraController>().ConstructUsing(x => new VeraController(_httpConnectionService, _identityPackage));
+                cfg.CreateMap<JsonVeraConrtollerDetail, VeraControllerDetail>();
+            });
+
+            _mapper = config.CreateMapper();
+        }
+
+
+        public async Task<IEnumerable<IVeraController>> GetControllers(string username, string password)
+        {
+            _identityPackage = await GetIdentityPackage(username, password);
 
             return await GetVeraControllers(
                 AuthenticationServer,
-                identityPackage.IdentityDetails.PkAccount, identityPackage);
+                _identityPackage.IdentityDetails.PkAccount, _identityPackage);
         }
 
-        private async Task<IVeraControllerList> GetVeraControllers(string serverAuth, int pkAccount, IIdentityPackage identityPackage)
+        private async Task<IEnumerable<IVeraController>> GetVeraControllers(string serverAuth, int pkAccount, IIdentityPackage identityPackage)
         {
             var httpRequest = $"https://{serverAuth}" +
                               $"/locator" +
@@ -41,15 +61,20 @@ namespace VeraControl.Service
                               $"/locator" +
                               $"?PK_Account={pkAccount}";
 
-            var controllerList = await GetAndDeserialize<VeraControllerList>(httpRequest, _httpConnectionService);
+            // Get Controller Data
+            var controllerDataList = await _httpDeserializer.GetAndDeserialize<JsonVeraControllerList>(httpRequest, _httpConnectionService);
 
-            foreach (var controller in controllerList.VeraControllers)
+            // Map data to model object and inject IdentityData and HttpConnectionService
+            var veraControllerList = new List<VeraController>();
+            foreach (var controllerData in controllerDataList.VeraControllers)
             {
-                controller.HttpConnectionService = _httpConnectionService;
-                await controller.GetDetailsAsync(identityPackage);
+                var veraController = _mapper.Map<JsonVeraController, VeraController>(controllerData);
+                await veraController.GetDetailsAsync();
+
+                veraControllerList.Add(veraController);
             }
 
-            return controllerList;
+            return veraControllerList;
         }
 
         private async Task<IIdentityPackage> GetIdentityPackage(string username, string password)
@@ -64,7 +89,7 @@ namespace VeraControl.Service
                               $"?SHA1Password={passwordhash}" +
                               $"&PK_Oem={PkOem}";
 
-            var identityPackage = await GetAndDeserialize<IdentityPackage>(httpRequest, _httpConnectionService);
+            var identityPackage = await _httpDeserializer.GetAndDeserialize<IdentityPackage>(httpRequest, _httpConnectionService);
 
             identityPackage.Generated = identityPackage.IdentityDetails.Generated.UnixTimestampToUtcDateTime();
             identityPackage.Expires = identityPackage.IdentityDetails.Expires.UnixTimestampToUtcDateTime();

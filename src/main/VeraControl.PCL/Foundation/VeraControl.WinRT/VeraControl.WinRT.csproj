@@ -113,14 +113,23 @@
     <Compile Include="..\VeraControl.Shared\Extensions\HelperExtensions.cs">
       <Link>Extensions\HelperExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\Base\DeserializeBase.cs">
-      <Link>Model\Base\DeserializeBase.cs</Link>
+    <Compile Include="..\VeraControl.Shared\Helper\HttpGetDeserializer.cs">
+      <Link>Helper\HttpGetDeserializer.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\IdentityDetail.cs">
       <Link>Model\IdentityDetail.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\IdentityPackage.cs">
       <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraConrtollerDetail.cs">
+      <Link>Model\Json\JsonVeraConrtollerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraController.cs">
+      <Link>Model\Json\JsonVeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraControllerList.cs">
+      <Link>Model\Json\JsonVeraControllerList.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\Permission.cs">
       <Link>Model\Permission.cs</Link>
@@ -159,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
+    <Folder Include="Model\Base\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

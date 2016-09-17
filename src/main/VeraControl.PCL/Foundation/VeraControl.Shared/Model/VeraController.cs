@@ -6,51 +6,31 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using IVeraControl.Model;
 using IVeraControl.Service;
-using VeraControl.Model.Base;
+using VeraControl.Helper;
+using VeraControl.Model.Json;
 
 namespace VeraControl.Model
 {
-    internal class VeraController : DeserializeBase, IVeraController
+    internal class VeraController : JsonVeraController, IVeraController
     {
-        [JsonProperty(PropertyName = "PK_Device")]
-        public string DeviceSerialId { get; set; }
+        private readonly HttpGetDeserializer _deserializer = new HttpGetDeserializer();
 
-        [JsonProperty(PropertyName = "MacAddress")]
-        public string MacAddress { get; set; }
+        private readonly IHttpConnectionService _httpConnectionService;
 
-        [JsonProperty(PropertyName = "PK_DeviceType")]
-        public int PkDeviceType { get; set; }
+        private readonly IIdentityPackage _identityPackage;
 
-        [JsonProperty(PropertyName = "PK_DeviceSubType")]
-        public int PkDeviceSubType { get; set; }
+        internal VeraController()
+        {
+            
+        }
 
-        [JsonProperty(PropertyName = "Server_Device")]
-        public string ServerDevice { get; set; }
-
-        [JsonProperty(PropertyName = "Server_Event")]
-        public string ServerEvent { get; set; }
-
-        [JsonProperty(PropertyName = "PK_Account")]
-        public int PkAccount { get; set; }
-
-        [JsonProperty(PropertyName = "Server_Account")]
-        public string ServerAccount { get; set; }
-
-        [JsonProperty(PropertyName = "InternalIP")]
-        public string LocalIpAddress { get; set; }
-
-        [JsonProperty(PropertyName = "LastAliveReported")]
-        public string LastAliveReported { get; set; }
-
-        //public bool ConnectionEstablished { get; private set; }
-
-        public IHttpConnectionService HttpConnectionService { get; set; }
-
-        public IVeraControllerDetail ControllerDetail { get; private set; } = null;
-
-        public ConnectionType CurrentConnectionType { get; private set; } = ConnectionType.Local;
-
-        private IIdentityPackage _identityPackage;
+        internal VeraController(
+            IHttpConnectionService httpConnectionService,
+            IIdentityPackage identityPackage)
+        {
+            _httpConnectionService = httpConnectionService;
+            _identityPackage = identityPackage;
+        }
 
         // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
         // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
@@ -77,18 +57,17 @@ namespace VeraControl.Model
                               $"&action={action.ActionName}" +
                               $"&{action.ArgumentName}={action.Value}";
 
-            return await GetString(
+            return await _deserializer.GetString(
                 httpRequest,
-                HttpConnectionService,
+                _httpConnectionService,
                 _identityPackage.IdentityBase64,
                 _identityPackage.IdentitySignature);
         }
 
 
 
-        public async Task GetDetailsAsync(IIdentityPackage identityPackage)
+        public async Task GetDetailsAsync()
         {
-            _identityPackage = identityPackage;
             CheckConnectionServiceAndIdentityPackage();
 
             var httpRequest = $"https://{ServerDevice}" +
@@ -97,9 +76,9 @@ namespace VeraControl.Model
                               $"/device" +
                               $"/{DeviceSerialId}";
 
-            ControllerDetail = await GetAndDeserialize<VeraControllerDetail>(
+            ControllerDetail = await _deserializer.GetAndDeserialize<VeraControllerDetail>(
                 httpRequest,
-                HttpConnectionService,
+                _httpConnectionService,
                 _identityPackage.IdentityBase64,
                 _identityPackage.IdentitySignature);
 
@@ -107,8 +86,8 @@ namespace VeraControl.Model
 
         private void CheckConnectionServiceAndIdentityPackage()
         {
-            if ((HttpConnectionService == null) || (_identityPackage == null))
-                throw new ArgumentNullException($"{nameof(HttpConnectionService)} and/or {nameof(_identityPackage)} cannot be null");
+            if ((_httpConnectionService == null) || (_identityPackage == null))
+                throw new ArgumentNullException($"{nameof(_httpConnectionService)} and/or {nameof(_identityPackage)} cannot be null");
         }
 
 
@@ -142,9 +121,9 @@ namespace VeraControl.Model
             var httpSessionRequest = $"https://{ControllerDetail.RelayServer}" +
                                      $"/info/session/token";
 
-            return await GetString(
+            return await _deserializer.GetString(
                 httpSessionRequest,
-                HttpConnectionService,
+                _httpConnectionService,
                 _identityPackage.IdentityBase64,
                 _identityPackage.IdentitySignature);
         }

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -50,14 +54,23 @@
     <Compile Include="..\VeraControl.Shared\Extensions\HelperExtensions.cs">
       <Link>Extensions\HelperExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\Base\DeserializeBase.cs">
-      <Link>Model\Base\DeserializeBase.cs</Link>
+    <Compile Include="..\VeraControl.Shared\Helper\HttpGetDeserializer.cs">
+      <Link>Helper\HttpGetDeserializer.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\IdentityDetail.cs">
       <Link>Model\IdentityDetail.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\IdentityPackage.cs">
       <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraConrtollerDetail.cs">
+      <Link>Model\Json\JsonVeraConrtollerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraController.cs">
+      <Link>Model\Json\JsonVeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\Json\JsonVeraControllerList.cs">
+      <Link>Model\Json\JsonVeraControllerList.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\Permission.cs">
       <Link>Model\Permission.cs</Link>
@@ -96,7 +109,9 @@
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Base\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

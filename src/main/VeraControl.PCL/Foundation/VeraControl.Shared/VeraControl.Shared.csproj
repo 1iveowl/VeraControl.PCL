@@ -39,8 +39,9 @@
     <Compile Include="Extensions\SecurityExtension.Shared.cs" />
     <Compile Include="Model\Json\JsonVeraConrtollerDetail.cs" />
     <Compile Include="Model\Json\JsonVeraController.cs" />
+    <Compile Include="Model\Json\JsonVeraControllerList.cs" />
     <Compile Include="Model\UpnpAction.cs" />
-    <Compile Include="Model\Base\DeserializeBase.cs" />
+    <Compile Include="Helper\HttpGetDeserializer.cs" />
     <Compile Include="Model\IdentityDetail.cs" />
     <Compile Include="Model\IdentityPackage.cs" />
     <Compile Include="Model\Permission.cs" />
@@ -60,6 +61,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\portable-net45+win8+wpa81\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -68,7 +73,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Base\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

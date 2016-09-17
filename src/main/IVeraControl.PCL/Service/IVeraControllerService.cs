@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IVeraControl.Model;
 
 namespace IVeraControl.Service
 {
     public interface IVeraControllerService
     {
-        Task<IVeraControllerList> GetControllers(string username, string password);
+        Task<IEnumerable<IVeraController>> GetControllers(string username, string password);
     }
 }

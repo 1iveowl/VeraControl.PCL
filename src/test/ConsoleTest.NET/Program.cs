@@ -33,7 +33,7 @@ namespace ConsoleTest.NET
 
             var controllers = await veraService.GetControllers(username, password);
 
-            var veraPlus = controllers.VeraControllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
+            var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
             var binaryLight = new BinaryLight1();
             var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
