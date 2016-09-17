@@ -23,7 +23,8 @@ namespace VeraControl.Helper
                 using (var reader = new JsonTextReader(sr))
                 {
 
-#if DEBUG
+#if DEBUG && !WINDOWS_UWP
+
                     var debugStreamToText = sr.ReadToEnd();
                     Debug.WriteLine(debugStreamToText);
                     stream.Position = 0;

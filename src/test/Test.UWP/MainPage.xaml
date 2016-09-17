@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="Test.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Test.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="12">
+        <StackPanel>
+            <TextBox Name="Username"
+                     Margin="4"
+                     Header="Username:"></TextBox>
+            <TextBox Name="Password"
+                     Margin="4"
+                     Header="Password:"></TextBox>
+            <Button Name="Go"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Margin="4"
+                    Content="OK"
+                    Click="Go_OnClick"></Button>
+
+        </StackPanel>
+        
+
+    </Grid>
+</Page>
