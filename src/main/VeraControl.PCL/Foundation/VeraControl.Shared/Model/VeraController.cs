@@ -60,7 +60,7 @@ namespace VeraControl.Model
             if (service == null) throw new ArgumentException($"Service cannot be null");
             if (action == null) throw new ArgumentException($"Action cannot be null");
 
-            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
+            var httpRequest = $"{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=action" +
                               $"&output_format=json" +
@@ -82,7 +82,7 @@ namespace VeraControl.Model
             if (service == null) throw new ArgumentException($"Service cannot be null");
             if (stateVariable == null) throw new ArgumentException($"State Variable cannot be null");
 
-            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
+            var httpRequest = $"{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=variableget" +
                               $"&serviceId={service.ServiceUrn}" +
@@ -102,7 +102,7 @@ namespace VeraControl.Model
             if (service == null) throw new ArgumentException($"Service cannot be null");
             if (stateVariable == null) throw new ArgumentException($"State Variable cannot be null");
 
-            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
+            var httpRequest = $"{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=variableset" +
                               $"&serviceId={service.ServiceUrn}" +
@@ -142,7 +142,7 @@ namespace VeraControl.Model
             switch (connectionType)
             {
                 case ConnectionType.Local:
-                    httpAddr = $"{LocalIpAddress}/port_3480";
+                    httpAddr = $"http://{LocalIpAddress}/port_3480";
                     break;
                 case ConnectionType.Remote:
                     {
@@ -152,7 +152,7 @@ namespace VeraControl.Model
                             _lastTokenTime = DateTime.UtcNow;
                         }
 
-                        httpAddr = $"{ControllerDetail.RelayServer}" +
+                        httpAddr = $"https://{ControllerDetail.RelayServer}" +
                                     $"/relay/relay/relay/device" +
                                     $"/{DeviceSerialId}" +
                                     $"/session" +
