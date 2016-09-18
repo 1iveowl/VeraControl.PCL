@@ -13,7 +13,8 @@ namespace VeraControl.Model
 {
     internal class VeraController : JsonVeraController, IVeraController
     {
-        private readonly TimeSpan _sessionValidTimeSpan = TimeSpan.FromSeconds(60);
+        private readonly TimeSpan _sessionKeepAlive = TimeSpan.FromSeconds(60);
+
         private readonly HttpGetDeserializer _deserializer = new HttpGetDeserializer();
         private readonly IHttpConnectionService _httpConnectionService;
         private readonly IIdentityPackage _identityPackage;
@@ -25,8 +26,7 @@ namespace VeraControl.Model
         private DateTime _lastTokenTime = default(DateTime);
 
         // Couldn't find documentation of how long a session is valid, but assume that it is at least one minute.
-        private bool IsTokenExpired => DateTime.UtcNow > _lastTokenTime.Add(_sessionValidTimeSpan);
-    
+        private bool IsTokenExpired => DateTime.UtcNow > _lastTokenTime.Add(_sessionKeepAlive);
 
         internal VeraController()
         {
