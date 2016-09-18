@@ -42,14 +42,14 @@ namespace ConsoleTest.NET
 
             if (veraPlus != null)
             {
-                var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Local);
+                var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Remote);
 
                 var setAction = switchPower1Service?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
                 if (setAction != null)
                 {
                     setAction.Value = getResult == "1" ? "0" : "1";
-                    await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Local);
+                    await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Remote);
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace ConsoleTest.NET
 
             var getVariableName1 =
                 await
-                    veraPlus.VariableGet(vContainer, vContainerService, vContainerStateVariable, ConnectionType.Local);
+                    veraPlus.VariableGet(vContainer, vContainerService, vContainerStateVariable, ConnectionType.Remote);
 
             Console.WriteLine(getVariableName1);
         }
