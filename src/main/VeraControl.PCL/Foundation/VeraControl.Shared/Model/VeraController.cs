@@ -13,11 +13,20 @@ namespace VeraControl.Model
 {
     internal class VeraController : JsonVeraController, IVeraController
     {
+        private readonly TimeSpan _sessionValidTimeSpan = TimeSpan.FromSeconds(60);
         private readonly HttpGetDeserializer _deserializer = new HttpGetDeserializer();
         private readonly IHttpConnectionService _httpConnectionService;
         private readonly IIdentityPackage _identityPackage;
         private readonly string _username;
         private readonly string _password;
+
+        private string _sessionToken;
+
+        private DateTime _lastTokenTime = default(DateTime);
+
+        // Couldn't find documentation of how long a session is valid, but assume that it is at least one minute.
+        private bool IsTokenExpired => DateTime.UtcNow > _lastTokenTime.Add(_sessionValidTimeSpan);
+    
 
         internal VeraController()
         {
@@ -71,7 +80,7 @@ namespace VeraControl.Model
         {
             if (device == null) throw new ArgumentException($"Device cannot be null");
             if (service == null) throw new ArgumentException($"Service cannot be null");
-            if (stateVariable == null) throw new ArgumentException($"Variable State cannot be null");
+            if (stateVariable == null) throw new ArgumentException($"State Variable cannot be null");
 
             var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
@@ -79,6 +88,27 @@ namespace VeraControl.Model
                               $"&serviceId={service.ServiceUrn}" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&Variable={stateVariable.VariableName}";
+
+            return await _deserializer.GetString(
+                httpRequest,
+                _httpConnectionService,
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
+        }
+
+        public async Task<string> VariableSet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
+        {
+            if (device == null) throw new ArgumentException($"Device cannot be null");
+            if (service == null) throw new ArgumentException($"Service cannot be null");
+            if (stateVariable == null) throw new ArgumentException($"State Variable cannot be null");
+
+            var httpRequest = $"https://{await GetHttpAddress(connectionType)}" +
+                              $"/data_request" +
+                              $"?id=variableset" +
+                              $"&serviceId={service.ServiceUrn}" +
+                              $"&DeviceNum={device.DeviceNumber}" +
+                              $"&Variable={stateVariable.VariableName}" +
+                              $"&Value={stateVariable.Value}";
 
             return await _deserializer.GetString(
                 httpRequest,
@@ -116,13 +146,17 @@ namespace VeraControl.Model
                     break;
                 case ConnectionType.Remote:
                     {
-                        var token = await GetRemoteSessionToken();
+                        if (IsTokenExpired)
+                        {
+                            _sessionToken = await GetRemoteSessionToken();
+                            _lastTokenTime = DateTime.UtcNow;
+                        }
 
                         httpAddr = $"{ControllerDetail.RelayServer}" +
                                     $"/relay/relay/relay/device" +
                                     $"/{DeviceSerialId}" +
                                     $"/session" +
-                                    $"/{token}" +
+                                    $"/{_sessionToken}" +
                                     $"/port_3480";
                         break;
                     }

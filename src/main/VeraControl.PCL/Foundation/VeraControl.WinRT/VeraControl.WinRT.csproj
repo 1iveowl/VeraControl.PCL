@@ -146,8 +146,14 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\BinaryLight1.cs">
       <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VContainer1.cs">
+      <Link>Model\UpnpDevice\VContainer1.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\VContainer1Service.cs">
+      <Link>Model\UpnpService\VContainer1Service.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpStateVariable.cs">
       <Link>Model\UpnpStateVariable.cs</Link>

@@ -10,5 +10,6 @@ namespace IVeraControl.Model
     {
         string VariableName { get; set; }
         Type Type { get; set; }
+        string Value { get; set; }
     }
 }

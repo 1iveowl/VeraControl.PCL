@@ -11,5 +11,7 @@ namespace VeraControl.Model
     {
         public string VariableName { get; set; }
         public Type Type { get; set; }
+
+        public string Value { get; set; }
     }
 }

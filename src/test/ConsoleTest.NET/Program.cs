@@ -35,35 +35,38 @@ namespace ConsoleTest.NET
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var binaryLight = new BinaryLight1 {DeviceNumber = "56"};
+            var binaryLight = new BinaryLight1 {DeviceNumber = 56};
 
-            var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            var switchPowerStateVariable = switchPower?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
-
-
-            var getAction = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "GetTarget");
-
+            var switchPower1Service = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
+            var switchPowerStateVariable = switchPower1Service?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
 
             if (veraPlus != null)
             {
-                //var getResult = await veraPlus.SendAction(binaryLight, switchPower, getAction, ConnectionType.Remote);
-                var getResult = await veraPlus.VariableGet(binaryLight, switchPower, switchPowerStateVariable, ConnectionType.Remote);
+                var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Remote);
 
-                var setAction = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
-
-                
+                var setAction = switchPower1Service?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
                 if (setAction != null)
                 {
-                    setAction.Value = "1";
+                    setAction.Value = getResult == "1" ? "0" : "1";
+                    await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Remote);
                 }
                 else
                 {
                     return;
                 }
-
             }
-            
+
+            var vContainer = new VContainer1 {DeviceNumber = 431};
+            var vContainerService = vContainer?.Services?.FirstOrDefault(s => s.ServiceName == "VContainer1");
+            var vContainerStateVariable =
+                vContainerService?.StateVariables?.FirstOrDefault(v => v.VariableName == "Variable1");
+
+            var getVariableName1 =
+                await
+                    veraPlus.VariableGet(vContainer, vContainerService, vContainerStateVariable, ConnectionType.Remote);
+
+            Console.WriteLine(getVariableName1);
         }
     }
 }

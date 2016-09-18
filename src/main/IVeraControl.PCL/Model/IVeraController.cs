@@ -16,6 +16,8 @@ namespace IVeraControl.Model
 
         Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
 
+        Task<string> VariableSet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
+
         Task GetDetailsAsync();
 
     }
