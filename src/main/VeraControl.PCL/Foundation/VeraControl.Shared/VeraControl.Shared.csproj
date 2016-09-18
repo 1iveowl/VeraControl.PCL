@@ -49,7 +49,10 @@
     <Compile Include="Model\Permission.cs" />
     <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />
     <Compile Include="Model\UpnpDevices\VContainer1.cs" />
+    <Compile Include="Model\UpnpDevices\VSwitch.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
+    <Compile Include="Model\UpnpService\TemperatureSensor1.cs" />
+    <Compile Include="Model\UpnpService\TemperatureSetpoint1.cs" />
     <Compile Include="Model\UpnpService\VContainer1Service.cs" />
     <Compile Include="Model\UpnpStateVariable.cs" />
     <Compile Include="Model\VeraController.cs" />

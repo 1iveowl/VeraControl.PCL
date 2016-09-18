@@ -90,8 +90,17 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VContainer1.cs">
       <Link>Model\UpnpDevice\VContainer1.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VSwitch.cs">
+      <Link>Model\UpnpDevice\VSwitch.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSensor1.cs">
+      <Link>Model\UpnpService\TemperatureSensor1.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSetpoint1.cs">
+      <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\VContainer1Service.cs">
       <Link>Model\UpnpService\VContainer1Service.cs</Link>
