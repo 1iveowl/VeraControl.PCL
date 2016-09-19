@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using VeraControl.Model;
 
 namespace IVeraControl.Model
@@ -10,5 +11,7 @@ namespace IVeraControl.Model
         string Value { get; set; }
         Direction Direction { get; }
         Type Type { get;  }
+
+        Task SendAction(IUpnpDevice device, IUpnpService service, ConnectionType connectionType);
     }
 }

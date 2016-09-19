@@ -27,10 +27,13 @@ namespace VeraControl.Model.UpnpService
             }
         };
 
+        public IEnumerable<IUpnpAction> Actions { get; set; }
 
-        public IEnumerable<IUpnpAction> Actions { get; set; } = new List<UpnpAction>
+        public SwitchPower1(IVeraController controller)
+        {
+            Actions = new List<UpnpAction>
             {
-                new UpnpAction
+                new UpnpAction(controller)
                 {
                     ActionName = "SetTarget",
                     ArgumentName = "newTargetValue",
@@ -38,7 +41,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.In
                 },
-                new UpnpAction
+                new UpnpAction(controller)
                 {
                     ActionName = "GetTarget",
                     ArgumentName = "RetTargetValue",
@@ -46,7 +49,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.Out
                 },
-                new UpnpAction
+                new UpnpAction(controller)
                 {
                     ActionName = "GetStatus",
                     ArgumentName = "ResultStatus",
@@ -54,9 +57,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.Out
                 }
-
             };
-
-        
+        }
     }
 }
