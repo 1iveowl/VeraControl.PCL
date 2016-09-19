@@ -8,10 +8,16 @@ using VeraControl.Model.UpnpDevices.Base;
 
 namespace VeraControl.Model.UpnpDevices
 {
+    // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSensor-v1-Service.pdf
     public class TemperatureSensor1 : UpnpDeviceBase, IUpnpDevice
     {
-        public string DeviceUrn { get; }
+        public string DeviceUrn => "urn:schemas-upnp-org:service:TemperatureSensor:1 ";
         public uint DeviceNumber { get; set; }
-        public string DeviceName { get; }
+        public string DeviceName => nameof(TemperatureSensor1);
+
+        public TemperatureSensor1(IVeraController controller)
+        {
+            Services = new List<IUpnpService> {new UpnpService.TemperatureSensor1(controller, this)};
+        }
     }
 }
