@@ -51,7 +51,7 @@ namespace Test.UWP
             var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
             var action = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
-            binaryLight.DeviceNumber = "56";
+            binaryLight.DeviceNumber = 56;
 
             if (action != null)
             {

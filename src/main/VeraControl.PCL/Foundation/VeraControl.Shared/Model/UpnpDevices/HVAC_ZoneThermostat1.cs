@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VeraControl.Model.UpnpDevices
 {
-    class VSwitch
+    public class HVAC_ZoneThermostat1
     {
     }
 }

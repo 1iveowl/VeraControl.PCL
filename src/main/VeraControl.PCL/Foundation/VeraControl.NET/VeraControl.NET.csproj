@@ -87,11 +87,17 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\BinaryLight1.cs">
       <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\HVAC_ZoneThermostat1.cs">
+      <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\TemperatureSensor1.cs">
+      <Link>Model\UpnpDevice\TemperatureSensor1.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VContainer1.cs">
       <Link>Model\UpnpDevice\VContainer1.cs</Link>
     </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VSwitch.cs">
-      <Link>Model\UpnpDevice\VSwitch.cs</Link>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VSwitch1.cs">
+      <Link>Model\UpnpDevice\VSwitch1.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>

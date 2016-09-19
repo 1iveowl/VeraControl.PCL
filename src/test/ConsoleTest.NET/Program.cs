@@ -67,6 +67,24 @@ namespace ConsoleTest.NET
                     veraPlus.VariableGet(vContainer, vContainerService, vContainerStateVariable, ConnectionType.Remote);
 
             Console.WriteLine(getVariableName1);
+
+            var vSwitch = new VSwitch1 {DeviceNumber = 424};
+            var vSwitchPowerService = vSwitch?.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
+            var vSwitchPowerStateVariable =
+                vSwitchPowerService?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
+
+            var vSwitchStatus =
+                await
+                    veraPlus.VariableGet(vSwitch, vSwitchPowerService, vSwitchPowerStateVariable, ConnectionType.Local);
+
+            var vSwitchAction = vSwitchPowerService?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
+
+            if (vSwitchAction != null)
+            {
+                vSwitchAction.Value = vSwitchStatus == "1" ? "0" : "1";
+                await veraPlus.SendAction(vSwitch, vSwitchPowerService, vSwitchAction, ConnectionType.Local);
+            }
+
         }
     }
 }
