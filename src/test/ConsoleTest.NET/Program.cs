@@ -37,27 +37,27 @@ namespace ConsoleTest.NET
 
             var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 56};
 
-            await binaryLight.SetTarget(target:true, connectionType:ConnectionType.Local);
+            await binaryLight.SetTarget(SwitchPower1Actions.SetTarget, true, ConnectionType.Local);
 
-            var switchPower1Service = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            var switchPowerStateVariable = switchPower1Service?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
+            //var switchPower1Service = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
+            //var switchPowerStateVariable = switchPower1Service?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
 
-            if (veraPlus != null)
-            {
-                var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Remote);
+            //if (veraPlus != null)
+            //{
+            //    var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Remote);
 
-                var setAction = switchPower1Service?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
+            //    var setAction = switchPower1Service?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
-                if (setAction != null)
-                {
-                    setAction.Value = getResult == "1" ? "0" : "1";
-                    await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Remote);
-                }
-                else
-                {
-                    return;
-                }
-            }
+            //    if (setAction != null)
+            //    {
+            //        setAction.Value = getResult == "1" ? "0" : "1";
+            //        await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Remote);
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
 
             //var vContainer = new VContainer1 {DeviceNumber = 431};
             //var vContainerService = vContainer?.Services?.FirstOrDefault(s => s.ServiceName == "VContainer1");

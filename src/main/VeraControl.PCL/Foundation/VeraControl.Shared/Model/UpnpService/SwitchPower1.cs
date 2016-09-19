@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using VeraControl.Model.UpnpService.Base;
 
 namespace VeraControl.Model.UpnpService
 {
     //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
-    public class SwitchPower1 : IUpnpService
+    public class SwitchPower1 : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
         public string ServiceName { get; } = nameof(SwitchPower1);
@@ -27,13 +28,13 @@ namespace VeraControl.Model.UpnpService
             }
         };
 
-        public IEnumerable<IUpnpAction> Actions { get; set; }
+        
 
-        public SwitchPower1(IVeraController controller)
+        public SwitchPower1(IVeraController controller, IUpnpDevice device)
         {
             Actions = new List<UpnpAction>
             {
-                new UpnpAction(controller)
+                new UpnpAction(controller, this, device)
                 {
                     ActionName = "SetTarget",
                     ArgumentName = "newTargetValue",
@@ -41,7 +42,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.In
                 },
-                new UpnpAction(controller)
+                new UpnpAction(controller, this, device)
                 {
                     ActionName = "GetTarget",
                     ArgumentName = "RetTargetValue",
@@ -49,7 +50,7 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.Out
                 },
-                new UpnpAction(controller)
+                new UpnpAction(controller, this, device)
                 {
                     ActionName = "GetStatus",
                     ArgumentName = "ResultStatus",

@@ -84,6 +84,9 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpAction.cs">
       <Link>Model\UpnpAction.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\Base\UpnpDeviceBase.cs">
+      <Link>Model\UpnpDevice\Base\UpnpDeviceBase.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\BinaryLight1.cs">
       <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
     </Compile>
@@ -99,8 +102,14 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VSwitch1.cs">
       <Link>Model\UpnpDevice\VSwitch1.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\Base\UpnpServiceBase.cs">
+      <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
+    </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1Actions.cs">
+      <Link>Model\UpnpService\SwitchPower1Actions.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSensor1.cs">
       <Link>Model\UpnpService\TemperatureSensor1.cs</Link>

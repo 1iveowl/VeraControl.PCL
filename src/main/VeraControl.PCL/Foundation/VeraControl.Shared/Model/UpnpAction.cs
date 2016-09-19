@@ -10,6 +10,8 @@ namespace VeraControl.Model
     public class UpnpAction : IUpnpAction
     {
         private readonly IVeraController _controller;
+        private readonly IUpnpService _service;
+        private readonly IUpnpDevice _device;
 
         public string ActionName { get;  set; }
         public string ArgumentName { get; set; }
@@ -18,14 +20,16 @@ namespace VeraControl.Model
         public Type Type { get; internal set; }
 
 
-        public UpnpAction(IVeraController controller)
+        public UpnpAction(IVeraController controller, IUpnpService service, IUpnpDevice device)
         {
             _controller = controller;
+            _service = service;
+            _device = device;
         }
 
-        public async Task SendAction(IUpnpDevice device, IUpnpService service, ConnectionType connectionType)
+        public async Task SendAction(ConnectionType connectionType)
         {
-            await _controller.SendAction(device, service, this, connectionType);
+            await _controller.SendAction(_device, _service, this, connectionType);
         }
     }
 }

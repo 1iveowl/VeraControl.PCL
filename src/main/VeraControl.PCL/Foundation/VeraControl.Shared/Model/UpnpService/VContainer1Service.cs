@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using VeraControl.Model.UpnpService.Base;
 
 namespace VeraControl.Model.UpnpService
 {
-    public class VContainer1Service : IUpnpService
+    public class VContainer1Service : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:VContainer1";
         public string ServiceName => "VContainer1";
-        public IEnumerable<IUpnpAction> Actions { get; set; } = null;
         public IEnumerable<IUpnpStateVariable> StateVariables { get; set; } = new List<UpnpStateVariable>
         {
             new UpnpStateVariable
@@ -55,5 +55,10 @@ namespace VeraControl.Model.UpnpService
                 Type = typeof(string)
             },
         };
+
+        public override IUpnpAction LookupAction(dynamic actionName)
+        {
+            throw new NotImplementedException("There are no actions for this service and the LookupAction method is not implemented");
+        }
     }
 }

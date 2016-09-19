@@ -12,6 +12,6 @@ namespace IVeraControl.Model
         Direction Direction { get; }
         Type Type { get;  }
 
-        Task SendAction(IUpnpDevice device, IUpnpService service, ConnectionType connectionType);
+        Task SendAction(ConnectionType connectionType);
     }
 }
