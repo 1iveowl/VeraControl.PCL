@@ -7,7 +7,7 @@ namespace IVeraControl.Model
         string ServiceUrn { get; }
 
         string ServiceName { get;}
-    
+
         IEnumerable<IUpnpAction> Actions { get; set; }
 
         IEnumerable<IUpnpStateVariable> StateVariables { get; set; }

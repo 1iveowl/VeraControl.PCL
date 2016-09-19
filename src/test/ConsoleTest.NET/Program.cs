@@ -38,57 +38,15 @@ namespace ConsoleTest.NET
 
             var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 49};
 
-            var binaryLightStatus = await binaryLight.GetStateVariableAsync(ServiceType.SwitchPower1, SwitchStateVariable.Status, ConnectionType.Local);
+            var binaryLightStatus = await binaryLight.GetStateVariableAsync(ServiceType.SwitchPower1, SwitchPower1StateVariable.Status, ConnectionType.Local);
 
             await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
 
-            //var switchPower1Service = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            //var switchPowerStateVariable = switchPower1Service?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
+            await Task.Delay(TimeSpan.FromSeconds(2));
 
-            //if (veraPlus != null)
-            //{
-            //    var getResult = await veraPlus.VariableGet(binaryLight, switchPower1Service, switchPowerStateVariable, ConnectionType.Remote);
-
-            //    var setAction = switchPower1Service?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
-
-            //    if (setAction != null)
-            //    {
-            //        setAction.Value = getResult == "1" ? "0" : "1";
-            //        await veraPlus.SendAction(binaryLight, switchPower1Service, setAction, ConnectionType.Remote);
-            //    }
-            //    else
-            //    {
-            //        return;
-            //    }
-            //}
-
-            //var vContainer = new VContainer1 {DeviceNumber = 431};
-            //var vContainerService = vContainer?.Services?.FirstOrDefault(s => s.ServiceName == "VContainer1");
-            //var vContainerStateVariable =
-            //    vContainerService?.StateVariables?.FirstOrDefault(v => v.VariableName == "Variable1");
-
-            //var getVariableName1 =
-            //    await
-            //        veraPlus.VariableGet(vContainer, vContainerService, vContainerStateVariable, ConnectionType.Remote);
-
-            //Console.WriteLine(getVariableName1);
-
-            //var vSwitch = new VSwitch1 {DeviceNumber = 424};
-            //var vSwitchPowerService = vSwitch?.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            //var vSwitchPowerStateVariable =
-            //    vSwitchPowerService?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
-
-            //var vSwitchStatus =
-            //    await
-            //        veraPlus.VariableGet(vSwitch, vSwitchPowerService, vSwitchPowerStateVariable, ConnectionType.Local);
-
-            //var vSwitchAction = vSwitchPowerService?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
-
-            //if (vSwitchAction != null)
-            //{
-            //    vSwitchAction.Value = vSwitchStatus == "1" ? "0" : "1";
-            //    await veraPlus.SendAction(vSwitch, vSwitchPowerService, vSwitchAction, ConnectionType.Local);
-            //}
+            //await
+            //    binaryLight.SetStateVariableAsync(ServiceType.SwitchPower1, SwitchPower1StateVariable.Status,
+            //        binaryLightStatus, ConnectionType.Local);
 
         }
     }

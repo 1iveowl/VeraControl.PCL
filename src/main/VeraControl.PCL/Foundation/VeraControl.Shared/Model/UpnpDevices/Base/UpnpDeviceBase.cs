@@ -61,7 +61,18 @@ namespace VeraControl.Model.UpnpDevices.Base
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
-            await stateVariable.SetStateVariable(value.ToString(), connectionType);
+            string stringValue;
+
+            if (stateVariable.Type == typeof(bool))
+            {
+                stringValue = value ? "1" : "0";
+            }
+            else
+            {
+                stringValue = value.ToString();
+            }
+
+            await stateVariable.SetStateVariable(stringValue, connectionType);
         }
     }
 }

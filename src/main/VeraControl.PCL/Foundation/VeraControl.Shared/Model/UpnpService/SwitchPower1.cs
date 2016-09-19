@@ -17,7 +17,7 @@ namespace VeraControl.Model.UpnpService
         GetStatus
     }
 
-    public enum SwitchStateVariable
+    public enum SwitchPower1StateVariable
     {
         Target,
         Status
@@ -28,20 +28,18 @@ namespace VeraControl.Model.UpnpService
         public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
         public string ServiceName { get; } = ServiceType.SwitchPower1.ToString();
 
-        
-
         public SwitchPower1(IVeraController controller, IUpnpDevice device)
         {
             StateVariables = new List<UpnpStateVariable>
         {
             new UpnpStateVariable(controller, this, device)
             {
-                VariableName = SwitchStateVariable.Target.ToString(),
+                VariableName = SwitchPower1StateVariable.Target.ToString(),
                 Type = typeof(bool)
             },
             new UpnpStateVariable(controller, this, device)
             {
-                VariableName = SwitchStateVariable.Status.ToString(),
+                VariableName = SwitchPower1StateVariable.Status.ToString(),
                 Type = typeof(bool)
             }
         };

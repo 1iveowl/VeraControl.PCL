@@ -9,6 +9,11 @@ using VeraControl.Model.UpnpService.Base;
 namespace VeraControl.Model.UpnpService
 {
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSensor-v1-Service.pdf
+    public enum TemperatureSensor1Action
+    {
+        
+    }
+
     public class TemperatureSensor1 : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSensor:1";
