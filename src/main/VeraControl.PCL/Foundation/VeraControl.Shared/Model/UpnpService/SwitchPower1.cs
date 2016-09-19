@@ -9,34 +9,48 @@ using VeraControl.Model.UpnpService.Base;
 namespace VeraControl.Model.UpnpService
 {
     //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
+
+    public enum SwitchPower1Action
+    {
+        SetTarget,
+        GetTarget,
+        GetStatus
+    }
+
+    public enum SwitchStateVariable
+    {
+        Target,
+        Status
+    }
+
     public class SwitchPower1 : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
-        public string ServiceName { get; } = nameof(SwitchPower1);
-
-        public IEnumerable<IUpnpStateVariable> StateVariables { get; set; } = new List<UpnpStateVariable>
-        {
-            new UpnpStateVariable
-            {
-                VariableName = "Target",
-                Type = typeof(bool)
-            },
-            new UpnpStateVariable
-            {
-                VariableName = "Status",
-                Type = typeof(bool)
-            }
-        };
+        public string ServiceName { get; } = ServiceType.SwitchPower1.ToString();
 
         
 
         public SwitchPower1(IVeraController controller, IUpnpDevice device)
         {
+            StateVariables = new List<UpnpStateVariable>
+        {
+            new UpnpStateVariable(controller, this, device)
+            {
+                VariableName = SwitchStateVariable.Target.ToString(),
+                Type = typeof(bool)
+            },
+            new UpnpStateVariable(controller, this, device)
+            {
+                VariableName = SwitchStateVariable.Status.ToString(),
+                Type = typeof(bool)
+            }
+        };
+
             Actions = new List<UpnpAction>
             {
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "SetTarget",
+                    ActionName = SwitchPower1Action.SetTarget.ToString(),
                     ArgumentName = "newTargetValue",
                     Type = typeof(bool),
                     Value = null,
@@ -44,7 +58,7 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "GetTarget",
+                    ActionName = SwitchPower1Action.GetTarget.ToString(),
                     ArgumentName = "RetTargetValue",
                     Type = typeof(bool),
                     Value = null,
@@ -52,7 +66,7 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "GetStatus",
+                    ActionName = SwitchPower1Action.GetStatus.ToString(),
                     ArgumentName = "ResultStatus",
                     Type = typeof(bool),
                     Value = null,

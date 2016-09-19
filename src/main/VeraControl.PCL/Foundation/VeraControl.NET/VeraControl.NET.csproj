@@ -105,11 +105,11 @@
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\Base\UpnpServiceBase.cs">
       <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
     </Compile>
+    <Compile Include="..\VeraControl.Shared\Model\UpnpService\ServiceType.cs">
+      <Link>Model\UpnpService\ServiceType.cs</Link>
+    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1Actions.cs">
-      <Link>Model\UpnpService\SwitchPower1Actions.cs</Link>
     </Compile>
     <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSensor1.cs">
       <Link>Model\UpnpService\TemperatureSensor1.cs</Link>

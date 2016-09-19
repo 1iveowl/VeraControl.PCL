@@ -11,6 +11,13 @@ namespace IVeraControl.Model
         IEnumerable<IUpnpService> Services { get; set; }
         IUpnpService LookupService(dynamic serviceName);
 
-        Task ActionAsync(dynamic actionName, dynamic target, ConnectionType connectionType);
+        Task ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, 
+            ConnectionType connectionType);
+
+        Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName,
+            ConnectionType connectionType);
+
+        Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+            ConnectionType connectionType);
     }
 }

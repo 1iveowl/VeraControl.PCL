@@ -39,34 +39,34 @@ namespace Test.UWP
         private async Task Start()
 
         {
-            var veraService = new VeraControlService();
+            //var veraService = new VeraControlService();
 
-            var controllers = await veraService.GetControllers(
-                Username.Text,
-                Password.Text);
+            //var controllers = await veraService.GetControllers(
+            //    Username.Text,
+            //    Password.Text);
 
-            var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
+            //var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var binaryLight = new BinaryLight1();
-            var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
-            var action = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
+            //var binaryLight = new BinaryLight1();
+            //var switchPower = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
+            //var action = switchPower?.Actions?.FirstOrDefault(a => a.ActionName == "SetTarget");
 
-            binaryLight.DeviceNumber = 56;
+            //binaryLight.DeviceNumber = 56;
 
-            if (action != null)
-            {
-                action.Value = "1";
-            }
-            else
-            {
-                return;
-            }
+            //if (action != null)
+            //{
+            //    action.Value = "1";
+            //}
+            //else
+            //{
+            //    return;
+            //}
 
 
-            if (veraPlus != null)
-            {
-                var result = await veraPlus.SendAction(binaryLight, switchPower, action, ConnectionType.Remote);
-            }
+            //if (veraPlus != null)
+            //{
+            //    var result = await veraPlus.SendAction(binaryLight, switchPower, action, ConnectionType.Remote);
+            //}
         }
     }
 }

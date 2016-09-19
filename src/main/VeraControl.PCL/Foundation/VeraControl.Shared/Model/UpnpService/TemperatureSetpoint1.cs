@@ -13,51 +13,52 @@ namespace VeraControl.Model.UpnpService
     {
         public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSetpoint:1 ";
         public string ServiceName => nameof(TemperatureSetpoint1);
-        public IEnumerable<IUpnpStateVariable> StateVariables { get; set; } = new List<UpnpStateVariable>
-        {
-            new UpnpStateVariable
-            {
-              VariableName  = "CurrentSetPoint",
-              Type = typeof(double),
-              Value = null
-            },
-            new UpnpStateVariable
-            {
-                VariableName = "SetpointAchieved",
-                Type = typeof(bool),
-                Value = null
-            }
-        };
 
         public TemperatureSetpoint1(IVeraController controller, IUpnpDevice device)
         {
+            StateVariables = new List<UpnpStateVariable>
+            {
+                new UpnpStateVariable(controller, this, device)
+                {
+                  VariableName  = "CurrentSetPoint",
+                  Type = typeof(double),
+                  Value = null
+                },
+                new UpnpStateVariable(controller, this, device)
+                {
+                    VariableName = "SetpointAchieved",
+                    Type = typeof(bool),
+                    Value = null
+                }
+            };
+
             Actions = new List<UpnpAction>
-        {
-            new UpnpAction(controller, this, device)
             {
-                ActionName  = "SetCurrentSetpoint",
-                ArgumentName = "NewCurrentSetpoint",
-                Direction = Direction.In,
-                Type = typeof(double),
-                Value = null
-            },
-            new UpnpAction(controller, this, device)
-            {
-                ActionName = "GetCurrentSetpoint",
-                ArgumentName = "CurrentSetpoint",
-                Direction = Direction.Out,
-                Type = typeof(double),
-                Value = null
-            },
-            new UpnpAction(controller, this, device)
-            {
-                ActionName = "GetSetpointAchieved",
-                ArgumentName = "SetpointAchieved",
-                Direction = Direction.Out,
-                Type = typeof(bool),
-                Value = null
-            }
-        };
+                new UpnpAction(controller, this, device)
+                {
+                    ActionName  = "SetCurrentSetpoint",
+                    ArgumentName = "NewCurrentSetpoint",
+                    Direction = Direction.In,
+                    Type = typeof(double),
+                    Value = null
+                },
+                new UpnpAction(controller, this, device)
+                {
+                    ActionName = "GetCurrentSetpoint",
+                    ArgumentName = "CurrentSetpoint",
+                    Direction = Direction.Out,
+                    Type = typeof(double),
+                    Value = null
+                },
+                new UpnpAction(controller, this, device)
+                {
+                    ActionName = "GetSetpointAchieved",
+                    ArgumentName = "SetpointAchieved",
+                    Direction = Direction.Out,
+                    Type = typeof(bool),
+                    Value = null
+                }
+            };
         }
     }
 }

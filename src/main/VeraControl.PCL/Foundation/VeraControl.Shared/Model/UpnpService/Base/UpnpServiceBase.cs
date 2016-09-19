@@ -11,9 +11,16 @@ namespace VeraControl.Model.UpnpService.Base
     {
         public IEnumerable<IUpnpAction> Actions { get; set; }
 
+        public IEnumerable<IUpnpStateVariable> StateVariables { get; set; }
+
         public virtual IUpnpAction LookupAction(dynamic actionName)
         {
             return Actions.FirstOrDefault(a => a.ActionName == actionName.ToString());
+        }
+
+        public virtual IUpnpStateVariable LookupStateVariable(dynamic stateVariableName)
+        {
+            return StateVariables.FirstOrDefault(v => v.VariableName == stateVariableName.ToString());
         }
     }
 }

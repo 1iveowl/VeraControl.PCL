@@ -11,5 +11,8 @@ namespace IVeraControl.Model
         string VariableName { get; set; }
         Type Type { get; set; }
         string Value { get; set; }
+
+        Task<dynamic> GetStateVariable(ConnectionType connectionType);
+        Task SetStateVariable(string value, ConnectionType connection);
     }
 }

@@ -17,7 +17,7 @@ namespace VeraControl.Model.UpnpDevices
 
         public VContainer1(IVeraController controller)
         {
-            Services = new List<IUpnpService> { new VContainer1Service() };
+            Services = new List<IUpnpService> { new VContainer1Service(controller, this) };
         }
     }
 }

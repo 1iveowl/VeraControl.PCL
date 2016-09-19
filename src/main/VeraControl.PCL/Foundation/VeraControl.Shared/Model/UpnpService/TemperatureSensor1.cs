@@ -13,18 +13,19 @@ namespace VeraControl.Model.UpnpService
     {
         public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSensor:1";
         public string ServiceName => nameof(TemperatureSensor1);
-        public IEnumerable<IUpnpStateVariable> StateVariables { get; set; } = new List<UpnpStateVariable>
-        {
-            new UpnpStateVariable
-            {
-                VariableName = "CurrentTemperature",
-                Type = typeof(double),
-                Value = null
-            }
-        };
 
         public TemperatureSensor1(IVeraController controller, IUpnpDevice device)
         {
+            StateVariables = new List<UpnpStateVariable>
+            {
+                new UpnpStateVariable(controller, this, device)
+                {
+                    VariableName = "CurrentTemperature",
+                    Type = typeof(double),
+                    Value = null
+                }
+            };
+
             Actions = new List<UpnpAction>
             {
                 new UpnpAction(controller, this, device)

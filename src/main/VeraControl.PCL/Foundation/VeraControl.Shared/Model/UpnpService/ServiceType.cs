@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace VeraControl.Model.UpnpService
 {
-    public enum SwitchPower1Actions
+    public enum ServiceType
     {
-        SetTarget,
-        GetTarget,
-        GetStatus
+        SwitchPower1,
+        TemperatureSensor1,
+        TemperatureSetpoint1,
+        VContainer1,
+        VSwitch
     }
 }

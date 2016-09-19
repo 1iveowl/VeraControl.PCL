@@ -13,5 +13,6 @@ namespace IVeraControl.Model
         IEnumerable<IUpnpStateVariable> StateVariables { get; set; }
 
         IUpnpAction LookupAction(dynamic actionName);
+        IUpnpStateVariable LookupStateVariable(dynamic stateVariableName);
     }
 }

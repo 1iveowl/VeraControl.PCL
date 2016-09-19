@@ -18,20 +18,9 @@ namespace VeraControl.Model.UpnpDevices
         public string DeviceName => nameof(BinaryLight1);
         public uint DeviceNumber { get; set; }
 
-        
-
         public BinaryLight1(IVeraController controller)
         {
             Services = new List<IUpnpService> { new SwitchPower1(controller, this) };
-        }
-
-        public async Task ActionAsync(dynamic actionName, dynamic target, ConnectionType connectionType)
-        {
-            var action = this.LookupService(nameof(SwitchPower1)).LookupAction(actionName);
-
-            action.Value = target ? "1" : "0";
-
-            await action.SendAction(connectionType);
         }
     }
 }

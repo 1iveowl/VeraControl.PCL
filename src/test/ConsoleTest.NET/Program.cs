@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
@@ -35,9 +36,11 @@ namespace ConsoleTest.NET
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 56};
+            var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 49};
 
-            await binaryLight.SetTarget(SwitchPower1Actions.SetTarget, true, ConnectionType.Local);
+            var binaryLightStatus = await binaryLight.GetStateVariableAsync(ServiceType.SwitchPower1, SwitchStateVariable.Status, ConnectionType.Local);
+
+            await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
 
             //var switchPower1Service = binaryLight.Services.FirstOrDefault(s => s.ServiceName == "SwitchPower1");
             //var switchPowerStateVariable = switchPower1Service?.StateVariables.FirstOrDefault(v => v.VariableName == "Status");
