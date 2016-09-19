@@ -27,9 +27,12 @@ namespace VeraControl.Model
             _device = device;
         }
 
-        public async Task SendAction(ConnectionType connectionType)
+        public async Task<dynamic> SendAction(ConnectionType connectionType)
         {
-            await _controller.SendAction(_device, _service, this, connectionType);
+            var result = await _controller.SendAction(_device, _service, this, connectionType);
+
+            //TODO use type info to return right type
+            return result;
         }
     }
 }

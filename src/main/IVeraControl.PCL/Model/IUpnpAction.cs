@@ -12,6 +12,6 @@ namespace IVeraControl.Model
         Direction Direction { get; }
         Type Type { get;  }
 
-        Task SendAction(ConnectionType connectionType);
+        Task<dynamic> SendAction(ConnectionType connectionType);
     }
 }

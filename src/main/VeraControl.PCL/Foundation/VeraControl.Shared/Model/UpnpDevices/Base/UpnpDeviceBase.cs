@@ -16,7 +16,7 @@ namespace VeraControl.Model.UpnpDevices.Base
             return Services.FirstOrDefault(s => s.ServiceName == serviceName.ToString());
         }
 
-        public async Task ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
+        public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
         {
             var action = this.LookupService(serviceName).LookupAction(actionName) as IUpnpAction;
 
@@ -31,7 +31,7 @@ namespace VeraControl.Model.UpnpDevices.Base
                 action.Value = target.ToString();
             }
 
-            await action.SendAction(connectionType);
+            return await action.SendAction(connectionType);
         }
 
         public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, ConnectionType connectionType)

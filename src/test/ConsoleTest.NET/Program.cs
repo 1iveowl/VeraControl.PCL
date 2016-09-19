@@ -36,11 +36,11 @@ namespace ConsoleTest.NET
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 49};
+            var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 56};
 
             var binaryLightStatus = await binaryLight.GetStateVariableAsync(ServiceType.SwitchPower1, SwitchPower1StateVariable.Status, ConnectionType.Local);
 
-            await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
+            var result =await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
 

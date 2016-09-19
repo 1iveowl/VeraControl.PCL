@@ -11,7 +11,12 @@ namespace VeraControl.Model.UpnpService
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSensor-v1-Service.pdf
     public enum TemperatureSensor1Action
     {
-        
+        GetCurrentTemperature
+    }
+
+    public enum TemperatureSensor1StateVariables
+    {
+        CurrentTemperature
     }
 
     public class TemperatureSensor1 : UpnpServiceBase, IUpnpService
@@ -25,7 +30,7 @@ namespace VeraControl.Model.UpnpService
             {
                 new UpnpStateVariable(controller, this, device)
                 {
-                    VariableName = "CurrentTemperature",
+                    VariableName = TemperatureSensor1StateVariables.CurrentTemperature.ToString(),
                     Type = typeof(double),
                     Value = null
                 }
@@ -35,7 +40,7 @@ namespace VeraControl.Model.UpnpService
             {
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "GetCurrentTemperature",
+                    ActionName = TemperatureSensor1Action.GetCurrentTemperature.ToString(),
                     ArgumentName = "CurrentTemp",
                     Direction = Direction.Out,
                     Type = typeof(double),
