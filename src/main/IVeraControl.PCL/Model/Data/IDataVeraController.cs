@@ -24,7 +24,7 @@ namespace IVeraControl.Model.Data
 
         string ServerAccount { get; }
 
-        string LocalIpAddress { get; }
+        //string LocalIpAddress { get; }
 
         string LastAliveReported { get; }
 

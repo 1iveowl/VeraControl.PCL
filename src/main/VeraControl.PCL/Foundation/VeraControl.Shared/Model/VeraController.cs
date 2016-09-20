@@ -142,7 +142,7 @@ namespace VeraControl.Model
             switch (connectionType)
             {
                 case ConnectionType.Local:
-                    httpAddr = $"http://{LocalIpAddress}/port_3480";
+                    httpAddr = $"http://{ControllerDetail.InternalIp}/port_3480";
                     break;
                 case ConnectionType.Remote:
                     {

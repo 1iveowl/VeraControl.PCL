@@ -22,14 +22,7 @@ namespace VeraControl.Model.UpnpDevices.Base
 
             if (action == null) throw new ArgumentException("Unable to find Action");
 
-            if (action.Type == typeof(bool))
-            {
-                action.Value = target ? "1" : "0";
-            }
-            else
-            {
-                action.Value = target.ToString();
-            }
+            action.Value = ConvertToActionRequestValueString(target, action.Type);
 
             return await action.SendAction(connectionType);
         }
@@ -43,14 +36,7 @@ namespace VeraControl.Model.UpnpDevices.Base
 
             var result = await stateVariable.GetStateVariable(connectionType);
 
-            if (stateVariable.Type == typeof(bool))
-            {
-                return (result == "1");
-            }
-            else
-            {
-                return result;
-            }
+            return ConvertResponseValueType(result, stateVariable.Type);
         }
 
         public async Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
@@ -61,18 +47,37 @@ namespace VeraControl.Model.UpnpDevices.Base
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
-            string stringValue;
-
-            if (stateVariable.Type == typeof(bool))
-            {
-                stringValue = value ? "1" : "0";
-            }
-            else
-            {
-                stringValue = value.ToString();
-            }
+            string stringValue = ConvertToActionRequestValueString(value, stateVariable.Type);
 
             await stateVariable.SetStateVariable(stringValue, connectionType);
+        }
+
+        private dynamic ConvertResponseValueType(dynamic value, Type type)
+        {
+
+            if (type == typeof(bool))
+            {
+                return value == "1";
+            }
+
+            if (type == typeof(double))
+            {
+                double val;
+                double.TryParse(value.ToString(), out val);
+                return val;
+            }
+
+            return value.ToString();
+        }
+
+        private string ConvertToActionRequestValueString(dynamic value, Type type)
+        {
+            if (type == typeof(bool))
+            {
+                return value ? "1" : "0";
+            }
+
+            return value.ToString();
         }
     }
 }
