@@ -52,14 +52,113 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Base\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="..\..\Foundation\VeraControl.NET\Extensions\SecurityExtension.cs">
+      <Link>Extensions\SecurityExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.NET\Service\HttpConnectionService.cs">
+      <Link>Service\HttpConnectionService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\converter\ConcreteConverter.cs">
+      <Link>Converter\ConcreteConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\extensions\HelperExtensions.cs">
+      <Link>Extensions\HelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\helper\HttpGetDeserializer.cs">
+      <Link>Helper\HttpGetDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\IdentityPackage.cs">
+      <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\IdentityPackageDetail.cs">
+      <Link>Model\IdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonIdentityPackage.cs">
+      <Link>Model\Json\JsonIdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonIdentityPackageDetail.cs">
+      <Link>Model\Json\JsonIdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraConrtollerDetail.cs">
+      <Link>Model\Json\JsonVeraConrtollerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraController.cs">
+      <Link>Model\Json\JsonVeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraControllerList.cs">
+      <Link>Model\Json\JsonVeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\Permission.cs">
+      <Link>Model\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpAction.cs">
+      <Link>Model\UpnpAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\base\UpnpDeviceBase.cs">
+      <Link>Model\UpnpDevice\Base\UpnpDeviceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\BinaryLight1.cs">
+      <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\HVAC_ZoneThermostat1.cs">
+      <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\TemperatureSensor1.cs">
+      <Link>Model\UpnpDevice\TemperatureSensor1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VContainer1.cs">
+      <Link>Model\UpnpDevice\VContainer1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VSwitch1.cs">
+      <Link>Model\UpnpDevice\VSwitch1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\base\UpnpServiceBase.cs">
+      <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\ServiceType.cs">
+      <Link>Model\UpnpService\ServiceType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\SwitchPower1.cs">
+      <Link>Model\UpnpService\SwitchPower1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSensor1.cs">
+      <Link>Model\UpnpService\TemperatureSensor1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSetpoint1.cs">
+      <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\VContainer1Service.cs">
+      <Link>Model\UpnpService\VContainer1Service.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpStateVariable.cs">
+      <Link>Model\UpnpStateVariable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraController.cs">
+      <Link>Model\VeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraControllerDetail.cs">
+      <Link>Model\VeraControllerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraControllerList.cs">
+      <Link>Model\VeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\service\VeraControlService.cs">
+      <Link>Service\VeraControlService.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
+      <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
+      <Name>IVeraControl.PCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
