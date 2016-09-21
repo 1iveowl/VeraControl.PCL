@@ -8,6 +8,7 @@ using IVeraControl.Service;
 using VeraControl.Helper;
 using VeraControl.Model;
 using VeraControl.Model.Json;
+using VeraControl.Model.UpnpService.VeraControl.Model;
 
 namespace VeraControl.Service
 {
