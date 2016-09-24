@@ -11,7 +11,5 @@ namespace IVeraControl.Model
     {
         
         IEnumerable<IVeraController> VeraControllers { get; }
-
-        //Task<IEnumerable<IVeraController>> GetControllerList(string username, string password);
     }
 }
