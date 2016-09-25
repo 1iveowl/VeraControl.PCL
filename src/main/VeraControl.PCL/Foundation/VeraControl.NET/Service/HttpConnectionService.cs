@@ -26,7 +26,7 @@ namespace VeraControl.Service
                 using (var httpClient = new HttpClient())
                 using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(httpRequest)))
                 {
-                    httpClient.Timeout = TimeSpan.FromSeconds(120);
+                    httpClient.Timeout = TimeSpan.FromSeconds(30);
 
                     if (mmsAuth != null)
                     {
