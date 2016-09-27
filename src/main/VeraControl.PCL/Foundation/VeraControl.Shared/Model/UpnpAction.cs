@@ -31,7 +31,6 @@ namespace VeraControl.Model
         {
             var result = await _controller.SendAction(_device, _service, this, connectionType);
 
-            //TODO use type info to return right type
             return result;
         }
     }

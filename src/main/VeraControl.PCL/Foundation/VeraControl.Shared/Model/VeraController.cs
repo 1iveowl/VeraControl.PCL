@@ -69,11 +69,7 @@ namespace VeraControl.Model
                               $"&action={action.ActionName}" +
                               $"&{action.ArgumentName}={action.Value}";
 
-            return await _deserializer.GetString(
-                httpRequest,
-                _httpConnectionService,
-                _identityPackage.IdentityBase64,
-                _identityPackage.IdentitySignature);
+            return await DoHttpRequest(connectionType, httpRequest);
         }
 
         public async Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
@@ -89,11 +85,7 @@ namespace VeraControl.Model
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&Variable={stateVariable.VariableName}";
 
-            return await _deserializer.GetString(
-                httpRequest,
-                _httpConnectionService,
-                _identityPackage.IdentityBase64,
-                _identityPackage.IdentitySignature);
+            return await DoHttpRequest(connectionType, httpRequest);
         }
 
         public async Task<string> VariableSet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
@@ -110,11 +102,7 @@ namespace VeraControl.Model
                               $"&Variable={stateVariable.VariableName}" +
                               $"&Value={stateVariable.Value}";
 
-            return await _deserializer.GetString(
-                httpRequest,
-                _httpConnectionService,
-                _identityPackage.IdentityBase64,
-                _identityPackage.IdentitySignature);
+            return await DoHttpRequest(connectionType, httpRequest);
         }
 
 
@@ -134,6 +122,24 @@ namespace VeraControl.Model
                 _identityPackage.IdentityBase64,
                 _identityPackage.IdentitySignature);
 
+        }
+
+        private async Task<string> DoHttpRequest(ConnectionType connectionType, string httpRequest)
+        {
+            if (connectionType == ConnectionType.Local)
+            {
+                return await _deserializer.GetString(
+                httpRequest,
+                _httpConnectionService);
+            }
+            else
+            {
+                return await _deserializer.GetString(
+                httpRequest,
+                _httpConnectionService,
+                _identityPackage.IdentityBase64,
+                _identityPackage.IdentitySignature);
+            }
         }
 
         private async Task<string> GetHttpAddress(ConnectionType connectionType)
