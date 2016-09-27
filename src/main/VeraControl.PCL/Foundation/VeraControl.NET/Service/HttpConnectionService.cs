@@ -28,6 +28,8 @@ namespace VeraControl.Service
                 {
                     httpClient.Timeout = TimeSpan.FromSeconds(30);
 
+                    httpClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
+
                     if (mmsAuth != null)
                     {
                         httpClient.DefaultRequestHeaders.Add("MMSAuth", mmsAuth);

@@ -204,13 +204,13 @@
     <EmbeddedResource Include="Properties\VeraControl.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Base\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
       <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Base\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

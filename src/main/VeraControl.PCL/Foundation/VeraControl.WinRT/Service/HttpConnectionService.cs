@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.Web.Http;
+using Windows.Web.Http.Filters;
 using IVeraControl.Service;
 
 namespace VeraControl.Service
@@ -22,14 +23,20 @@ namespace VeraControl.Service
             if ((mmsAuth != null) && (mmsAuthSig == null))
                 throw new ArgumentNullException(nameof(mmsAuthSig));
 
+            var filter = new HttpBaseProtocolFilter();
+            filter.CacheControl.ReadBehavior = HttpCacheReadBehavior.MostRecent;
+            filter.CacheControl.WriteBehavior = HttpCacheWriteBehavior.NoCache;
+
             Stream stream;
 
             try
             {
-                using (var httpClient = new HttpClient())
+                using (var httpClient = new HttpClient(filter))
                 using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(httpRequest)))
                 {
                     var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+                    httpClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
 
                     if (mmsAuth != null)
                     {
@@ -46,7 +53,6 @@ namespace VeraControl.Service
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             return stream;

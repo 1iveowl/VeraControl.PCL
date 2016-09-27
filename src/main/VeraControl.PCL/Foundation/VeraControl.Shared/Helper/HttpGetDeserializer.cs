@@ -47,12 +47,20 @@ namespace VeraControl.Helper
             string mmsAuth = null,
             string mmsAuthSig = null)
         {
-            var stream = await httpConnectionService.HttpGetAsync(httpRequest, mmsAuth, mmsAuthSig);
-
-            using (var sr = new StreamReader(stream))
+            try
             {
-                return sr.ReadToEnd();
+                var stream = await httpConnectionService.HttpGetAsync(httpRequest, mmsAuth, mmsAuthSig);
+
+                using (var sr = new StreamReader(stream))
+                {
+                    return sr.ReadToEnd();
+                }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }
