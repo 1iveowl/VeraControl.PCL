@@ -17,7 +17,7 @@ namespace VeraControl.Model.UpnpDevices
 
         public TemperatureSensor1(IVeraController controller)
         {
-            Services = new List<IUpnpService> {new UpnpService.TemperatureSensor1(controller, this)};
+            Services = new List<IUpnpService> {new UpnpService.TemperatureSensor1Service(controller, this)};
         }
     }
 }

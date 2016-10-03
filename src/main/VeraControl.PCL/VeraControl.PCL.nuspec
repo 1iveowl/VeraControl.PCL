@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>VeraControl.PCL</id>
-    <version>0.3.2</version>
+    <version>0.3.3</version>
     <title>Vera Control - Xamarin PCL</title>
     <authors>Jasper H. Bojsen</authors>
     <owners>Jasper H. Bojsen</owners>

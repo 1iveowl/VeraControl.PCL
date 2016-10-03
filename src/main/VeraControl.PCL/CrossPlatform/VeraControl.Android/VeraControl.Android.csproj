@@ -131,8 +131,8 @@
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\SwitchPower1.cs">
       <Link>Model\UpnpService\SwitchPower1.cs</Link>
     </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSensor1.cs">
-      <Link>Model\UpnpService\TemperatureSensor1.cs</Link>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpService\TemperatureSensor1Service.cs">
+      <Link>Model\UpnpService\TemperatureSensor1Service.cs</Link>
     </Compile>
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSetpoint1.cs">
       <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>

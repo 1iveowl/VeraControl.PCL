@@ -9,7 +9,7 @@ namespace VeraControl.Model.UpnpService
     public enum ServiceType
     {
         SwitchPower1,
-        TemperatureSensor1,
+        TemperatureSensor1Service,
         TemperatureSetpoint1,
         VContainer1,
         VSwitch

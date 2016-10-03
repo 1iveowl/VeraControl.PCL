@@ -24,7 +24,7 @@ namespace VeraControl.Model.UpnpService
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSetpoint-v1-Service.pdf
     public class TemperatureSetpoint1 : UpnpServiceBase, IUpnpService
     {
-        public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSetpoint:1 ";
+        public string ServiceUrn => "urn:upnp-org:serviceId:TemperatureSetpoint1";
         public string ServiceName => nameof(TemperatureSetpoint1);
 
         public TemperatureSetpoint1(IVeraController controller, IUpnpDevice device)
