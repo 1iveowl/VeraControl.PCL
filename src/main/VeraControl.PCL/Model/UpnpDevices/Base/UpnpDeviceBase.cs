@@ -33,7 +33,7 @@ namespace VeraControl.Model.UpnpDevices.Base
             throw new NotImplementedException(BaitNoSwitch);
         }
 
-        public Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+        public Task<string> SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
             ConnectionType connectionType)
         {
             throw new NotImplementedException(BaitNoSwitch);

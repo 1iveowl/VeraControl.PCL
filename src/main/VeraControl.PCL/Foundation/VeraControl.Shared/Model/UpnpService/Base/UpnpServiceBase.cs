@@ -20,7 +20,8 @@ namespace VeraControl.Model.UpnpService.Base
 
         public virtual IUpnpStateVariable LookupStateVariable(dynamic stateVariableName)
         {
-            return StateVariables.FirstOrDefault(v => v.VariableName == stateVariableName.ToString());
+            var result = StateVariables.FirstOrDefault(v => v.VariableName == stateVariableName.ToString());
+            return result;
         }
     }
 }

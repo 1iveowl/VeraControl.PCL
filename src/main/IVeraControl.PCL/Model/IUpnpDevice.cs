@@ -17,7 +17,7 @@ namespace IVeraControl.Model
         Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName,
             ConnectionType connectionType);
 
-        Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+        Task<string> SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
             ConnectionType connectionType);
     }
 }

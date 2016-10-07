@@ -18,7 +18,7 @@ namespace VeraControl.Model
             throw new NotImplementedException(BaitNoSwitch);
         }
 
-        public Task SetStateVariable(string value, ConnectionType connection)
+        public Task<string> SetStateVariable(string value, ConnectionType connection)
         {
             throw new NotImplementedException(BaitNoSwitch);
         }

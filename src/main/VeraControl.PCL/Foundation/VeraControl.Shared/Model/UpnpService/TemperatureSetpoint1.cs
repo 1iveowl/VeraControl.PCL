@@ -10,7 +10,7 @@ namespace VeraControl.Model.UpnpService
 {
     public enum TemperatureSetpoint1Action
     {
-        CurrentSetPoint,
+        CurrentSetpoint,
         SetpointAchieved
     }
 
@@ -33,7 +33,7 @@ namespace VeraControl.Model.UpnpService
             {
                 new UpnpStateVariable(controller, this, device)
                 {
-                  VariableName  = TemperatureSetpoint1Action.CurrentSetPoint.ToString(),
+                  VariableName  = TemperatureSetpoint1Action.CurrentSetpoint.ToString(),
                   Type = typeof(double),
                   Value = null
                 },

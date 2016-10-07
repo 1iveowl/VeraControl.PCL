@@ -13,12 +13,13 @@ namespace VeraControl.Model.UpnpDevices.Base
 
         public virtual IUpnpService LookupService(dynamic serviceName)
         {
-            return Services.FirstOrDefault(s => s.ServiceName == serviceName.ToString());
+            var result = Services.FirstOrDefault(s => s.ServiceName == serviceName.ToString());
+            return result;
         }
 
         public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
         {
-            var action = this.LookupService(serviceName).LookupAction(actionName) as IUpnpAction;
+            var action = (IUpnpAction)this.LookupService(serviceName)?.LookupAction(actionName);
 
             if (action == null) throw new ArgumentException("Unable to find Action");
 
@@ -30,7 +31,7 @@ namespace VeraControl.Model.UpnpDevices.Base
         public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, ConnectionType connectionType)
         {
             var stateVariable =
-                this.LookupService(serviceName).LookupStateVariable(stateVariableName) as IUpnpStateVariable;
+                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
@@ -39,17 +40,17 @@ namespace VeraControl.Model.UpnpDevices.Base
             return ConvertResponseValueType(result, stateVariable.Type);
         }
 
-        public async Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+        public async Task<string> SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
             ConnectionType connectionType)
         {
             var stateVariable =
-                this.LookupService(serviceName).LookupStateVariable(stateVariableName) as IUpnpStateVariable;
+                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
             string stringValue = ConvertToActionRequestValueString(value, stateVariable.Type);
 
-            await stateVariable.SetStateVariable(stringValue, connectionType);
+            return await stateVariable.SetStateVariable(stringValue, connectionType);
         }
 
         private dynamic ConvertResponseValueType(dynamic value, Type type)

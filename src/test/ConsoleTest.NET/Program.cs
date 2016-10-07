@@ -42,11 +42,12 @@ namespace ConsoleTest.NET
 
             //var result = await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
 
-            var temperatureSensor = new TemperatureSensor1(veraPlus) {DeviceNumber = 451};
+            var hvacTermo = new HVAC_ZoneThermostat1(veraPlus) { DeviceNumber = 519};
 
-            var temperature = await temperatureSensor.GetStateVariableAsync(
-                ServiceType.TemperatureSensor1Service,
-                TemperatureSensor1StateVariables.CurrentTemperature,
+            var hvacSetResult = await hvacTermo.ActionAsync(
+                ServiceType.TemperatureSetpoint1,
+                TemperatureSetpoint1StateVariable.SetCurrentSetpoint,
+                16,
                 ConnectionType.Local);
 
             await Task.Delay(TimeSpan.FromSeconds(2));
