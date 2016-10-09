@@ -13,23 +13,17 @@ namespace VeraControl.Model.UpnpDevices.Base
 
         public virtual IUpnpService LookupService(dynamic serviceName)
         {
-            return Services.FirstOrDefault(s => s.ServiceName == serviceName.ToString());
+            var result = Services.FirstOrDefault(s => s.ServiceName == serviceName.ToString());
+            return result;
         }
 
         public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
         {
-            var action = this.LookupService(serviceName).LookupAction(actionName) as IUpnpAction;
+            var action = (IUpnpAction)this.LookupService(serviceName)?.LookupAction(actionName);
 
             if (action == null) throw new ArgumentException("Unable to find Action");
 
-            if (action.Type == typeof(bool))
-            {
-                action.Value = target ? "1" : "0";
-            }
-            else
-            {
-                action.Value = target.ToString();
-            }
+            action.Value = ConvertToActionRequestValueString(target, action.Type);
 
             return await action.SendAction(connectionType);
         }
@@ -37,42 +31,54 @@ namespace VeraControl.Model.UpnpDevices.Base
         public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, ConnectionType connectionType)
         {
             var stateVariable =
-                this.LookupService(serviceName).LookupStateVariable(stateVariableName) as IUpnpStateVariable;
+                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
             var result = await stateVariable.GetStateVariable(connectionType);
 
-            if (stateVariable.Type == typeof(bool))
-            {
-                return (result == "1");
-            }
-            else
-            {
-                return result;
-            }
+            return ConvertResponseValueType(result, stateVariable.Type);
         }
 
-        public async Task SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+        public async Task<string> SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
             ConnectionType connectionType)
         {
             var stateVariable =
-                this.LookupService(serviceName).LookupStateVariable(stateVariableName) as IUpnpStateVariable;
+                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
-            string stringValue;
+            string stringValue = ConvertToActionRequestValueString(value, stateVariable.Type);
 
-            if (stateVariable.Type == typeof(bool))
+            return await stateVariable.SetStateVariable(stringValue, connectionType);
+        }
+
+        private dynamic ConvertResponseValueType(dynamic value, Type type)
+        {
+
+            if (type == typeof(bool))
             {
-                stringValue = value ? "1" : "0";
-            }
-            else
-            {
-                stringValue = value.ToString();
+                return value == "1";
             }
 
-            await stateVariable.SetStateVariable(stringValue, connectionType);
+            if (type == typeof(double))
+            {
+                double val;
+                double.TryParse(value.ToString(), out val);
+                return val;
+            }
+
+            return value.ToString();
+        }
+
+        private string ConvertToActionRequestValueString(dynamic value, Type type)
+        {
+            if (type == typeof(bool))
+            {
+                return value ? "1" : "0";
+            }
+
+            return value.ToString();
         }
     }
 }

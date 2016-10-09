@@ -31,11 +31,10 @@ namespace VeraControl.Model
             return await _controller.VariableGet(_device, _service, this, connectionType);
         }
 
-        public async Task SetStateVariable(string value, ConnectionType connection)
+        public async Task<string> SetStateVariable(string value, ConnectionType connection)
         {
             Value = value;
-            await _controller.VariableSet(_device, _service, this, connection);
+            return await _controller.VariableSet(_device, _service, this, connection);
         }
-
     }
 }

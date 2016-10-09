@@ -19,12 +19,12 @@ namespace VeraControl.Model.UpnpService
         CurrentTemperature
     }
 
-    public class TemperatureSensor1 : UpnpServiceBase, IUpnpService
+    public class TemperatureSensor1Service : UpnpServiceBase, IUpnpService
     {
-        public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSensor:1";
-        public string ServiceName => nameof(TemperatureSensor1);
+        public string ServiceUrn => "urn:upnp-org:serviceId:TemperatureSensor1";
+        public string ServiceName => nameof(TemperatureSensor1Service);
 
-        public TemperatureSensor1(IVeraController controller, IUpnpDevice device)
+        public TemperatureSensor1Service(IVeraController controller, IUpnpDevice device)
         {
             StateVariables = new List<UpnpStateVariable>
             {

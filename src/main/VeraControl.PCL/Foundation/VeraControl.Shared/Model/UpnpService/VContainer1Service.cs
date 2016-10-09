@@ -19,10 +19,12 @@ namespace VeraControl.Model.UpnpService
         VariableName2,
         VariableName3,
         VariableName4,
+        VariableName5,
         Variable1,
         Variable2,
         Variable3,
         Variable4,
+        Variable5,
     }
 
     public class VContainer1Service : UpnpServiceBase, IUpnpService
@@ -61,7 +63,7 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpStateVariable(controller, this, device)
                 {
-                    VariableName = VContainer1StateVariable.Variable1.ToString(),
+                    VariableName = VContainer1StateVariable.VariableName5.ToString(),
                     Type = typeof(string)
                 },
                 new UpnpStateVariable(controller, this, device)
@@ -71,12 +73,22 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpStateVariable(controller, this, device)
                 {
-                    VariableName = VContainer1StateVariable.Variable1.ToString(),
+                    VariableName = VContainer1StateVariable.Variable2.ToString(),
                     Type = typeof(string)
                 },
                 new UpnpStateVariable(controller, this, device)
                 {
-                    VariableName = VContainer1StateVariable.Variable1.ToString(),
+                    VariableName = VContainer1StateVariable.Variable3.ToString(),
+                    Type = typeof(string)
+                },
+                new UpnpStateVariable(controller, this, device)
+                {
+                    VariableName = VContainer1StateVariable.Variable4.ToString(),
+                    Type = typeof(string)
+                },
+                new UpnpStateVariable(controller, this, device)
+                {
+                    VariableName = VContainer1StateVariable.Variable5.ToString(),
                     Type = typeof(string)
                 },
             };

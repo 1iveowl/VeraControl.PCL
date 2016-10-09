@@ -1,69 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using IVeraControl.Model;
-using IVeraControl.Model.Data;
-using IVeraControl.Service;
-using Newtonsoft.Json;
 using VeraControl.Extensions;
 using VeraControl.Helper;
 using VeraControl.Model.Json;
 
-namespace VeraControl.Model
+namespace VeraControl.Model.UpnpService
 {
-    internal class IdentityPackage : JsonIdentityPackage, IIdentityPackage
+    //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
+
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using IVeraControl.Model;
+    using IVeraControl.Service;
+
+    namespace VeraControl.Model
     {
-        private const string PasswordSeed = "oZ7QE6LcLJp6fiWzdqZc";
-        private const string PkOem = "1";
-        private readonly string _authenticationServer;
-
-        private readonly IMapper _mapper;
-
-        private readonly HttpGetDeserializer _httpDeserializer = new HttpGetDeserializer();
-
-        private readonly IHttpConnectionService _httpConnectionService;
-
-        internal IdentityPackage(IHttpConnectionService httpConnectionService, string authenticationServer)
+        internal class IdentityPackage : JsonIdentityPackage, IIdentityPackage
         {
-            _httpConnectionService = httpConnectionService;
-            _authenticationServer = authenticationServer;
+            private const string PasswordSeed = "oZ7QE6LcLJp6fiWzdqZc";
+            private const string PkOem = "1";
+            private readonly string _authenticationServer;
 
-            // Initialize AutoMapper
-            var config = new MapperConfiguration(cfg =>
+            private readonly IMapper _mapper;
+
+            private readonly HttpGetDeserializer _httpDeserializer = new HttpGetDeserializer();
+
+            private readonly IHttpConnectionService _httpConnectionService;
+
+            internal IdentityPackage(IHttpConnectionService httpConnectionService, string authenticationServer)
             {
-                cfg.CreateMap<JsonIdentityPackage, IdentityPackage>();
-            });
+                _httpConnectionService = httpConnectionService;
+                _authenticationServer = authenticationServer;
 
-            _mapper = config.CreateMapper();
-        }
+                // Initialize AutoMapper
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<JsonIdentityPackage, IdentityPackage>();
+                });
 
-        public async Task GetIdentityPackage(string username, string password)
-        {
-            var passwordhash = $"{username}{password}{PasswordSeed}".Sha1Hash();
-
-            var httpRequest = $"https://{_authenticationServer}" +
-                              $"/autha" +
-                              $"/auth" +
-                              $"/username" +
-                              $"/{username}" +
-                              $"?SHA1Password={passwordhash}" +
-                              $"&PK_Oem={PkOem}";
-            try
-            {
-                var identityDataPackage =
-                await _httpDeserializer.GetAndDeserialize<JsonIdentityPackage>(httpRequest, _httpConnectionService);
-                _mapper.Map(identityDataPackage, this);
+                _mapper = config.CreateMapper();
             }
-            catch (Exception ex)
-            {
-                
-                throw new AggregateException("Unable to obtain Identity Package. Was username/password correct?", ex);
-            }
-        }
 
+            public async Task GetIdentityPackage(string username, string password)
+            {
+                var passwordhash = $"{username}{password}{PasswordSeed}".Sha1Hash();
+
+                var httpRequest = $"https://{_authenticationServer}" +
+                                  $"/autha" +
+                                  $"/auth" +
+                                  $"/username" +
+                                  $"/{username}" +
+                                  $"?SHA1Password={passwordhash}" +
+                                  $"&PK_Oem={PkOem}";
+                try
+                {
+                    var identityDataPackage =
+                        await
+                            _httpDeserializer.GetAndDeserialize<JsonIdentityPackage>(httpRequest, _httpConnectionService);
+                    _mapper.Map(identityDataPackage, this);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new AggregateException("Unable to obtain Identity Package. Was username/password correct?", ex);
+                }
+            }
+
+        }
     }
 }

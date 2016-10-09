@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3527AD7B-BDC6-4848-A7F6-401644AD711E}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VeraControl</RootNamespace>
+    <AssemblyName>VeraControl</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.5.1.1\lib\netstandard1.3\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\modernhttpclient.2.4.2\lib\MonoAndroid\ModernHttpClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OkHttp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\modernhttpclient.2.4.2\lib\MonoAndroid\OkHttp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Foundation\VeraControl.NET\Extensions\SecurityExtension.cs">
+      <Link>Extensions\SecurityExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.NET\Service\HttpConnectionService.cs">
+      <Link>Service\HttpConnectionService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\converter\ConcreteConverter.cs">
+      <Link>Converter\ConcreteConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\extensions\HelperExtensions.cs">
+      <Link>Extensions\HelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\helper\HttpGetDeserializer.cs">
+      <Link>Helper\HttpGetDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\IdentityPackage.cs">
+      <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\IdentityPackageDetail.cs">
+      <Link>Model\IdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonIdentityPackage.cs">
+      <Link>Model\Json\JsonIdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonIdentityPackageDetail.cs">
+      <Link>Model\Json\JsonIdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraConrtollerDetail.cs">
+      <Link>Model\Json\JsonVeraConrtollerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraController.cs">
+      <Link>Model\Json\JsonVeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\json\JsonVeraControllerList.cs">
+      <Link>Model\Json\JsonVeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\Permission.cs">
+      <Link>Model\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpAction.cs">
+      <Link>Model\UpnpAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\base\UpnpDeviceBase.cs">
+      <Link>Model\UpnpDevice\Base\UpnpDeviceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\BinaryLight1.cs">
+      <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\HVAC_ZoneThermostat1.cs">
+      <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\TemperatureSensor1.cs">
+      <Link>Model\UpnpDevice\TemperatureSensor1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VContainer1.cs">
+      <Link>Model\UpnpDevice\VContainer1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VSwitch1.cs">
+      <Link>Model\UpnpDevice\VSwitch1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\base\UpnpServiceBase.cs">
+      <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\ServiceType.cs">
+      <Link>Model\UpnpService\ServiceType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\SwitchPower1.cs">
+      <Link>Model\UpnpService\SwitchPower1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSensor1.cs">
+      <Link>Model\UpnpService\TemperatureSensor1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSetpoint1.cs">
+      <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\VContainer1Service.cs">
+      <Link>Model\UpnpService\VContainer1Service.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpStateVariable.cs">
+      <Link>Model\UpnpStateVariable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraController.cs">
+      <Link>Model\VeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraControllerDetail.cs">
+      <Link>Model\VeraControllerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\model\VeraControllerList.cs">
+      <Link>Model\VeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\foundation\veracontrol.shared\service\VeraControlService.cs">
+      <Link>Service\VeraControlService.cs</Link>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
+      <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
+      <Name>IVeraControl.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

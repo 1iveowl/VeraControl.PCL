@@ -1,4 +1,4 @@
-﻿namespace VeraControl.Model
+﻿namespace IVeraControl.Model
 {
     public enum Direction
     {

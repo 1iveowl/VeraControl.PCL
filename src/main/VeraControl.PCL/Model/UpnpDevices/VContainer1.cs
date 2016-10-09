@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeraControl.Model.UpnpDevices.Base;
 
-namespace VeraControl.UWP
+namespace VeraControl.Model.UpnpDevices
 {
-    public class Class1
+    public class VContainer1 : UpnpDeviceBase
     {
     }
 }

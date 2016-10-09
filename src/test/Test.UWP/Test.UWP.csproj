@@ -131,9 +131,9 @@
       <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\main\VeraControl.PCL\Foundation\VeraControl.WinRT\VeraControl.WinRT.csproj">
-      <Project>{497006a4-65ca-46c7-9b69-0ff5155bdc09}</Project>
-      <Name>VeraControl.WinRT</Name>
+    <ProjectReference Include="..\..\main\VeraControl.PCL\CrossPlatform\VeraControl.UWP\VeraControl.UWP.csproj">
+      <Project>{afc7f3fd-c561-4682-a024-8892486b4405}</Project>
+      <Name>VeraControl.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

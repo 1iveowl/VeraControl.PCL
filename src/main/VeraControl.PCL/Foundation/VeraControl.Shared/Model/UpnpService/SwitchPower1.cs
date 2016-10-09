@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IVeraControl.Model;
+using VeraControl.Model;
+using VeraControl.Model.UpnpService;
 using VeraControl.Model.UpnpService.Base;
 
 namespace VeraControl.Model.UpnpService
 {
-    //Specification: http://upnp.org/specs/ha/UPnP-ha-SwitchPower-v1-Service.pdf
 
     public enum SwitchPower1Action
     {
@@ -74,3 +73,4 @@ namespace VeraControl.Model.UpnpService
         }
     }
 }
+

@@ -8,10 +8,23 @@ using VeraControl.Model.UpnpService.Base;
 
 namespace VeraControl.Model.UpnpService
 {
+    public enum TemperatureSetpoint1Action
+    {
+        CurrentSetpoint,
+        SetpointAchieved
+    }
+
+    public enum TemperatureSetpoint1StateVariable
+    {
+        SetCurrentSetpoint,
+        GetCurrentSetpoint,
+        GetSetpointAchieved
+    }
+
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSetpoint-v1-Service.pdf
     public class TemperatureSetpoint1 : UpnpServiceBase, IUpnpService
     {
-        public string ServiceUrn => "urn:schemas-upnp-org:service:TemperatureSetpoint:1 ";
+        public string ServiceUrn => "urn:upnp-org:serviceId:TemperatureSetpoint1";
         public string ServiceName => nameof(TemperatureSetpoint1);
 
         public TemperatureSetpoint1(IVeraController controller, IUpnpDevice device)
@@ -20,13 +33,13 @@ namespace VeraControl.Model.UpnpService
             {
                 new UpnpStateVariable(controller, this, device)
                 {
-                  VariableName  = "CurrentSetPoint",
+                  VariableName  = TemperatureSetpoint1Action.CurrentSetpoint.ToString(),
                   Type = typeof(double),
                   Value = null
                 },
                 new UpnpStateVariable(controller, this, device)
                 {
-                    VariableName = "SetpointAchieved",
+                    VariableName = TemperatureSetpoint1Action.SetpointAchieved.ToString(),
                     Type = typeof(bool),
                     Value = null
                 }
@@ -36,7 +49,7 @@ namespace VeraControl.Model.UpnpService
             {
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName  = "SetCurrentSetpoint",
+                    ActionName  = TemperatureSetpoint1StateVariable.SetCurrentSetpoint.ToString(),
                     ArgumentName = "NewCurrentSetpoint",
                     Direction = Direction.In,
                     Type = typeof(double),
@@ -44,7 +57,7 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "GetCurrentSetpoint",
+                    ActionName = TemperatureSetpoint1StateVariable.GetCurrentSetpoint.ToString(),
                     ArgumentName = "CurrentSetpoint",
                     Direction = Direction.Out,
                     Type = typeof(double),
@@ -52,7 +65,7 @@ namespace VeraControl.Model.UpnpService
                 },
                 new UpnpAction(controller, this, device)
                 {
-                    ActionName = "GetSetpointAchieved",
+                    ActionName = TemperatureSetpoint1StateVariable.GetSetpointAchieved.ToString(),
                     ArgumentName = "SetpointAchieved",
                     Direction = Direction.Out,
                     Type = typeof(bool),

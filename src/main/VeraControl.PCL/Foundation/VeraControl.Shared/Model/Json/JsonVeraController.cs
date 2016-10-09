@@ -36,8 +36,8 @@ namespace VeraControl.Model.Json
         [JsonProperty(PropertyName = "Server_Account")]
         public string ServerAccount { get; set; }
 
-        [JsonProperty(PropertyName = "InternalIP")]
-        public string LocalIpAddress { get; set; }
+        ////[JsonProperty(PropertyName = "InternalIP")]
+        //public string LocalIpAddress => ControllerDetail.InternalIp;
 
         [JsonProperty(PropertyName = "LastAliveReported")]
         public string LastAliveReported { get; set; }

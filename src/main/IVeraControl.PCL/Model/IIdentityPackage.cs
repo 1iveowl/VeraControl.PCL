@@ -10,7 +10,5 @@ namespace IVeraControl.Model
     public interface IIdentityPackage : IDataIdentityPackage
     {
         Task GetIdentityPackage(string username, string password);
-
-        //Task GetIdentityPackageDetails();
     }
 }

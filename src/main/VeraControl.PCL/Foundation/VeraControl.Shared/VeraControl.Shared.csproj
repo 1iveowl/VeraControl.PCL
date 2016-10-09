@@ -56,7 +56,7 @@
     <Compile Include="Model\UpnpService\Base\UpnpServiceBase.cs" />
     <Compile Include="Model\UpnpService\ServiceType.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
-    <Compile Include="Model\UpnpService\TemperatureSensor1.cs" />
+    <Compile Include="Model\UpnpService\TemperatureSensor1Service.cs" />
     <Compile Include="Model\UpnpService\TemperatureSetpoint1.cs" />
     <Compile Include="Model\UpnpService\VContainer1Service.cs" />
     <Compile Include="Model\UpnpStateVariable.cs" />
