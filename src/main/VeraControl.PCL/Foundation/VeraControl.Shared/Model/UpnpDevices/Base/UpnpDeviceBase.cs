@@ -17,6 +17,8 @@ namespace VeraControl.Model.UpnpDevices.Base
             return result;
         }
 
+        public uint DeviceNumber { get; set; }
+
         public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
         {
             var action = (IUpnpAction)this.LookupService(serviceName)?.LookupAction(actionName);

@@ -13,7 +13,6 @@ namespace VeraControl.Model.UpnpDevices
     public class HVAC_ZoneThermostat1: UpnpDeviceBase, IUpnpDevice
     {
         public string DeviceUrn => "urn:schemas-upnp-org:device:HVAC_ZoneThermostat:1";
-        public uint DeviceNumber { get; set; }
         public string DeviceName => nameof(HVAC_ZoneThermostat1);
 
         public HVAC_ZoneThermostat1(IVeraController controller)

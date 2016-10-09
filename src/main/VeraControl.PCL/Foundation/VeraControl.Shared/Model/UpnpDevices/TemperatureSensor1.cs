@@ -12,7 +12,6 @@ namespace VeraControl.Model.UpnpDevices
     public class TemperatureSensor1 : UpnpDeviceBase, IUpnpDevice
     {
         public string DeviceUrn => "urn:schemas-upnp-org:service:TemperatureSensor:1 ";
-        public uint DeviceNumber { get; set; }
         public string DeviceName => nameof(TemperatureSensor1);
 
         public TemperatureSensor1(IVeraController controller)

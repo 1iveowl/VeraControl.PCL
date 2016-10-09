@@ -12,6 +12,7 @@ namespace VeraControl.Model.UpnpService
         TemperatureSensor1Service,
         TemperatureSetpoint1,
         VContainer1,
+        Dimmer1,
         //VSwitch
     }
 }

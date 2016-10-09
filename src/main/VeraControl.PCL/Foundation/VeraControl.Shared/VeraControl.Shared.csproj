@@ -49,6 +49,7 @@
     <Compile Include="Model\Permission.cs" />
     <Compile Include="Model\UpnpDevices\Base\UpnpDeviceBase.cs" />
     <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />
+    <Compile Include="Model\UpnpDevices\Dimmer1.cs" />
     <Compile Include="Model\UpnpDevices\HVAC_ZoneThermostat1.cs" />
     <Compile Include="Model\UpnpDevices\TemperatureSensor1.cs" />
     <Compile Include="Model\UpnpDevices\VContainer1.cs" />

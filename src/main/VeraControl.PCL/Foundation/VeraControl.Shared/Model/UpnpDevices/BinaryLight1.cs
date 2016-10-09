@@ -16,7 +16,7 @@ namespace VeraControl.Model.UpnpDevices
         public string DeviceUrn => "urn:schemas-upnp-org:device:BinaryLight:1";
 
         public string DeviceName => nameof(BinaryLight1);
-        public uint DeviceNumber { get; set; }
+       
 
         public BinaryLight1(IVeraController controller)
         {
