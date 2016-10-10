@@ -40,7 +40,7 @@ namespace VeraControl.Service
                     httpClient.DefaultRequestHeaders.AcceptLanguage.Add(StringWithQualityHeaderValue.Parse("en-us"));
                     httpClient.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("gzip"));
                     httpClient.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("deflate"));
-                    httpClient.DefaultRequestHeaders.Connection.Add("keep-alive");
+                    httpClient.DefaultRequestHeaders.Connection.Add("Keep-Alive");
                     httpClient.DefaultRequestHeaders.UserAgent.Add(ProductInfoHeaderValue.Parse("VeraControl.PCL"));
                     if (mmsAuth != null)
                     {
