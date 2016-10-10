@@ -20,7 +20,7 @@ namespace VeraControl.Model.UpnpDevices
             Services = new List<IUpnpService>
             {
                 new SwitchPower1(controller, this),
-
+                new UpnpService.Dimming1(controller, this)
             };
         }
     }

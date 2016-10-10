@@ -12,11 +12,11 @@ namespace IVeraControl.Model
     {
         IVeraControllerDetail ControllerDetail { get; }
 
-        Task<string> SendAction(IUpnpDevice device, IUpnpService service, IUpnpAction action, ConnectionType connectionType);
+        Task<string> SendActionAsync(IUpnpDevice device, IUpnpService service, IUpnpAction action, ConnectionType connectionType);
 
-        Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
+        Task<string> VariableGetAsync(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
 
-        Task<string> VariableSet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
+        Task<string> VariableSetAsync(IUpnpDevice device, IUpnpService service, IUpnpStateVariable action, ConnectionType connectionType);
 
         Task GetDetailsAsync();
 

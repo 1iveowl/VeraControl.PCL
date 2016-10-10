@@ -12,8 +12,8 @@ namespace VeraControl.Model.UpnpService
     public enum SwitchPower1Action
     {
         SetTarget,
-        GetTarget,
-        GetStatus
+        //GetTarget,
+        //GetStatus
     }
 
     public enum SwitchPower1StateVariable
@@ -29,7 +29,7 @@ namespace VeraControl.Model.UpnpService
 
         public SwitchPower1(IVeraController controller, IUpnpDevice device)
         {
-            StateVariables = new List<UpnpStateVariable>
+            StateVariables = new List<IUpnpStateVariable>
         {
             new UpnpStateVariable(controller, this, device)
             {
@@ -43,7 +43,7 @@ namespace VeraControl.Model.UpnpService
             }
         };
 
-            Actions = new List<UpnpAction>
+            Actions = new List<IUpnpAction>
             {
                 new UpnpAction(controller, this, device)
                 {
@@ -53,22 +53,22 @@ namespace VeraControl.Model.UpnpService
                     Value = null,
                     Direction = Direction.In
                 },
-                new UpnpAction(controller, this, device)
-                {
-                    ActionName = SwitchPower1Action.GetTarget.ToString(),
-                    ArgumentName = "RetTargetValue",
-                    Type = typeof(bool),
-                    Value = null,
-                    Direction = Direction.Out
-                },
-                new UpnpAction(controller, this, device)
-                {
-                    ActionName = SwitchPower1Action.GetStatus.ToString(),
-                    ArgumentName = "ResultStatus",
-                    Type = typeof(bool),
-                    Value = null,
-                    Direction = Direction.Out
-                }
+                //new UpnpAction(controller, this, device)
+                //{
+                //    ActionName = SwitchPower1Action.GetTarget.ToString(),
+                //    ArgumentName = "RetTargetValue",
+                //    Type = typeof(bool),
+                //    Value = null,
+                //    Direction = Direction.Out
+                //},
+                //new UpnpAction(controller, this, device)
+                //{
+                //    ActionName = SwitchPower1Action.GetStatus.ToString(),
+                //    ArgumentName = "ResultStatus",
+                //    Type = typeof(bool),
+                //    Value = null,
+                //    Direction = Direction.Out
+                //}
             };
         }
     }

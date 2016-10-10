@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,10 @@ namespace VeraControl.Model.UpnpDevices.Base
 
         public uint DeviceNumber { get; set; }
 
-        public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target, ConnectionType connectionType)
+        public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target,
+            ConnectionType connectionType)
         {
-            var action = (IUpnpAction)this.LookupService(serviceName)?.LookupAction(actionName);
+            var action = (IUpnpAction) this.LookupService(serviceName)?.LookupAction(actionName);
 
             if (action == null) throw new ArgumentException("Unable to find Action");
 
@@ -30,10 +32,11 @@ namespace VeraControl.Model.UpnpDevices.Base
             return await action.SendAction(connectionType);
         }
 
-        public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, ConnectionType connectionType)
+        public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName,
+            ConnectionType connectionType)
         {
             var stateVariable =
-                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
+                (IUpnpStateVariable) this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
@@ -46,7 +49,7 @@ namespace VeraControl.Model.UpnpDevices.Base
             ConnectionType connectionType)
         {
             var stateVariable =
-                (IUpnpStateVariable)this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
+                (IUpnpStateVariable) this.LookupService(serviceName)?.LookupStateVariable(stateVariableName);
 
             if (stateVariable == null) throw new ArgumentException("Unable to find State Variable");
 
@@ -57,20 +60,26 @@ namespace VeraControl.Model.UpnpDevices.Base
 
         private dynamic ConvertResponseValueType(dynamic value, Type type)
         {
-
-            if (type == typeof(bool))
+            if (string.IsNullOrEmpty(value.ToString()))
             {
-                return value == "1";
+                return null;
             }
 
-            if (type == typeof(double))
+            try
             {
-                double val;
-                double.TryParse(value.ToString(), out val);
-                return val;
-            }
+                if (type == typeof(bool))
+                {
+                    return value == "1";
+                }
 
-            return value.ToString();
+                var result = Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private string ConvertToActionRequestValueString(dynamic value, Type type)

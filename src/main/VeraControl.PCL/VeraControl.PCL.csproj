@@ -45,11 +45,13 @@
     <Compile Include="Model\UpnpAction.cs" />
     <Compile Include="Model\UpnpDevices\Base\UpnpDeviceBase.cs" />
     <Compile Include="Model\UpnpDevices\BinaryLight1.cs" />
+    <Compile Include="Model\UpnpDevices\Dimmer1.cs" />
     <Compile Include="Model\UpnpDevices\HVAC_ZoneThermoStat1.cs" />
     <Compile Include="Model\UpnpDevices\TemperatureSensor1.cs" />
     <Compile Include="Model\UpnpDevices\VContainer1.cs" />
     <Compile Include="Model\UpnpDevices\VSwitch1.cs" />
     <Compile Include="Model\UpnpService\Base\UpnpServiceBase.cs" />
+    <Compile Include="Model\UpnpService\Dimming1.cs" />
     <Compile Include="Model\UpnpService\ServiceType.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
     <Compile Include="Model\UpnpService\TemperatureSensor1.cs" />

@@ -29,7 +29,7 @@ namespace VeraControl.Model
 
         public async Task<dynamic> SendAction(ConnectionType connectionType)
         {
-            var result = await _controller.SendAction(_device, _service, this, connectionType);
+            var result = await _controller.SendActionAsync(_device, _service, this, connectionType);
 
             return result;
         }

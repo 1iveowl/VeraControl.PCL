@@ -47,7 +47,7 @@ namespace VeraControl.Model
 
         // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
         // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
-        public async Task<string> SendAction(
+        public async Task<string> SendActionAsync(
             IUpnpDevice device,
             IUpnpService service,
             IUpnpAction action,
@@ -72,7 +72,7 @@ namespace VeraControl.Model
             return await DoHttpRequest(connectionType, httpRequest);
         }
 
-        public async Task<string> VariableGet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
+        public async Task<string> VariableGetAsync(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
         {
             if (device == null) throw new ArgumentException($"Device cannot be null");
             if (service == null) throw new ArgumentException($"Service cannot be null");
@@ -81,6 +81,7 @@ namespace VeraControl.Model
             var httpRequest = $"{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=variableget" +
+                              $"&output_format=json" +
                               $"&serviceId={service.ServiceUrn}" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&Variable={stateVariable.VariableName}";
@@ -88,7 +89,7 @@ namespace VeraControl.Model
             return await DoHttpRequest(connectionType, httpRequest);
         }
 
-        public async Task<string> VariableSet(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
+        public async Task<string> VariableSetAsync(IUpnpDevice device, IUpnpService service, IUpnpStateVariable stateVariable, ConnectionType connectionType)
         {
             if (device == null) throw new ArgumentException($"Device cannot be null");
             if (service == null) throw new ArgumentException($"Service cannot be null");
@@ -97,6 +98,7 @@ namespace VeraControl.Model
             var httpRequest = $"{await GetHttpAddress(connectionType)}" +
                               $"/data_request" +
                               $"?id=variableset" +
+                              $"&output_format=json" +
                               $"&serviceId={service.ServiceUrn}" +
                               $"&DeviceNum={device.DeviceNumber}" +
                               $"&Variable={stateVariable.VariableName}" +

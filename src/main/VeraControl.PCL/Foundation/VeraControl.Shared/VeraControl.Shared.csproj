@@ -55,6 +55,7 @@
     <Compile Include="Model\UpnpDevices\VContainer1.cs" />
     <Compile Include="Model\UpnpDevices\VSwitch1.cs" />
     <Compile Include="Model\UpnpService\Base\UpnpServiceBase.cs" />
+    <Compile Include="Model\UpnpService\Dimming1.cs" />
     <Compile Include="Model\UpnpService\ServiceType.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
     <Compile Include="Model\UpnpService\TemperatureSensor1Service.cs" />
@@ -87,9 +88,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

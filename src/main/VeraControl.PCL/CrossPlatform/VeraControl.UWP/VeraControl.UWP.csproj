@@ -149,6 +149,9 @@
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\BinaryLight1.cs">
       <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
     </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpDevices\Dimmer1.cs">
+      <Link>Model\UpnpDevice\Dimmer1.cs</Link>
+    </Compile>
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\HVAC_ZoneThermostat1.cs">
       <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
     </Compile>
@@ -163,6 +166,9 @@
     </Compile>
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\base\UpnpServiceBase.cs">
       <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpService\Dimming1.cs">
+      <Link>Model\UpnpService\Dimming1.cs</Link>
     </Compile>
     <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\ServiceType.cs">
       <Link>Model\UpnpService\ServiceType.cs</Link>
