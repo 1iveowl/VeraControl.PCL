@@ -42,7 +42,7 @@ namespace VeraControl.Model.UpnpService
                 new UpnpAction(controller, this, device)
                 {
                     ActionName = Dimming1Action.SetLoadLevelTarget.ToString(),
-                    ArgumentName = "newLoadLevelTarget",
+                    ArgumentName = "newLoadlevelTarget",
                     Type = typeof(byte),
                     Value = null,
                     Direction = Direction.In

@@ -35,7 +35,7 @@ namespace ConsoleTest.NET
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var dimmer = new Dimmer1(veraPlus) {DeviceNumber = 70};
+            var dimmer = new Dimmer1(veraPlus) {DeviceNumber = 93};
 
             var dimmerState = await dimmer.GetStateVariableAsync(
                 ServiceType.Dimmer1,
@@ -55,7 +55,7 @@ namespace ConsoleTest.NET
             var dimmer50pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
-                3,
+                50,
                 ConnectionType.Local);
 
             await Task.Delay(TimeSpan.FromSeconds(1));
@@ -63,7 +63,7 @@ namespace ConsoleTest.NET
             var dimmer100pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
-                0,
+                100,
                 ConnectionType.Local);
 
             //var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = 56};
