@@ -5,6 +5,7 @@ using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using UpnpModels.Model;
 using UpnpModels.Model.UpnpDevice;
 using UpnpModels.Model.UpnpService;
 using VeraControl.Service;
@@ -35,6 +36,14 @@ namespace ConsoleTest.NET
             var controllers = await veraService.GetControllers(username, password);
 
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
+
+            var homeGateway = new HomeAutomationGateway(veraPlus);
+
+            var runScene = await homeGateway.ActionAsync(
+                ServiceType.HomeAutomationGateway1,
+                HomeAutomationGatewayAction.RunScene,
+                77,
+                ConnectionType.Local);
 
             var dimmer = new Dimmer1(veraPlus) {DeviceNumber = 93};
 

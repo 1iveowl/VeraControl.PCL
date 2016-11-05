@@ -43,13 +43,15 @@
     <Compile Include="Model\UpnpDevice\Base\UpnpDeviceBase.cs" />
     <Compile Include="Model\UpnpDevice\BinaryLight1.cs" />
     <Compile Include="Model\UpnpDevice\Dimmer1.cs" />
+    <Compile Include="Model\UpnpDevice\HomeAutomationGateway.cs" />
     <Compile Include="Model\UpnpDevice\HVAC_ZoneThermostat1.cs" />
     <Compile Include="Model\UpnpDevice\TemperatureSensor1.cs" />
     <Compile Include="Model\UpnpDevice\VContainer1.cs" />
     <Compile Include="Model\UpnpDevice\VSwitch1.cs" />
     <Compile Include="Model\UpnpService\Base\UpnpServiceBase.cs" />
-    <Compile Include="Model\UpnpService\Dimming1.cs" />
-    <Compile Include="Model\UpnpService\ServiceType.cs" />
+    <Compile Include="Model\UpnpService\Dimming1Service.cs" />
+    <Compile Include="Model\UpnpService\HomeAutomationGatewayService.cs" />
+    <Compile Include="Model\ServiceType.cs" />
     <Compile Include="Model\UpnpService\SwitchPower1.cs" />
     <Compile Include="Model\UpnpService\TemperatureSensor1Service.cs" />
     <Compile Include="Model\UpnpService\TemperatureSetpoint1.cs" />

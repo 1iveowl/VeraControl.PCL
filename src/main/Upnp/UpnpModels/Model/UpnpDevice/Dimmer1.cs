@@ -16,7 +16,7 @@ namespace UpnpModels.Model.UpnpDevice
             Services = new List<IUpnpService>
             {
                 new SwitchPower1(controller, this),
-                new Dimming1(controller, this)
+                new Dimming1Service(controller, this)
             };
         }
     }

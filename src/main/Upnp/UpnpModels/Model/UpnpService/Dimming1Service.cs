@@ -16,12 +16,12 @@ namespace UpnpModels.Model.UpnpService
         LoadLevelStatus
     }
 
-    public class Dimming1 : UpnpServiceBase, IUpnpService
+    public class Dimming1Service : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:Dimming1";
         public string ServiceName { get; } = ServiceType.Dimmer1.ToString();
 
-        public Dimming1(IVeraController controller, IUpnpDevice device)
+        public Dimming1Service(IVeraController controller, IUpnpDevice device)
         {
             StateVariables = new List<IUpnpStateVariable>
             {

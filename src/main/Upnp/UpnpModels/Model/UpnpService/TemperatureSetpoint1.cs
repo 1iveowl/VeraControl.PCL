@@ -21,7 +21,7 @@ namespace UpnpModels.Model.UpnpService
     public class TemperatureSetpoint1 : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:TemperatureSetpoint1";
-        public string ServiceName => nameof(TemperatureSetpoint1);
+        public string ServiceName => ServiceType.TemperatureSetpoint1.ToString();
 
         public TemperatureSetpoint1(IVeraController controller, IUpnpDevice device)
         {

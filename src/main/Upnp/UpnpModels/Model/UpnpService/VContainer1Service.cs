@@ -27,7 +27,7 @@ namespace UpnpModels.Model.UpnpService
     public class VContainer1Service : UpnpServiceBase, IUpnpService
     {
         public string ServiceUrn => "urn:upnp-org:serviceId:VContainer1";
-        public string ServiceName => "VContainer1";
+        public string ServiceName => ServiceType.VContainer1.ToString();
 
         public override IUpnpAction LookupAction(dynamic actionName)
         {

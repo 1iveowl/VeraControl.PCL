@@ -20,7 +20,10 @@ namespace UpnpModels.Model.UpnpDevice.Base
 
         public uint DeviceNumber { get; set; }
 
-        public async Task<dynamic> ActionAsync(dynamic serviceName, dynamic actionName, dynamic target,
+        public async Task<dynamic> ActionAsync(
+            dynamic serviceName, 
+            dynamic actionName, 
+            dynamic target,
             ConnectionType connectionType)
         {
             var action = (IUpnpAction) this.LookupService(serviceName)?.LookupAction(actionName);
@@ -32,7 +35,9 @@ namespace UpnpModels.Model.UpnpDevice.Base
             return await action.SendAction(connectionType);
         }
 
-        public async Task<dynamic> GetStateVariableAsync(dynamic serviceName, dynamic stateVariableName,
+        public async Task<dynamic> GetStateVariableAsync(
+            dynamic serviceName, 
+            dynamic stateVariableName,
             ConnectionType connectionType)
         {
             var stateVariable =
@@ -45,7 +50,10 @@ namespace UpnpModels.Model.UpnpDevice.Base
             return ConvertResponseValueType(result, stateVariable.Type);
         }
 
-        public async Task<string> SetStateVariableAsync(dynamic serviceName, dynamic stateVariableName, dynamic value,
+        public async Task<string> SetStateVariableAsync(
+            dynamic serviceName, 
+            dynamic stateVariableName, 
+            dynamic value,
             ConnectionType connectionType)
         {
             var stateVariable =

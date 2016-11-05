@@ -1,12 +1,12 @@
-﻿namespace UpnpModels.Model.UpnpService
+﻿namespace UpnpModels.Model
 {
     public enum ServiceType
     {
         SwitchPower1,
-        TemperatureSensor1Service,
+        TemperatureSensor1,
         TemperatureSetpoint1,
         VContainer1,
         Dimmer1,
-        //VSwitch
+        HomeAutomationGateway1
     }
 }
