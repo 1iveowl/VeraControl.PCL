@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using IVeraControl.Model;
-using VeraControl.Model;
-using VeraControl.Model.UpnpService;
-using VeraControl.Model.UpnpService.Base;
+using UpnpModels.Model.UpnpService.Base;
 
-namespace VeraControl.Model.UpnpService
+namespace UpnpModels.Model.UpnpService
 {
 
     public enum SwitchPower1Action

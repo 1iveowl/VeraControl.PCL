@@ -5,8 +5,9 @@ using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using UpnpModels.Model.UpnpDevice;
+using UpnpModels.Model.UpnpService;
 using VeraControl.Service;
-using VeraControl.Model.UpnpDevices;
 using VeraControl.Model.UpnpService;
 
 namespace ConsoleTest.NET

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpDevices.Base;
-using VeraControl.Model.UpnpService;
+using UpnpModels.Model.UpnpDevice.Base;
+using UpnpModels.Model.UpnpService;
 
-namespace VeraControl.Model.UpnpDevices
+namespace UpnpModels.Model.UpnpDevice
 {
     public class VSwitch1 : UpnpDeviceBase, IUpnpDevice
     {

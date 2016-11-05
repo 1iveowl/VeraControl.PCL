@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpService.Base;
+using UpnpModels.Model.UpnpService.Base;
 
-namespace VeraControl.Model.UpnpService
+namespace UpnpModels.Model.UpnpService
 {
 
     public enum Dimming1Action

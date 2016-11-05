@@ -101,54 +101,6 @@
     <Compile Include="..\..\foundation\veracontrol.shared\model\Permission.cs">
       <Link>Model\Permission.cs</Link>
     </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpAction.cs">
-      <Link>Model\UpnpAction.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\base\UpnpDeviceBase.cs">
-      <Link>Model\UpnpDevice\Base\UpnpDeviceBase.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\BinaryLight1.cs">
-      <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpDevices\Dimmer1.cs">
-      <Link>Model\UpnpDevice\Dimmer1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\HVAC_ZoneThermostat1.cs">
-      <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\TemperatureSensor1.cs">
-      <Link>Model\UpnpDevice\TemperatureSensor1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VContainer1.cs">
-      <Link>Model\UpnpDevice\VContainer1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpdevices\VSwitch1.cs">
-      <Link>Model\UpnpDevice\VSwitch1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\base\UpnpServiceBase.cs">
-      <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpService\Dimming1.cs">
-      <Link>Model\UpnpService\Dimming1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\ServiceType.cs">
-      <Link>Model\UpnpService\ServiceType.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\SwitchPower1.cs">
-      <Link>Model\UpnpService\SwitchPower1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpService\TemperatureSensor1Service.cs">
-      <Link>Model\UpnpService\TemperatureSensor1Service.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\TemperatureSetpoint1.cs">
-      <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\upnpservice\VContainer1Service.cs">
-      <Link>Model\UpnpService\VContainer1Service.cs</Link>
-    </Compile>
-    <Compile Include="..\..\foundation\veracontrol.shared\model\UpnpStateVariable.cs">
-      <Link>Model\UpnpStateVariable.cs</Link>
-    </Compile>
     <Compile Include="..\..\foundation\veracontrol.shared\model\VeraController.cs">
       <Link>Model\VeraController.cs</Link>
     </Compile>

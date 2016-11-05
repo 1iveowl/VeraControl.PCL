@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpService.Base;
+using UpnpModels.Model.UpnpService.Base;
 
-namespace VeraControl.Model.UpnpService
+namespace UpnpModels.Model.UpnpService
 {
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSensor-v1-Service.pdf
     public enum TemperatureSensor1Action

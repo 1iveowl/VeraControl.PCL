@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpDevices.Base;
+using UpnpModels.Model.UpnpDevice.Base;
+using UpnpModels.Model.UpnpService;
 
-namespace VeraControl.Model.UpnpDevices
+namespace UpnpModels.Model.UpnpDevice
 {
     // Spec: http://upnp.org/specs/ha/UPnP-ha-TemperatureSensor-v1-Service.pdf
     public class TemperatureSensor1 : UpnpDeviceBase, IUpnpDevice
@@ -16,7 +13,7 @@ namespace VeraControl.Model.UpnpDevices
 
         public TemperatureSensor1(IVeraController controller)
         {
-            Services = new List<IUpnpService> {new UpnpService.TemperatureSensor1Service(controller, this)};
+            Services = new List<IUpnpService> {new TemperatureSensor1Service(controller, this)};
         }
     }
 }

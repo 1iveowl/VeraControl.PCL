@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpService.Base;
+using UpnpModels.Model.UpnpService.Base;
 
-namespace VeraControl.Model.UpnpService
+namespace UpnpModels.Model.UpnpService
 {
     public enum VContainer1Action
     {
