@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{8A19A0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{12B43A02-2B1C-4F8D-9809-0C29A628725E}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\build\build.ps1 = ..\..\build\build.ps1
+		..\..\build\publish.ps1 = ..\..\build\publish.ps1
 		VeraControl.PCL.nuspec = VeraControl.PCL.nuspec
 	EndProjectSection
 EndProject
