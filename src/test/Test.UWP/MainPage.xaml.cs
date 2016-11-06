@@ -14,7 +14,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using IVeraControl.Model;
-using VeraControl.Model.UpnpDevices;
+using UpnpModels.Model;
+using UpnpModels.Model.UpnpDevice;
+using UpnpModels.Model.UpnpService;
 using VeraControl.Model.UpnpService;
 using VeraControl.Service;
 

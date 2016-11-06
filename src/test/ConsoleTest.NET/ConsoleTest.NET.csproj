@@ -55,6 +55,10 @@
       <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\main\Upnp\UpnpModels\UpnpModels.csproj">
+      <Project>{e83b251b-676e-4109-b1a7-e101ab3f0637}</Project>
+      <Name>UpnpModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\main\VeraControl.PCL\Foundation\VeraControl.NET\VeraControl.NET.csproj">
       <Project>{03d10fcf-f5fa-41d4-be6e-dbfa385c330c}</Project>
       <Name>VeraControl.NET</Name>

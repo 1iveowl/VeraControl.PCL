@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
 
-namespace VeraControl.Model
+namespace UpnpModels.Model
 {
     public class UpnpAction : IUpnpAction
     {

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Service;
@@ -23,13 +25,23 @@ namespace VeraControl.Service
 
             try
             {
-                using (var httpClient = new HttpClient())
+                HttpClientHandler handler = new HttpClientHandler()
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                };
+
+
+                using (var httpClient = new HttpClient(handler))
                 using (var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(httpRequest)))
                 {
-                    httpClient.Timeout = TimeSpan.FromSeconds(30);
+                    //httpClient.Timeout = TimeSpan.FromSeconds(30);
 
-                    httpClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
-
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+                    httpClient.DefaultRequestHeaders.AcceptLanguage.Add(StringWithQualityHeaderValue.Parse("en-us"));
+                    httpClient.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("gzip"));
+                    httpClient.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("deflate"));
+                    httpClient.DefaultRequestHeaders.Connection.Add("Keep-Alive");
+                    httpClient.DefaultRequestHeaders.UserAgent.Add(ProductInfoHeaderValue.Parse("VeraControl.PCL"));
                     if (mmsAuth != null)
                     {
                         httpClient.DefaultRequestHeaders.Add("MMSAuth", mmsAuth);

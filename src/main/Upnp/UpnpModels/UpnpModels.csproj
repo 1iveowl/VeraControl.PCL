@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F11FB95-B2D4-4260-9C9A-A2BC5AF052DD}</ProjectGuid>
+    <ProjectGuid>{E83B251B-676E-4109-B1A7-E101AB3F0637}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VeraControl</RootNamespace>
-    <AssemblyName>VeraControl</AssemblyName>
+    <RootNamespace>UpnpModels</RootNamespace>
+    <AssemblyName>UpnpModels</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,30 +35,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Converter\ConcreteConverter.cs" />
-    <Compile Include="Extensions\HelperExtensions.cs" />
-    <Compile Include="Extensions\SecurityExtension.Shared.cs" />
-    <Compile Include="Model\Json\JsonIdentityPackage.cs" />
-    <Compile Include="Model\Json\JsonIdentityPackageDetail.cs" />
-    <Compile Include="Model\Json\JsonVeraConrtollerDetail.cs" />
-    <Compile Include="Model\Json\JsonVeraController.cs" />
-    <Compile Include="Model\Json\JsonVeraControllerList.cs" />
-    <Compile Include="Helper\HttpGetDeserializer.cs" />
-    <Compile Include="Model\IdentityPackageDetail.cs" />
-    <Compile Include="Model\IdentityPackage.cs" />
-    <Compile Include="Model\Permission.cs" />
-    <Compile Include="Model\VeraController.cs" />
-    <Compile Include="Model\VeraControllerDetail.cs" />
-    <Compile Include="Model\VeraControllerList.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\HttpConnectionService.cs" />
-    <Compile Include="Service\VeraControlService.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
     <Content Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
+    <Compile Include="Model\UpnpAction.cs" />
+    <Compile Include="Model\UpnpDevice\Base\UpnpDeviceBase.cs" />
+    <Compile Include="Model\UpnpDevice\BinaryLight1.cs" />
+    <Compile Include="Model\UpnpDevice\Dimmer1.cs" />
+    <Compile Include="Model\UpnpDevice\HomeAutomationGateway.cs" />
+    <Compile Include="Model\UpnpDevice\HVAC_ZoneThermostat1.cs" />
+    <Compile Include="Model\UpnpDevice\TemperatureSensor1.cs" />
+    <Compile Include="Model\UpnpDevice\VContainer1.cs" />
+    <Compile Include="Model\UpnpDevice\VSwitch1.cs" />
+    <Compile Include="Model\UpnpService\Base\UpnpServiceBase.cs" />
+    <Compile Include="Model\UpnpService\Dimming1Service.cs" />
+    <Compile Include="Model\UpnpService\HomeAutomationGatewayService.cs" />
+    <Compile Include="Model\ServiceType.cs" />
+    <Compile Include="Model\UpnpService\SwitchPower1.cs" />
+    <Compile Include="Model\UpnpService\TemperatureSensor1Service.cs" />
+    <Compile Include="Model\UpnpService\TemperatureSetpoint1.cs" />
+    <Compile Include="Model\UpnpService\VContainer1Service.cs" />
+    <Compile Include="Model\UpnpStateVariable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
       <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>

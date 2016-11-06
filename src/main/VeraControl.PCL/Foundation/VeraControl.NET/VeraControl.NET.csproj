@@ -81,48 +81,6 @@
     <Compile Include="..\VeraControl.Shared\Model\Permission.cs">
       <Link>Model\Permission.cs</Link>
     </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpAction.cs">
-      <Link>Model\UpnpAction.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\Base\UpnpDeviceBase.cs">
-      <Link>Model\UpnpDevice\Base\UpnpDeviceBase.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\BinaryLight1.cs">
-      <Link>Model\UpnpDevice\BinaryLight1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\HVAC_ZoneThermostat1.cs">
-      <Link>Model\UpnpDevice\HVAC_ZoneThermostat1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\TemperatureSensor1.cs">
-      <Link>Model\UpnpDevice\TemperatureSensor1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VContainer1.cs">
-      <Link>Model\UpnpDevice\VContainer1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpDevices\VSwitch1.cs">
-      <Link>Model\UpnpDevice\VSwitch1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\Base\UpnpServiceBase.cs">
-      <Link>Model\UpnpService\Base\UpnpServiceBase.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\ServiceType.cs">
-      <Link>Model\UpnpService\ServiceType.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\SwitchPower1.cs">
-      <Link>Model\UpnpService\SwitchPower1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSensor1Service.cs">
-      <Link>Model\UpnpService\TemperatureSensor1Service.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\TemperatureSetpoint1.cs">
-      <Link>Model\UpnpService\TemperatureSetpoint1.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpService\VContainer1Service.cs">
-      <Link>Model\UpnpService\VContainer1Service.cs</Link>
-    </Compile>
-    <Compile Include="..\VeraControl.Shared\Model\UpnpStateVariable.cs">
-      <Link>Model\UpnpStateVariable.cs</Link>
-    </Compile>
     <Compile Include="..\VeraControl.Shared\Model\VeraController.cs">
       <Link>Model\VeraController.cs</Link>
     </Compile>
@@ -140,16 +98,14 @@
     <Compile Include="Service\HttpConnectionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
       <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
       <Name>IVeraControl.PCL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Model\Base\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
