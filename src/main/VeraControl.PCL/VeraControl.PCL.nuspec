@@ -43,45 +43,56 @@
 
   </metadata>
   <files>
-  <!--Core-->
+
+    <!--<file src="\bin\Release\WebsocketClientLite.PCL.dll"
+      target="lib\netstandard1.2\WebsocketClientLite.PCL.dll" />
+    <file src="\bin\Release\WebsocketClientLite.PCL.pdb"
+      target="lib\netstandard1.2\WebsocketClientLite.PCL.pdb" />
+    <file src="bin\Release\IWebsocketClientLite.PCL.dll"
+      target="lib\netstandard1.2\IWebsocketClientLite.PCL.dll" />
+    <file src="\bin\Release\IWebsocketClientLite.PCL.pdb"
+      target="lib\netstandard1.2\IWebsocketClientLite.PCL.pdb" />-->    
+    
+  <!--.NET Standard 1.2 bait-->
       <file src="Foundation\VeraControl.NET\bin\Release\VeraControl.dll"
-          target="lib\portable45-net45+win8\VeraControl.dll" />
+          target="lib\netstandard1.2\VeraControl.dll" />
       <file src="Foundation\VeraControl.NET\bin\Release\VeraControl.pdb"
-        target="lib\portable45-net45+win8\VeraControl.pdb" />
+        target="lib\netstandard1.2\VeraControl.pdb" />
       <file src="Foundation\VeraControl.NET\bin\Release\IVeraControl.dll"
-          target="lib\portable45-net45+win8\IVeraControl.dll" />
+          target="lib\netstandard1.2\IVeraControl.dll" />
       <file src="Foundation\VeraControl.NET\bin\Release\IVeraControl.pdb"
-        target="lib\portable45-net45+win8\IVeraControl.pdb" />
+        target="lib\netstandard1.2\IVeraControl.pdb" />
 
         <!--Xamarin.Android-->
-      <file src="CrossPlatform\VeraControl.Android\bin\Release\VeraControl.dll"
+      <!--<file src="CrossPlatform\VeraControl.Android\bin\Release\VeraControl.dll"
           target="lib\monoandroid60\VeraControl.dll" />
       <file src="CrossPlatform\VeraControl.Android\bin\Release\VeraControl.pdb"
         target="lib\monoandroid60\VeraControl.pdb" />
       <file src="CrossPlatform\VeraControl.Android\bin\Release\IVeraControl.dll"
           target="lib\monoandroid60\IVeraControl.dll" />
       <file src="CrossPlatform\VeraControl.Android\bin\Release\IVeraControl.pdb"
-        target="lib\monoandroid60\IVeraControl.pdb" />
+        target="lib\monoandroid60\IVeraControl.pdb" />-->
 
         <!--Xamarin.iOS Unified-->
-      <file src="CrossPlatform\VeraControl.iOS\bin\Release\VeraControl.dll"
+    
+      <!--<file src="CrossPlatform\VeraControl.iOS\bin\Release\VeraControl.dll"
           target="lib\xamarinios10\VeraControl.dll" />
       <file src="CrossPlatform\VeraControl.iOS\bin\Release\VeraControl.pdb"
         target="lib\xamarinios10\VeraControl.pdb" />
       <file src="CrossPlatform\VeraControl.iOS\bin\Release\IVeraControl.dll"
           target="lib\xamarinios10\IVeraControl.dll" />
       <file src="CrossPlatform\VeraControl.iOS\bin\Release\IVeraControl.pdb"
-        target="lib\xamarinios10\IVeraControl.pdb" />
+        target="lib\xamarinios10\IVeraControl.pdb" />-->
 
         <!--Xamarin.iOS Unified-->
-      <file src="CrossPlatform\VeraControl.UWP\bin\Release\VeraControl.dll"
+      <!--<file src="CrossPlatform\VeraControl.UWP\bin\Release\VeraControl.dll"
           target="lib\uap10.0\VeraControl.dll" />
       <file src="CrossPlatform\VeraControl.UWP\bin\Release\VeraControl.pdb"
         target="lib\uap10.0\VeraControl.pdb" />
       <file src="CrossPlatform\VeraControl.UWP\bin\Release\IVeraControl.dll"
           target="lib\uap10.0\IVeraControl.dll" />
       <file src="CrossPlatform\VeraControl.UWP\bin\Release\IVeraControl.pdb"
-        target="lib\uap10.0\IVeraControl.pdb" />
+        target="lib\uap10.0\IVeraControl.pdb" />-->
 
   </files>
 </package>
