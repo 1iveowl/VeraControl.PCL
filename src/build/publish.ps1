@@ -10,4 +10,4 @@ $version = [Reflection.AssemblyName]::GetAssemblyName((resolve-path '..\main\IVe
 Remove-Item .\NuGet -Force -Recurse
 New-Item -ItemType Directory -Force -Path .\NuGet
 NuGet.exe pack ..\main\VeraControl.PCL\VeraControl.PCL.nuspec -Verbosity detailed -Symbols -OutputDir "NuGet" -Version $version
-Nuget.exe push .\Nuget\SocketLite.PCL.$version.nupkg -Source https://www.nuget.org
+Nuget.exe push .\Nuget\VeraControl.PCL.$version.nupkg -Source https://www.nuget.org
