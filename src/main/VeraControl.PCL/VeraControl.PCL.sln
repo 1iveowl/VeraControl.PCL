@@ -33,6 +33,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UpnpModels", "UpnpModels", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpnpModels", "..\Upnp\UpnpModels\UpnpModels.csproj", "{E83B251B-676E-4109-B1A7-E101AB3F0637}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{8A19A0E7-5BA5-4E7C-83FF-BB62ADE6D0C2}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\license.md = ..\..\..\license.md
+		..\..\..\README.md = ..\..\..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{12B43A02-2B1C-4F8D-9809-0C29A628725E}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\build\build.ps1 = ..\..\build\build.ps1
+		..\..\build\publish.ps1 = ..\..\build\publish.ps1
+		VeraControl.PCL.nuspec = VeraControl.PCL.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
