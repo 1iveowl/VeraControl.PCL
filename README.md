@@ -11,8 +11,8 @@ There already exist a similar library - i.e. the [.NET Library for Micasaverde (
 The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later. 
 
 Usage is simple:
-1. Get the NuGet.
 
+1. Get the NuGet.
 1. Start writing code:
 ```csharp
 using IVeraControl.Model;
