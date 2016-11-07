@@ -9,6 +9,24 @@ This library works with Xamarin across iOS, Android and Windows 8.1, Windows 10,
 
 There already exist a similar library - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however this library have not evolved since early 2015 and while it is more complete in terms of device and services support, this library it also have some short comings including complexity and no default support for async/await. 
 
+## Devices and Services Support
+The current version supports the following Devices (but not necessary all Services and StateVariables for each):
+- HomeAutmationGateway1
+- BinaryLight1
+- Dimmer1
+- VContainer1
+- VSwitch1
+- HVAC_Thermostat1
+- TemperatureSensor1
+
+The current version implementns the follwing Services:
+- SwitchPower1
+- TemperatureSensor1
+- TemperatureSetpoint1
+- VContainer1
+- Dimmer1
+- HomeAutomationGateway1
+
 ## How to use this library
 The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later. 
 
@@ -46,7 +64,8 @@ var runScene = await homeGateway.ActionAsync(
 	ServiceType.HomeAutomationGateway1,
 	HomeAutomationGatewayAction.RunScene,
 	<Insert Scene id here>,
-	ConnectionType.Local);
+	ConnectionType.Local); 
+// Note: Use ConnectionType.Remote to relay the request through Vera public servers - i.e. when the device is not on the same network as the controller
 ```
 
 #### To Get/Set a Dimmer Value
