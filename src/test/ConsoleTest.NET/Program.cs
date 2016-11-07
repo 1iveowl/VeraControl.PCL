@@ -58,7 +58,7 @@ namespace ConsoleTest.NET
 
             await Task.Delay(TimeSpan.FromSeconds(1));
 
-            var dimmer50pct = await dimmer.ActionAsync(
+            var dimmer50Pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
                 50,
@@ -66,7 +66,7 @@ namespace ConsoleTest.NET
 
             await Task.Delay(TimeSpan.FromSeconds(1));
 
-            var dimmer100pct = await dimmer.ActionAsync(
+            var dimmer100Pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
                 100,
