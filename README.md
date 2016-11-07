@@ -127,8 +127,6 @@ The BinaryLight1 Device only have one Services. This service is called `SwitchPo
 public enum SwitchPower1Action
 {
 	SetTarget,
-	//GetTarget,
-	//GetStatus
 }
 
 public enum SwitchPower1StateVariable
