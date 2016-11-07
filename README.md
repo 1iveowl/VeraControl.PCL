@@ -69,7 +69,7 @@ var dimmer50Pct = await dimmer.ActionAsync(
 
 #### To Flip a Switch
 ```csharp
-var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = <Insert switch device id>};
+var binaryLight = new BinaryLight1(veraPlus) {DeviceNumber = <Insert Binary Switch Device Id>};
 
 var binaryLightStatus = await binaryLight.GetStateVariableAsync(
 	ServiceType.SwitchPower1, 
@@ -87,9 +87,9 @@ var result = await binaryLight.ActionAsync(
 var thermometer = new TemperatureSensor1(veraPlus) { DeviceNumber = <Insert thermometer id> };
 
 var temperature = await thermometer.GetStateVariableAsync(
-ServiceType.TemperatureSensor1,
-TemperatureSensor1StateVariables.CurrentTemperature,
-ConnectionType.Local);
+	ServiceType.TemperatureSensor1,
+	TemperatureSensor1StateVariables.CurrentTemperature,
+	ConnectionType.Local);
 ```
 #### To Set a Thermostat
 ```csharp
@@ -102,9 +102,9 @@ var resultSetThermostate = await thermostat.ActionAsync(
 	ConnectionType.Local);
 ```
 ## Adding UPnP Devices and Services
-To add new capabilities to the library all you need to do is to extend the UPnP Assembly. 
+To add new capabilities to the library all you need to do is to extend the [UPnPModels Assembly](https://github.com/1iveowl/VeraControl.PCL/tree/master/src/main/Upnp/UpnpModels "UPnPModels Assembly"). 
 
-For instance try look at the Binary Light Switch all that is needed is defined here:
+For instance try look at the Binary Light Switch. All that is needed is defined in the following code snippets:
 
 ```csharp
 public class BinaryLight1 : UpnpDeviceBase, IUpnpDevice
@@ -185,5 +185,6 @@ public enum ServiceType
 }
 ```
 
-That is it! Not that difficult.
-If you add new Services and Devices please don't hesitate to do a Pull Request here to extend this library.
+That is it!
+
+If you decide add new Services and Devices please don't hesitate to do a Pull Request here to extend this library.
