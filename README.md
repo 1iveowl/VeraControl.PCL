@@ -170,7 +170,7 @@ public class SwitchPower1 : UpnpServiceBase, IUpnpService
 	}
 }
 ```
-Finally to make it easier to use `SwitchPower1` have been added to the `ServiceType enum`:
+Finally to make it easier to use `SwitchPower1` have been added to the `ServiceType enum`. New services should be added here too:
 ```csharp
 public enum ServiceType
 {
