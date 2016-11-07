@@ -99,3 +99,89 @@ var resultSetThermostate = await thermostat.ActionAsync(
 	10,
 	ConnectionType.Local);
 ```
+## Adding UPnP Devices and Services
+To add new capabilities to the library all you need to do is to extend the UPnP Assembly. 
+
+For instance try look at the Binary Light Switch all that is needed is defined here:
+
+```csharp
+public class BinaryLight1 : UpnpDeviceBase, IUpnpDevice
+{
+	public string DeviceUrn => "urn:schemas-upnp-org:device:BinaryLight:1";
+
+	public string DeviceName => nameof(BinaryLight1);
+
+
+	public BinaryLight1(IVeraController controller)
+	{
+		Services = new List<IUpnpService> { new SwitchPower1(controller, this) };
+	}
+}
+```
+
+The BinaryLight1 Device only have one Services. This service is called `SwitchPower1` and is defined here:
+
+```csharp
+public enum SwitchPower1Action
+{
+	SetTarget,
+	//GetTarget,
+	//GetStatus
+}
+
+public enum SwitchPower1StateVariable
+{
+	Target,
+	Status
+}
+
+public class SwitchPower1 : UpnpServiceBase, IUpnpService
+{
+	public string ServiceUrn => "urn:upnp-org:serviceId:SwitchPower1";
+	public string ServiceName { get; } = ServiceType.SwitchPower1.ToString();
+
+	public SwitchPower1(IVeraController controller, IUpnpDevice device)
+	{
+		StateVariables = new List<IUpnpStateVariable>
+		{
+			new UpnpStateVariable(controller, this, device)
+			{
+				VariableName = SwitchPower1StateVariable.Target.ToString(),
+				Type = typeof(bool)
+			},
+			new UpnpStateVariable(controller, this, device)
+			{
+				VariableName = SwitchPower1StateVariable.Status.ToString(),
+				Type = typeof(bool)
+			}
+		};
+
+		Actions = new List<IUpnpAction>
+		{
+			new UpnpAction(controller, this, device)
+			{
+				ActionName = SwitchPower1Action.SetTarget.ToString(),
+				ArgumentName = "newTargetValue",
+				Type = typeof(bool),
+				Value = null,
+				Direction = Direction.In
+			},
+		};
+	}
+}
+```
+Finally to make it easier to use `SwitchPower1` have been added to the `ServiceType enum`:
+```csharp
+public enum ServiceType
+{
+	SwitchPower1,
+	TemperatureSensor1,
+	TemperatureSetpoint1,
+	VContainer1,
+	Dimmer1,
+	HomeAutomationGateway1
+}
+```
+
+That is it! Not that difficult.
+If you add new Services and Devices please don't hesitate to do a Pull Request here to extend this library.
