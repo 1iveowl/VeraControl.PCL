@@ -1,4 +1,4 @@
-v# Vera Control .NET Library
+# Vera Control .NET Library
 
 [![NuGet](https://img.shields.io/badge/nuget-v0.0.55-brightgreen.svg)](https://https://www.nuget.org/packages/VeraControl.PCL/) [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
 ## Why this library
