@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
 using System.Threading.Tasks;
 using IVeraControl.Model;
+using VeraControl.Service;
 using UpnpModels.Model;
 using UpnpModels.Model.UpnpDevice;
 using UpnpModels.Model.UpnpService;
-using VeraControl.Service;
-using VeraControl.Model.UpnpService;
 
 namespace ConsoleTest.NET
 {
@@ -25,7 +21,7 @@ namespace ConsoleTest.NET
 
         private static async void Start()
         {
-            var veraService = new VeraControlService();
+            
 
             Console.Write("Username: ");
             var username = Console.ReadLine();
@@ -33,8 +29,13 @@ namespace ConsoleTest.NET
             Console.Write("Password: ");
             var password = Console.ReadLine();
 
+            // Create a service
+            var veraService = new VeraControlService();
+
+            // Get all Vera Controllers in your set-up using your username and password
             var controllers = await veraService.GetControllers(username, password);
 
+            //Pick the controller you want interact with.
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
             var homeGateway = new HomeAutomationGateway(veraPlus);
@@ -52,17 +53,9 @@ namespace ConsoleTest.NET
                 Dimming1StateVariable.LoadLevelStatus,
                 ConnectionType.Local);
 
-            //await Task.Delay(TimeSpan.FromSeconds(1));
-
-            //var dimmerSwitchOff = await dimmer.ActionAsync(
-            //    ServiceType.SwitchPower1,
-            //    SwitchPower1Action.SetTarget,
-            //    true,
-            //    ConnectionType.Local);
-
             await Task.Delay(TimeSpan.FromSeconds(1));
 
-            var dimmer50pct = await dimmer.ActionAsync(
+            var dimmer50Pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
                 50,
@@ -70,7 +63,7 @@ namespace ConsoleTest.NET
 
             await Task.Delay(TimeSpan.FromSeconds(1));
 
-            var dimmer100pct = await dimmer.ActionAsync(
+            var dimmer100Pct = await dimmer.ActionAsync(
                 ServiceType.Dimmer1,
                 Dimming1Action.SetLoadLevelTarget,
                 100,
@@ -82,11 +75,19 @@ namespace ConsoleTest.NET
 
             //var result = await binaryLight.ActionAsync(ServiceType.SwitchPower1, SwitchPower1Action.SetTarget, !binaryLightStatus, ConnectionType.Local);
 
-            //var hvacTermo = new HVAC_ZoneThermostat1(veraPlus) { DeviceNumber = 528 };
+            //var thermometer = new TemperatureSensor1(veraPlus) { DeviceNumber = 528 };
 
-            //var hvacSetResult = await hvacTermo.GetStateVariableAsync(
-            //    ServiceType.TemperatureSensor1Service,
+            //var temperature = await thermometer.GetStateVariableAsync(
+            //    ServiceType.TemperatureSensor1,
             //    TemperatureSensor1StateVariables.CurrentTemperature,
+            //    ConnectionType.Local);
+
+            //var thermostat = new HVAC_ZoneThermostat1(veraPlus) {DeviceNumber = 528};
+
+            //var resultSetThermostate = await thermostat.ActionAsync(
+            //    ServiceType.TemperatureSetpoint1,
+            //    TemperatureSetpoint1Action.CurrentSetpoint,
+            //    10,
             //    ConnectionType.Local);
 
             //await Task.Delay(TimeSpan.FromSeconds(2));
