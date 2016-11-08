@@ -1,6 +1,6 @@
 # Vera Control .NET Library
 
-[![NuGet](https://img.shields.io/badge/nuget-v0.5.5-brightgreen.svg)](https://www.nuget.org/packages/VeraControl.PCL/) [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-blue.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
+[![NuGet](https://img.shields.io/badge/nuget-v0.6.0-brightgreen.svg)](https://www.nuget.org/packages/VeraControl.PCL/) [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
 ## Why this library
 
 The purpose of the Vera Control .NET library is to facilitate interoperability to the [Vera Smart Home Controller](http://getvera.com/ "Vera Smart Home Controller").
@@ -27,6 +27,11 @@ The current version implementns the follwing Services:
 - Dimmer1
 - HomeAutomationGateway1
 
+## How This Library Works
+The Library works by abstracting http [Luup Requests](http://wiki.micasaverde.com/index.php/Luup_Requests "Luup Requests"). 
+
+The Library also takes care of managing authentication with the Vera cloud service. As soon as the authentication is established this library can access Vera controllers on the local network or via the Vera Cloud Relay. Connection type can be defined for each request using `ConnectionType.Local` or `ConnectionType.Remote` respectively (see examples below).
+
 ## How to use this library
 The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later. 
 
@@ -34,6 +39,7 @@ Usage is simple:
 
 1. Get the NuGet.
 1. Start writing code:
+
 ```csharp
 using IVeraControl.Model;
 using VeraControl.Service;
@@ -51,6 +57,16 @@ var controllers = await veraService.GetControllers(username, password);
 
 //Pick the controller you want interact with.
 var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "<Insert your device ID here>");
+
+```
+#### To Check If Vera Controller is Alive
+
+```csharp
+// Check if controller is alive in local network
+var aliveLocal = await veraPlus.IsAliveAsync(ConnectionType.Local);
+
+// ... or check if controller is alive via the Vera Cloud Relay
+var aliveRemote = await veraPlus.IsAliveAsync(ConnectionType.Remote);
 ```
 
 #### To Run a Scene:
@@ -120,6 +136,16 @@ var resultSetThermostate = await thermostat.ActionAsync(
 	10,
 	ConnectionType.Local);
 ```
+
+#### Reload The Luup Engine
+Sometimes it makes sense to reload the Luup Engine. When this is relevant is beyond this Readme, however it is easy to do like this:
+
+`var reload = await veraPlus.ReloadAsync(ConnectionType.Local);`
+
+The reload will by default await the controller to get ready again (typically takes 10-20 seconds), however if you don't want the code to wait, then set the waitUntilAliveAgain to false like this:
+
+`var reload = await veraPlus.ReloadAsync(ConnectionType.Local, waitUntilAliveAgain:false);`
+
 ## Adding UPnP Devices and Services
 To add new capabilities to the library all you need to do is to extend the [UPnPModels Assembly](https://github.com/1iveowl/VeraControl.PCL/tree/master/src/main/Upnp/UpnpModels "UPnPModels Assembly"). 
 

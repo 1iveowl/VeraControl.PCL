@@ -47,6 +47,36 @@ namespace VeraControl.Model
 
         // Luup Request documentation: http://wiki.micasaverde.com/index.php/Luup_Requests
         // Exampel: http://ip_address:3480/data_request?id=action&output_format=xml&DeviceNum=6&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0
+        public async Task<bool> IsAliveAsync(ConnectionType connectionType)
+        {
+            var httpRequest = $"{await GetHttpAddress(connectionType)}" +
+                              $"/data_request" +
+                              $"?id=alive";
+
+            return await DoHttpRequest(connectionType, httpRequest) == "OK";
+        }
+
+        public async Task<string> ReloadAsync(ConnectionType connectionType, bool waitUntilAliveAgain = true)
+        {
+            var httpRequest = $"{await GetHttpAddress(connectionType)}" +
+                              $"/data_request" +
+                              $"?id=reload";
+
+            var result = await DoHttpRequest(connectionType, httpRequest);
+
+            if (waitUntilAliveAgain)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(3));
+
+                while ((!await IsAliveAsync(connectionType)))
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+            }
+
+            return result;
+        }
+
         public async Task<string> SendActionAsync(
             IUpnpDevice device,
             IUpnpService service,
