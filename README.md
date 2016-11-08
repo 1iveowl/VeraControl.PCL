@@ -7,7 +7,7 @@ The purpose of the Vera Control .NET library is to facilitate interoperability t
 
 This library works with Xamarin across iOS, Android and Windows 8.1, Windows 10, .NET Core and .NET 4.5.1+. 
 
-There already exist a similar library - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however this library have not evolved since early 2015 and while it is more complete in terms of device and services support, this library it also have some short comings including complexity and no default support for async/await. 
+There already exist a another library with a similar purpose - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however that library have not evolved since early 2015 and while it is more complete in terms of device and services support, that library have some short comings including being more complex to use and having  no default support for async/await. 
 
 ## Devices and Services Support
 The current version supports the following Devices (but not necessary all Services and StateVariables for each):
