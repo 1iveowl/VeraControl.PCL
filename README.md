@@ -3,14 +3,16 @@
 [![NuGet](https://img.shields.io/badge/nuget-v0.6.0-brightgreen.svg)](https://www.nuget.org/packages/VeraControl.PCL/) [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
 ## Why this library
 
-The purpose of the Vera Control .NET library is to facilitate interoperability to the [Vera Smart Home Controller](http://getvera.com/ "Vera Smart Home Controller").
+The purpose of the Vera Control .NET Library is to facilitate interoperability with the [Vera Smart Home Controller](http://getvera.com/ "Vera Smart Home Controller").
 
-This library works with Xamarin across iOS, Android and Windows 8.1, Windows 10, .NET Core and .NET 4.5.1+. 
+This library works across iOS, Android and Windows 8.1, Windows 10, .NET Core and .NET 4.5.1+ and supports [Xamarin](https://www.xamarin.com/ "Xamarin").
 
-There already exist a another library with a similar purpose - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however that library have not evolved since early 2015 and while it is more complete in terms of device and services support, that library have some short comings including being more complex to use and having  no default support for async/await. 
+There already exist another library with a similar purpose - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however that library have not evolved since early 2015 and while it is currently more complete in terms of device and services support, that library have some short-comings, which inspired me to create this Vera Control .NET Library from scratch. 
+
+The Vera Control .NET Library supports async/await and I find it more simple to use. 
 
 ## Devices and Services Support
-The current version supports the following Devices (but not necessary all Services and StateVariables for each):
+The current version supports the following Devices (although not necessary all Services and StateVariables):
 - HomeAutmationGateway1
 - BinaryLight1
 - Dimmer1
@@ -30,7 +32,11 @@ The current version implementns the follwing Services:
 ## How This Library Works
 The Library works by abstracting http [Luup Requests](http://wiki.micasaverde.com/index.php/Luup_Requests "Luup Requests"). 
 
-The Library also takes care of managing authentication with the Vera cloud service. As soon as the authentication is established this library can access Vera controllers on the local network or via the Vera Cloud Relay. Connection type can be defined for each request using `ConnectionType.Local` or `ConnectionType.Remote` respectively (see examples below).
+This library also takes care of managing the authentication scheme with the Vera cloud service. 
+
+As soon as the authentication is established this library can access Vera controllers on the local network and/or using the Vera Cloud Relay. 
+
+Connection type can be defined for each request using `ConnectionType.Local` or `ConnectionType.Remote` respectively (see examples below).
 
 ## How to use this library
 The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later. 
@@ -40,15 +46,17 @@ Usage is simple:
 1. Get the NuGet.
 1. Start writing code:
 
+Relevant Using statements:
 ```csharp
 using IVeraControl.Model;
 using VeraControl.Service;
 using UpnpModels.Model;
 using UpnpModels.Model.UpnpDevice;
 using UpnpModels.Model.UpnpService;
+```
+How to begin:
 
-...
-
+```csharp
 // Create an instance of the Vera Service
 var veraService = new VeraControlService();
 
@@ -57,8 +65,8 @@ var controllers = await veraService.GetControllers(username, password);
 
 //Pick the controller you want interact with.
 var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "<Insert your device ID here>");
-
 ```
+Note: that the instance veraPlus is used through-out the following examples - i.e. it is injected into each instance of an UPnP Device/Service.
 #### To Check If Vera Controller is Alive
 
 ```csharp
@@ -81,7 +89,6 @@ var runScene = await homeGateway.ActionAsync(
 	HomeAutomationGatewayAction.RunScene,
 	<Insert Scene id here>,
 	ConnectionType.Local); 
-// Note: Use ConnectionType.Remote to relay the request through Vera public servers - i.e. when the device is not on the same network as the controller
 ```
 
 #### To Get/Set a Dimmer Value
@@ -114,7 +121,7 @@ var binaryLightStatus = await binaryLight.GetStateVariableAsync(
 var result = await binaryLight.ActionAsync(
 	ServiceType.SwitchPower1, 
 	SwitchPower1Action.SetTarget, 
-	!binaryLightStatus, 
+	!binaryLightStatus, // i.e. setting the value to the opposite of the currently set value.
 	ConnectionType.Local);
 ```
 #### To Read a Thermometer
@@ -138,18 +145,18 @@ var resultSetThermostate = await thermostat.ActionAsync(
 ```
 
 #### Reload The Luup Engine
-Sometimes it makes sense to reload the Luup Engine. When this is relevant is beyond this Readme, however it is easy to do like this:
+Sometimes it makes sense to reload the Luup Engine. The details about when this is relevant is beyond this Readme, however it is easy to do with the library:
 
 `var reload = await veraPlus.ReloadAsync(ConnectionType.Local);`
 
-The reload will by default await the controller to get ready again (typically takes 10-20 seconds), however if you don't want the code to wait, then set the waitUntilAliveAgain to false like this:
+The reload will by default await fir the controller to to come back alive after the reload again (typically this takes 10-30 seconds), however if you don't want the code to wait, then just set the waitUntilAliveAgain to false like this:
 
 `var reload = await veraPlus.ReloadAsync(ConnectionType.Local, waitUntilAliveAgain:false);`
 
 ## Adding UPnP Devices and Services
-To add new capabilities to the library all you need to do is to extend the [UPnPModels Assembly](https://github.com/1iveowl/VeraControl.PCL/tree/master/src/main/Upnp/UpnpModels "UPnPModels Assembly"). 
+To add new capabilities to the library all you need to do is to extend the [UPnPModels Assembly](https://github.com/1iveowl/VeraControl.PCL/tree/master/src/main/Upnp/UpnpModels "UPnPModels Assembly") - or you could theoretically create your very own, as long as you adhere to the interfaces defined in IVeraControl. 
 
-For instance try look at the Binary Light Switch. All that is needed is defined in the following code snippets:
+For instance look at the device `BinaryLight1`, which has one service `SwitchPower1` as defined in the constructor:
 
 ```csharp
 public class BinaryLight1 : UpnpDeviceBase, IUpnpDevice
@@ -166,7 +173,7 @@ public class BinaryLight1 : UpnpDeviceBase, IUpnpDevice
 }
 ```
 
-The BinaryLight1 Device only have one Services. This service is called `SwitchPower1` and is defined here:
+The `SwitchPower1` service is defined in the following. To make the service easy to use the enums `SwitchPower1Action` and `SwitchPower1StateVariable` are created:
 
 ```csharp
 public enum SwitchPower1Action
@@ -215,7 +222,7 @@ public class SwitchPower1 : UpnpServiceBase, IUpnpService
 	}
 }
 ```
-Finally to make it easier to use `SwitchPower1` have been added to the `ServiceType enum`. New services should be added here too:
+Finally to make it even easier to use `SwitchPower1` it has been added to the `ServiceType enum`. New services should be added here too:
 ```csharp
 public enum ServiceType
 {
