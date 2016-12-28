@@ -5,8 +5,7 @@
   },
 
   "dependencies": {
-    "AutoMapper": "5.2.0",
-    "VeraControl.PCL": "0.7.4"
+    "VeraControl.PCL": "0.7.5"
   },
 
   "frameworks": {
