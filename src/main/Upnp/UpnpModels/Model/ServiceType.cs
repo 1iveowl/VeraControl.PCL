@@ -7,6 +7,7 @@
         TemperatureSetpoint1,
         VContainer1,
         Dimmer1,
-        HomeAutomationGateway1
+        HomeAutomationGateway1,
+        HumiditySensor1
     }
 }

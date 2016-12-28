@@ -21,8 +21,6 @@ namespace ConsoleTest.NET
 
         private static async void Start()
         {
-            
-
             Console.Write("Username: ");
             var username = Console.ReadLine();
 
@@ -38,13 +36,21 @@ namespace ConsoleTest.NET
             //Pick the controller you want interact with.
             var veraPlus = controllers.FirstOrDefault(c => c.DeviceSerialId == "50102163");
 
-            var homeGateway = new HomeAutomationGateway(veraPlus);
+            if (veraPlus == null) return;
 
-            var runScene = await homeGateway.ActionAsync(
-                ServiceType.HomeAutomationGateway1,
-                HomeAutomationGatewayAction.RunScene,
-                77,
-                ConnectionType.Local);
+            var aliveRemote = await veraPlus.IsAliveAsync(ConnectionType.Remote);
+
+            var reload = await veraPlus.ReloadAsync(ConnectionType.Local);
+
+            var aliveLocal = await veraPlus.IsAliveAsync(ConnectionType.Local);
+
+            //var homeGateway = new HomeAutomationGateway(veraPlus);
+
+            //var runScene = await homeGateway.ActionAsync(
+            //    ServiceType.HomeAutomationGateway1,
+            //    HomeAutomationGatewayAction.RunScene,
+            //    77,
+            //    ConnectionType.Local);
 
             var dimmer = new Dimmer1(veraPlus) {DeviceNumber = 93};
 
