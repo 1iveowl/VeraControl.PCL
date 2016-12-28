@@ -15,9 +15,5 @@
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\main\Upnp\UpnpModels\UpnpModels.csproj" />
-    <ProjectReference Include="..\..\main\VeraControl.PCL\CrossPlatform\VeraControl.NetStandard16\VeraControl.NetStandard16.csproj" />
-  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
