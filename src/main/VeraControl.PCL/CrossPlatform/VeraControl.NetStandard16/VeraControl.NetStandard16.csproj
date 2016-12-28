@@ -39,6 +39,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Foundation\VeraControl.NET\Extensions\SecurityExtension.cs">
+      <Link>Extensions\SecurityExtension.cs</Link>
+    </Compile>
     <Compile Include="..\..\Foundation\VeraControl.NET\Service\HttpConnectionService.cs">
       <Link>Service\HttpConnectionService.cs</Link>
     </Compile>
@@ -47,9 +50,6 @@
     </Compile>
     <Compile Include="..\..\Foundation\VeraControl.Shared\Extensions\HelperExtensions.cs">
       <Link>Extensions\HelperExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Foundation\VeraControl.Shared\Extensions\SecurityExtension.Shared.cs">
-      <Link>Extensions\SecurityExtension.Shared.cs</Link>
     </Compile>
     <Compile Include="..\..\Foundation\VeraControl.Shared\Helper\HttpGetDeserializer.cs">
       <Link>Helper\HttpGetDeserializer.cs</Link>
