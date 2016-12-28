@@ -1,18 +1,21 @@
 # Vera Control .NET Library
 
-[![NuGet](https://img.shields.io/badge/nuget-v0.6.0-brightgreen.svg)](https://www.nuget.org/packages/VeraControl.PCL/) [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
+
+[![NuGet Badge](https://buildstats.info/nuget/VeraControl.PCL)](https://www.nuget.org/packages/VeraControl.PCL/)
+
+[![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
 ## Why this library
 
 The purpose of the Vera Control .NET Library is to facilitate interoperability with the [Vera Smart Home Controller](http://getvera.com/ "Vera Smart Home Controller").
 
 This library works across iOS, Android and Windows 8.1, Windows 10, .NET Core and .NET 4.5.1+ and supports [Xamarin](https://www.xamarin.com/ "Xamarin").
 
-There already exist another library with a similar purpose - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however that library have not evolved since early 2015 and while it is currently more complete in terms of device and services support, that library have some short-comings, which inspired me to create this Vera Control .NET Library from scratch. 
+There already exist another library with a similar purpose - i.e. the [.NET Library for Micasaverde (Vera) Home Automation Controllers](http://veradotnet.codeplex.com/ ".NET Library for Micasaverde (Vera) Home Automation Controllers") - however that library have not evolved since early 2015 and while it is currently more complete in terms of device and services support, that library IMHO have some short-comings, which inspired me to create this Vera Control .NET Library from scratch. 
 
-The Vera Control .NET Library supports async/await and I find it more simple to use. 
+This Vera Control .NET Library supports async/await and I find it more simple to use. 
 
-## Devices and Services Support
-The current version supports the following Devices (although not necessary all Services and StateVariables):
+## Devices and Services Currently Supported
+The current version implements the following Devices (although not necessary all Services and StateVariables related to each Service):
 - HomeAutmationGateway1
 - BinaryLight1
 - Dimmer1
@@ -22,7 +25,7 @@ The current version supports the following Devices (although not necessary all S
 - TemperatureSensor1
 - HumiditySensor1
 
-The current version implementns the follwing Services:
+The current version implements the following Services:
 - SwitchPower1
 - TemperatureSensor1
 - TemperatureSetpoint1
@@ -36,12 +39,12 @@ The Library works by abstracting http [Luup Requests](http://wiki.micasaverde.co
 
 This library also takes care of managing the authentication scheme with the Vera cloud service. 
 
-As soon as the authentication is established this library can access Vera controllers on the local network and/or using the Vera Cloud Relay. 
+As soon as the authentication is established the library can access Vera controllers on the local network and/or using the Vera Cloud Relay. 
 
 Connection type can be defined for each request using `ConnectionType.Local` or `ConnectionType.Remote` respectively (see examples below).
 
 ## How to use this library
-The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later. 
+The library works with Xamarin across iOS, Android, Windows 8.1 and lated, Windows Phone 8.1 and later and .NET 4.5.1 and later and .NET Core. 
 
 Usage is simple:
 
@@ -237,6 +240,6 @@ public enum ServiceType
 }
 ```
 
-That is it!
+That's it!
 
-If you decide add new Services and Devices please don't hesitate to do a Pull Request here to extend this library.
+If you decide to add new Services and Devices please don't hesitate to do a Pull Request here to extend this library. Please do the Pull Request on the Develop branch.
