@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B8EBB9FF-192F-4034-BB33-9B1635F1C99A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VeraControl</RootNamespace>
+    <AssemblyName>VeraControl</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Foundation\VeraControl.NET\Service\HttpConnectionService.cs">
+      <Link>Service\HttpConnectionService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Converter\ConcreteConverter.cs">
+      <Link>Converter\ConcreteConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Extensions\HelperExtensions.cs">
+      <Link>Extensions\HelperExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Extensions\SecurityExtension.Shared.cs">
+      <Link>Extensions\SecurityExtension.Shared.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Helper\HttpGetDeserializer.cs">
+      <Link>Helper\HttpGetDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\IdentityPackage.cs">
+      <Link>Model\IdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\IdentityPackageDetail.cs">
+      <Link>Model\IdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Json\JsonIdentityPackage.cs">
+      <Link>Model\Json\JsonIdentityPackage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Json\JsonIdentityPackageDetail.cs">
+      <Link>Model\Json\JsonIdentityPackageDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Json\JsonVeraConrtollerDetail.cs">
+      <Link>Model\Json\JsonVeraConrtollerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Json\JsonVeraController.cs">
+      <Link>Model\Json\JsonVeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Json\JsonVeraControllerList.cs">
+      <Link>Model\Json\JsonVeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\Permission.cs">
+      <Link>Model\Permission.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpAction.cs">
+      <Link>Model\UpnpAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\UpnpStateVariable.cs">
+      <Link>Model\UpnpStateVariable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\VeraController.cs">
+      <Link>Model\VeraController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\VeraControllerDetail.cs">
+      <Link>Model\VeraControllerDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Model\VeraControllerList.cs">
+      <Link>Model\VeraControllerList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Foundation\VeraControl.Shared\Service\VeraControlService.cs">
+      <Link>Service\VeraControlService.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IVeraControl.PCL\IVeraControl.PCL.csproj">
+      <Project>{ac272905-9b1b-413e-a2b2-7b9175878e41}</Project>
+      <Name>IVeraControl.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
