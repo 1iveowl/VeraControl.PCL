@@ -20,6 +20,7 @@ The current version supports the following Devices (although not necessary all S
 - VSwitch1
 - HVAC_Thermostat1
 - TemperatureSensor1
+- HumiditySensor1
 
 The current version implementns the follwing Services:
 - SwitchPower1
@@ -28,6 +29,7 @@ The current version implementns the follwing Services:
 - VContainer1
 - Dimmer1
 - HomeAutomationGateway1
+- HumiditySensor1
 
 ## How This Library Works
 The Library works by abstracting http [Luup Requests](http://wiki.micasaverde.com/index.php/Luup_Requests "Luup Requests"). 
