@@ -244,4 +244,4 @@ That's it!
 
 If you decide to add new Services and Devices please don't hesitate to do a Pull Request here to extend this library. Please do the Pull Request on the Develop branch.
 
-IMPORTANT: This library is based on "Bait and Switch" pattern. It is strongly recommend to read this short and great blog post to get an good understanding of this pattern before contributing to the SocketLite PCL code-base: [The Bait and Switch PCL Trick](http://log.paulbetts.org/the-bait-and-switch-pcl-trick/)
+IMPORTANT: This library is based on "Bait and Switch" pattern. It is strongly recommend to read this short and great blog post to get an good understanding of this pattern before contributing to this code-base: [The Bait and Switch PCL Trick](http://log.paulbetts.org/the-bait-and-switch-pcl-trick/)
