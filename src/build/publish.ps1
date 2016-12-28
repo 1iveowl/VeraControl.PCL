@@ -5,7 +5,7 @@ $msbuild = join-path -path (Get-ItemProperty "HKLM:\software\Microsoft\MSBuild\T
 &$msbuild ..\main\VeraControl.PCL\CrossPlatform\VeraControl.Android\VeraControl.Android.csproj  /t:Build /p:Configuration="Release"
 &$msbuild ..\main\VeraControl.PCL\CrossPlatform\VeraControl.iOS\VeraControl.iOS.csproj /t:Build /p:Configuration="Release"
 &$msbuild ..\main\VeraControl.PCL\CrossPlatform\VeraControl.UWP\VeraControl.UWP.csproj /t:Build /p:Configuration="Release"
-&$msbuild ..\main\VeraControl.PCL\CrossPlatform\VeraControl.NetStandard16\VeraControl.UWP.csproj /t:Build /p:Configuration="Release"
+&$msbuild ..\main\VeraControl.PCL\CrossPlatform\VeraControl.NetStandard16\VeraControl.NetStandard16.csproj /t:Build /p:Configuration="Release"
 &$msbuild ..\main\Upnp\UpnpModels\UpnpModels.csproj /t:Build /p:Configuration="Release"
 
 $version = [Reflection.AssemblyName]::GetAssemblyName((resolve-path '..\main\IVeraControl.PCL\bin\Release\IVeraControl.dll')).Version.ToString(3)

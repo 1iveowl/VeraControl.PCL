@@ -3,7 +3,7 @@
   <metadata>
     <id>VeraControl.PCL</id>
     <version>0</version>
-    <title>Vera Control LibraryL</title>
+    <title>Vera Control Library</title>
     <authors>Jasper H. Bojsen</authors>
     <owners>Jasper H. Bojsen</owners>
     <licenseUrl>https://github.com/1iveowl/VeraControl.PCL/blob/master/license.md</licenseUrl>
@@ -11,9 +11,11 @@
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>PCL for controlling Vera devices. Cross platofrom for iOS, Android and Windows 10 (UWP)</description>
-    <releaseNotes>Implemented support for devices: BinaryLight, TemperatureSensor, Thermostat, VSwitch and VContainer</releaseNotes>
+    <releaseNotes>Added .NET Standard 1.6 library for better .NET Core compatibility 
+    Now supports Humidity Sensor
+    Implemented support for devices: BinaryLight, TemperatureSensor, Thermostat, VSwitch and VContainer</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>PCL, Xamarin, Vera, ios, android, windows 10, uwp</tags>
+    <tags>vera, pcl, xamarin, xamarinforms, ios, android, windows10, uwp, netcore, aspnetcore</tags>
 
     <dependencies>
 
@@ -78,8 +80,8 @@
 
     <!--.NET Standard 1.6 -->
     <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
-    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
-    <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="ref\netstandard1.6" />
+    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\IVeraControl.*" target="lib\netstandard1.6" />
+    <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="lib\netstandard1.6" />
     
   </files>
 </package>
