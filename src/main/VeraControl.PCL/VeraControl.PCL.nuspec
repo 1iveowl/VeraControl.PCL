@@ -21,7 +21,7 @@
         <dependency id="AutoMapper" version="5.1.1" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
       </group>
-
+      
       <group targetFramework="monoandroid60">
         <dependency id="AutoMapper" version="5.1.1" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
@@ -39,6 +39,14 @@
         <dependency id="AutoMapper" version="5.1.1" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
       </group>
+
+      <group targetFramework="netstandard16">
+        <dependency id="Microsoft.NETCore.Portable.Compatibility" version="1.0.1" />
+        <dependency id="NETStandard.Library" version="1.6.1" />
+        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="Newtonsoft.Json" version="9.0.1"/>
+      </group>
+
     </dependencies>
 
   </metadata>
@@ -67,5 +75,11 @@
     <file src="Foundation\VeraControl.NET\bin\Release\VeraControl.*" target="lib\net45" />
     <file src="Foundation\VeraControl.NET\bin\Release\IVeraControl.*" target="lib\net45" />
     <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="lib\net45" />
+
+    <!--.NET Standard 1.6 -->
+    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
+    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
+    <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="ref\netstandard1.6" />
+    
   </files>
 </package>
