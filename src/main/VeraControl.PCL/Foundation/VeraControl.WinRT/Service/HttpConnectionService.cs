@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.Storage.Streams;
 using Windows.Web.Http;
 using Windows.Web.Http.Filters;
 using IVeraControl.Service;
