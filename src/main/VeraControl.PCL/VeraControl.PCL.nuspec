@@ -3,7 +3,7 @@
   <metadata>
     <id>VeraControl.PCL</id>
     <version>0</version>
-    <title>Vera Control LibraryL</title>
+    <title>Vera Control Library</title>
     <authors>Jasper H. Bojsen</authors>
     <owners>Jasper H. Bojsen</owners>
     <licenseUrl>https://github.com/1iveowl/VeraControl.PCL/blob/master/license.md</licenseUrl>
@@ -11,39 +11,44 @@
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>PCL for controlling Vera devices. Cross platofrom for iOS, Android and Windows 10 (UWP)</description>
-    <releaseNotes>Implemented support for devices: BinaryLight, TemperatureSensor, Thermostat, VSwitch and VContainer</releaseNotes>
-    <copyright>Copyright 2016</copyright>
-    <tags>PCL, Xamarin, Vera, ios, android, windows 10, uwp</tags>
+    <releaseNotes>Added .NET Standard 1.6 library for better .NET Core compatibility 
+    Now supports Humidity Sensor
+    Implemented support for devices: BinaryLight, TemperatureSensor, Thermostat, VSwitch and VContainer</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>vera, pcl, xamarin, xamarinforms, ios, android, windows10, uwp, netcore, aspnetcore</tags>
 
     <dependencies>
 
       <group targetFramework="portable-net45+netcore45">
-        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="AutoMapper" version="5.2" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
+        
       </group>
       
       <group targetFramework="monoandroid60">
-        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="AutoMapper" version="5.2" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
         <dependency id="modernhttpclient" version="2.4.2"/>
+        <dependency id="System.Net.Http" version="3.4.1"/>
       </group>
 
       <group targetFramework="xamarinios10">
-        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="AutoMapper" version="5.2" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
         <dependency id="modernhttpclient" version="2.4.2"/>
+        <dependency id="System.Net.Http" version="3.4.1"/>
       </group>
 
       <group targetFramework="uap10.0">
-        <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.2.2" />
-        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.3.1" />
+        <dependency id="AutoMapper" version="5.2" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
       </group>
 
-      <group targetFramework="netstandard16">
+      <group targetFramework="netcoreapp1.0">
         <dependency id="Microsoft.NETCore.Portable.Compatibility" version="1.0.1" />
         <dependency id="NETStandard.Library" version="1.6.1" />
-        <dependency id="AutoMapper" version="5.1.1" />
+        <dependency id="AutoMapper" version="5.2" />
         <dependency id="Newtonsoft.Json" version="9.0.1"/>
       </group>
 
@@ -78,8 +83,8 @@
 
     <!--.NET Standard 1.6 -->
     <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
-    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\VeraControl.*" target="lib\netstandard1.6" />
-    <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="ref\netstandard1.6" />
+    <file src="CrossPlatform\VeraControl.NetStandard16\bin\Release\IVeraControl.*" target="lib\netstandard1.6" />
+    <file src="..\Upnp\UpnpModels\bin\Release\UpnpModels.*" target="lib\netstandard1.6" />
     
   </files>
 </package>
