@@ -4,6 +4,9 @@
 [![NuGet Badge](https://buildstats.info/nuget/VeraControl.PCL)](https://www.nuget.org/packages/VeraControl.PCL/)
 
 [![.NET Standard](http://img.shields.io/badge/.NET_Standard-1.2-green.svg)](https://docs.microsoft.com/da-dk/dotnet/articles/standard/library)
+
+*Please star this project if you find it useful. Thank you.*
+
 ## Why this library
 
 The purpose of the Vera Control .NET Library is to facilitate interoperability with the [Vera Smart Home Controller](http://getvera.com/ "Vera Smart Home Controller").
