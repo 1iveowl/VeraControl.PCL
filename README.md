@@ -153,11 +153,11 @@ var resultSetThermostate = await thermostat.ActionAsync(
 ```
 
 #### Reload The Luup Engine
-Sometimes it makes sense to reload the Luup Engine. The details about when this is relevant is beyond this Readme, however it is easy to do with the library:
+Sometimes it makes sense to reload the Luup Engine (i.e reset it). The details about when this is relevant is beyond this read-me, however it is easy to do with the library:
 
 `var reload = await veraPlus.ReloadAsync(ConnectionType.Local);`
 
-The reload will by default await fir the controller to to come back alive after the reload again (typically this takes 10-30 seconds), however if you don't want the code to wait, then just set the waitUntilAliveAgain to false like this:
+The reload will by default wait for the controller to come back online after the reload again (typically this takes about 10-30 seconds for it to cycle), however if you for some reasons don't want the code to await while this happenes, then just set the waitUntilAliveAgain to false like this:
 
 `var reload = await veraPlus.ReloadAsync(ConnectionType.Local, waitUntilAliveAgain:false);`
 
